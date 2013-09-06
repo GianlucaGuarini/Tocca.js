@@ -1,16 +1,17 @@
 Tocca.js (Beta 0.0.1)
 ========
 
-Super lightweight script (1kb) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
+Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
+
 
 ## Usage
 
 Include the script into your page:
 <pre lang="html">
-	&lt;script src="path/to/Tocca.js"&gt;&lt;/script&gt;
+&lt;script src="path/to/Tocca.js"&gt;&lt;/script&gt;
 </pre>
 
-Then you are able to catch all the new events:
+Indeed after the javascript file import you are able to catch all the new events:
 
 <pre lang="javascript">
 elm.addeventListener('tap',function(e){});
@@ -32,7 +33,8 @@ $(elm).on('swipedown',function(e,data){});
 </pre>
 
 ## API
-The callback function receives a special event object containing the following properties
+
+Anytime you will use a touch event the callback function will receive a special event object containing the following properties
 
  - <code>x</code> { Int }: latests x position of pointer at the end of the event
  - <code>y</code> { Int }: latest y position of pointer at the end of the event
@@ -72,14 +74,23 @@ $(elm).on('swipeup',function (e,data){
 ## Configuration
 
 Whenever you want to configure the plugin events settings you can do that simply specifying two constants before including Tocca.js into the page
+
 <pre lang="html">
 &lt;script&gt;
-var SWIPE_TRESHOLD = 80,
-		TAP_TRESHOLD = 200;
+var SWIPE_TRESHOLD = 80, // default value
+	TAP_TRESHOLD = 200; // default value
 &lt;/script&gt;
 &lt;script src="path/to/Tocca.js"&gt;&lt;/script&gt;
 </pre>
 
+## Browser Support
+
+Actually the script has been tested on all the modern browsers but it need a better testing phase over several platforms: Chrome 29+ Firefox 23+ Opera 12+ Safari 5+
+
+It works on mobile/tablet browsers and on desktop browsers as well.
+
+On the old browsers all the Tocca.js event cannot be triggered.
+
 ## What does Tocca mean?!
 
-'Tocca' is the first person singular of the imperative Italian verb 'Toccare' that means to touch. 
+'Tocca' is the first person singular of the imperative Italian verb 'Toccare' that means to touch.
