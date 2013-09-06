@@ -46,14 +46,14 @@
 			return event.targetTouches ? event.targetTouches[0] : event;
 		},
 		sendEvent = function(elm, eventName, originalEvent, data) {
+			data = data || {};
+			data.x = currX;
+			data.y = currY;
 			if (useJquery)
-				jQuery(elm).trigger(eventName, [originalEvent,data]);
+				jQuery(elm).trigger(eventName, data);
 			else {
 				var customEvent = new CustomEvent(eventName, originalEvent);
 				customEvent.originalEvent = originalEvent;
-				data = data || {};
-				data.x = currX;
-				data.y = currY;
 				for (var key in data) {
 					customEvent[key] = data[key];
 				}

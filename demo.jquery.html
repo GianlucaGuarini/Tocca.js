@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title>Tocca.js</title>
+	<style>
+	#test {
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin:-200px 0 0 -200px;
+		width:500px;
+		height:500px;
+		color:white;
+		background:black;
+		cursor:pointer;
+	}
+	</style>
+</head>
+<body>
+<h1>Tocca.js</h1>
+<dl id="data">
+	<dt><strong>Event Name</strong></dt>
+	<dd id="eventName"></dd>
+	<dt>Event x</dt>
+	<dd id="currX"></dd>
+	<dt>Event y</dt>
+	<dd id="currY"></dd>
+	<dt>Swipe Event distance x</dt>
+	<dd id="distanceX"></dd>
+	<dt>Swipe Event distance y</dt>
+	<dd id="distanceY"></dd>
+</dl>
+<div id="test"></div>
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<script src="Tocca.js"></script>
+<script>
+var eventName = $('#eventName'),
+		currX = $('#currX'),
+		currY = $('#currY'),
+		distanceX = $('#distanceX'),
+		distanceY = $('#distanceY'),
+		test = $('#test');
+test.on('tap',updateHtml)
+test.on('dpltap',updateHtml)
+test.on('swipeup',updateHtml)
+test.on('swipedown',updateHtml)
+test.on('swipeleft',updateHtml)
+test.on('swiperight',updateHtml)
+function updateHtml (e,data){
+	console.log(e);
+	console.log(data);
+	e.preventDefault();
+	eventName.text(e.type);
+	test.text(e.type);
+	currX.text(data.x);
+	currY.text(data.y);
+	distanceX.text(data.distance ? data.distance.x : 'not available');
+	distanceY.text(data.distance ? data.distance.y : 'not available');
+}
+</script>
+</body>
+</html>
