@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Tocca.js by GianlucaGuarini</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Tocca.js</h1>
+          <h2>Super lightweight script (1kb) to detect via Javascript events like 'tap' 'dbltap' 'swipeup' 'swipedown' 'swipeleft' 'swiperight' on any kind of device.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/GianlucaGuarini/Tocca.js/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/GianlucaGuarini/Tocca.js/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/GianlucaGuarini/Tocca.js" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a name="toccajs" class="anchor" href="#toccajs"><span class="octicon octicon-link"></span></a>Tocca.js</h1>
+
+<p>Super lightweight script (1kb) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.</p>
+
+<p>usage:</p>
+
+<div class="highlight"><pre>
+<span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'tap'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
+<span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'dbltap'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
+<span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'swipeleft'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
+<span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'swiperight'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
+<span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'swipeup'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
+<span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'swipedown'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
+</pre></div>
+
+<p>It works with jQuery as well:</p>
+
+<div class="highlight"><pre>
+<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'tap'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
+<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'dbltap'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
+<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'swipeleft'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
+<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'swiperight'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
+<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'swipeup'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
+<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'swipedown'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
+</pre></div>
+        </section>
+
+        <footer>
+          Tocca.js is maintained by <a href="https://github.com/GianlucaGuarini">GianlucaGuarini</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+                  <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("37852645");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+      </div>
+    </div>
+  </body>
+</html>
