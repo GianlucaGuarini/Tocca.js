@@ -62,8 +62,8 @@
 		};
 
 	var touchStarted = false, // detect if a touch event is sarted
-		swipeTreshold = 80,
-		taptreshold = 200,
+		swipeTreshold = win.SWIPE_TRESHOLD || 80,
+		taptreshold = win.TAP_TRESHOLD || 200,
 		tapNum = 0,
 		currX, currY, cachedX, cachedY, tapTimer;
 
