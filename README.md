@@ -11,7 +11,7 @@ Include the script into your page:
 &lt;script src="path/to/Tocca.js"&gt;&lt;/script&gt;
 </pre>
 
-Indeed after the javascript file import you are able to catch all the new events:
+Once you have included Tocca.js you will be able to catch all the new events:
 
 <pre lang="javascript">
 elm.addeventListener('tap',function(e){});
@@ -34,7 +34,7 @@ $(elm).on('swipedown',function(e,data){});
 
 ## API
 
-Anytime you will use a touch event the callback function will receive a special event object containing the following properties
+Anytime you will use a Tocca.js event the callback function will receive a special event object containing the following properties
 
  - <code>x</code> { Int }: latests x position of pointer at the end of the event
  - <code>y</code> { Int }: latest y position of pointer at the end of the event
