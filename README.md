@@ -1,9 +1,17 @@
-Tocca.js
+Tocca.js (Beta 0.0.1)
 ========
 
 Super lightweight script (1kb) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
 
-usage:
+## Usage
+
+Include the script into your page:
+<pre lang="html">
+&lt;script src="path/to/Tocca.js"&gt;&lt;/script&gt;
+</pre>
+
+Then you are able to catch all the new events:
+
 <pre lang="javascript">
 elm.addeventListener('tap',function(e){});
 elm.addeventListener('dbltap',function(e){});
@@ -15,11 +23,63 @@ elm.addeventListener('swipedown',function(e){});
 
 It works with jQuery as well:
 <pre lang="javascript">
-$(elm).on('tap',function(e){});
-$(elm).on('dbltap',function(e){});
-$(elm).on('swipeleft',function(e){});
-$(elm).on('swiperight',function(e){});
-$(elm).on('swipeup',function(e){});
-$(elm).on('swipedown',function(e){});
+$(elm).on('tap',function(e,data){});
+$(elm).on('dbltap',function(e,data){});
+$(elm).on('swipeleft',function(e,data){});
+$(elm).on('swiperight',function(e,data){});
+$(elm).on('swipeup',function(e,data){});
+$(elm).on('swipedown',function(e,data){});
 </pre>
 
+## API
+The callback function receives a special event object containing the following properties
+
+ - <code>x</code> { Int }: latests x position of pointer at the end of the event
+ - <code>y</code> { Int }: latest y position of pointer at the end of the event
+ - <code>originalEvent</code> { Object }: the original javascript native event that has been triggered
+ - <code>distance</code>: this property is available only for the swipe events
+ 	- <code>x</code> { Int }: the x absolute difference between the beginning and the end of the swipe gesture 
+ 	- <code>y</code> { Int }: the y absolute difference between the beginning and the end of the swipe gesture
+
+Examples:
+
+<pre lang="javascript">
+elm.addEventListener('dpltap',function (e){
+	console.log(e.x);
+	console.log(e.y);
+});
+elm.addEventListener('swipeup',function (e){
+	console.log(e.x);
+	console.log(e.y);
+	console.log(e.distance.x);
+	console.log(e.distance.y);
+});
+
+// with jQuery
+
+$(elm).on('dpltap',function (e,data){
+	console.log(data.x);
+	console.log(data.y);
+});
+$(elm).on('swipeup',function (e,data){
+	console.log(data.x);
+	console.log(data.y);
+	console.log(data.distance.x);
+	console.log(data.distance.y);
+});
+</pre>
+
+## Configuration
+
+Whenever you want to configure the plugin events settings you can do that simply specifying two constants before including Tocca.js into the page
+<pre lang="html">
+&lt;script&gt;
+var SWIPE_TRESHOLD = 80, // default value
+	TAP_TRESHOLD = 200; // default value
+&lt;/script&gt;
+&lt;script src="path/to/Tocca.js"&gt;&lt;/script&gt;
+</pre>
+
+## What does Tocca mean?!
+
+'Tocca' is the first person singular of the imperative Italian verb 'Toccare' that means to touch. 
