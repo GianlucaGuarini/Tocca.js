@@ -33,7 +33,7 @@
 	<dt>Swipe Event distance y</dt>
 	<dd id="distanceY"></dd>
 </dl>
-<div id="test"></div>
+<canvas id="test"></canvas>
 
 <script src="Tocca.js"></script>
 <script>
@@ -51,13 +51,13 @@ test.addEventListener('swipedown',updateHtml)
 test.addEventListener('swipeleft',updateHtml)
 test.addEventListener('swiperight',updateHtml)
 function updateHtml (e){
-	console.log(e);
 	e.preventDefault();
 	eventName.innerHTML = test.innerHTML =  e.type;
 	currX.innerHTML = e.x;
 	currY.innerHTML = e.y;
 	distanceX.innerHTML = e.distance ? e.distance.x : 'not available';
 	distanceY.innerHTML = e.distance ? e.distance.y : 'not available';
+	return false;
 }
 </script>
 </body>
