@@ -1,6 +1,6 @@
 /**
 *
-* Version: 0.0.1
+* Version: 0.0.2
 * Author: Gianluca Guarini
 * Contact: gianluca.guarini@gmail.com
 * Website: http://www.gianlucaguarini.com/
@@ -32,7 +32,7 @@
 
 (function(doc, win) {
 	'use strict';
-	if (typeof doc.createEvent !== 'function' || !window.CustomEvent) return false; // no touch events here
+	if (typeof doc.createEvent !== 'function') return false; // no touch events here
 	// helpers
 	var useJquery = typeof jQuery != 'undefined',
 		setListener = function(elm, events, callback) {
@@ -52,11 +52,12 @@
 			if (useJquery)
 				jQuery(elm).trigger(eventName, data);
 			else {
-				var customEvent = new CustomEvent(eventName, originalEvent);
+				var customEvent = doc.createEvent('Event');
 				customEvent.originalEvent = originalEvent;
 				for (var key in data) {
 					customEvent[key] = data[key];
 				}
+				customEvent.initEvent(eventName, true, true); 
 				elm.dispatchEvent(customEvent);
 			}
 		};
@@ -82,7 +83,7 @@
 		tapTimer = setTimeout(function() {
 			if ((cachedX === currX) && !touchStarted && (cachedY === currY)) {
 				// Here you get the Tap event
-				sendEvent(e.target, (tapNum > 1) ? 'dpltap' : 'tap', e);
+				sendEvent(e.target, (tapNum == 2) ? 'dpltap' : 'tap', e);
 			}
 			tapNum = 0;
 		}, taptreshold);
@@ -93,7 +94,6 @@
 			deltaY = cachedY - currY,
 			deltaX = cachedX - currX;
 		touchStarted = false;
-
 		if (deltaX <= -swipeTreshold)
 			eventsArr.push('swiperight');
 
@@ -105,11 +105,9 @@
 
 		if (deltaY >= swipeTreshold)
 			eventsArr.push('swipeup');
-
 		if (eventsArr.length) {
 			for (var i = 0; i < eventsArr.length; i++) {
 				var eventName = eventsArr[i];
-				
 				sendEvent(e.target, eventName, e,{
 					distance:{
 						x:Math.abs(deltaX),
