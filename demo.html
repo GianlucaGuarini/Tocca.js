@@ -50,6 +50,9 @@ test.addEventListener('swipeup',updateHtml)
 test.addEventListener('swipedown',updateHtml)
 test.addEventListener('swipeleft',updateHtml)
 test.addEventListener('swiperight',updateHtml)
+test.addEventListener('touchmove',function(e){e.preventDefault()})
+test.addEventListener('touchstart',function(e){e.preventDefault()})
+test.addEventListener('touchend',function(e){e.preventDefault()})
 function updateHtml (e){
 	e.preventDefault();
 	eventName.innerHTML = test.innerHTML =  e.type;

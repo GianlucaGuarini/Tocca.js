@@ -49,6 +49,9 @@ test.on('swipeup',updateHtml)
 test.on('swipedown',updateHtml)
 test.on('swipeleft',updateHtml)
 test.on('swiperight',updateHtml)
+
+test.on('touchmove touchstart touchend',function(e){e.preventDefault()})
+
 function updateHtml (e,data){
 	console.log(e);
 	console.log(data);
