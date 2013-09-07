@@ -94,4 +94,4 @@ On the old browsers all the Tocca.js event cannot be triggered.
 
 ## What does Tocca mean?!
 
-'Tocca' is the first person singular of the imperative Italian verb 'Toccare' that means to touch.
+'Tocca' is the second person singular of the imperative Italian verb 'Toccare' that means to touch.
