@@ -33,11 +33,11 @@ $(elm).on('swipeup',function(e,data){});
 $(elm).on('swipedown',function(e,data){});
 </pre>
 
-## API
+## API and Examples
 
 Anytime you will use a Tocca.js event the callback function will receive a special event object containing the following properties
 
- - <code>x</code> { Int }: latests x position of pointer at the end of the event
+ - <code>x</code> { Int }: latest x position of pointer at the end of the event
  - <code>y</code> { Int }: latest y position of pointer at the end of the event
  - <code>originalEvent</code> { Object }: the original javascript native event that has been triggered
  - <code>distance</code>: this property is available only for the swipe events
@@ -72,6 +72,23 @@ $(elm).on('swipeup',function (e,data){
 });
 </pre>
 
+
+Anyway you can combine Tocca.js with the default javascript touch events:
+
+	- <code>touchmove</code>
+	- <code>touchstart</code>
+	- <code>touchend</code>
+	- <code>touchcancel</code>
+
+To disable the default touch behaviours (zoom on double tap, scroll on swipe...) on a certain element via javascript you can always use the following snippet:
+
+<pre lang="javascript">
+elm.addEventListener('touchmove',function(e){e.preventDefault()});
+elm.addEventListener('touchstart',function(e){e.preventDefault()});
+elm.addEventListener('touchend',function(e){e.preventDefault()});
+</pre>
+
+
 ## Configuration
 
 Whenever you want to configure the plugin events settings you can do that simply specifying two constants before including Tocca.js into the page
@@ -90,7 +107,7 @@ Actually the script has been tested on all the modern browsers but it need a bet
 
 It works on mobile/tablet browsers and on desktop browsers as well.
 
-On the old browsers all the Tocca.js event cannot be triggered.
+On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
