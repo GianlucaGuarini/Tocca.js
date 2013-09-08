@@ -70,13 +70,13 @@
 </pre></div>
 
 <h2>
-<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
+<a name="api-and-examples" class="anchor" href="#api-and-examples"><span class="octicon octicon-link"></span></a>API and Examples</h2>
 
 <p>Anytime you will use a Tocca.js event the callback function will receive a special event object containing the following properties</p>
 
 <ul>
 <li>
-<code>x</code> { Int }: latests x position of pointer at the end of the event</li>
+<code>x</code> { Int }: latest x position of pointer at the end of the event</li>
 <li>
 <code>y</code> { Int }: latest y position of pointer at the end of the event</li>
 <li>
@@ -119,6 +119,21 @@
 <span class="p">});</span>
 </pre></div>
 
+<p>Anyway you can combine Tocca.js with the default javascript touch events:</p>
+
+<ul>
+<li><code>touchmove</code></li>
+<li><code>touchstart</code></li>
+<li><code>touchend</code></li>
+<li><code>touchcancel</code></li>
+</ul><p>To disable the default touch behaviours (zoom on double tap, scroll on swipe...) on a certain element via javascript you can always use the following snippet:</p>
+
+<div class="highlight"><pre>
+<span class="nx">elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'touchmove'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()});</span>
+<span class="nx">elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'touchstart'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()});</span>
+<span class="nx">elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'touchend'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()});</span>
+</pre></div>
+
 <h2>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
@@ -139,7 +154,7 @@
 
 <p>It works on mobile/tablet browsers and on desktop browsers as well.</p>
 
-<p>On the old browsers all the Tocca.js event cannot be triggered.</p>
+<p>On the old browsers all the Tocca.js events cannot be triggered.</p>
 
 <h2>
 <a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
