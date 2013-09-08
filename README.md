@@ -112,7 +112,7 @@ On the old browsers all the Tocca.js events cannot be triggered.
 ## Changelog
 
 ### 0.0.2
-	Android Bug fix
+ - Android Bug fix
 
 ## What does Tocca mean?!
 
