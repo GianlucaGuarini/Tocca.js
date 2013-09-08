@@ -75,10 +75,10 @@ $(elm).on('swipeup',function (e,data){
 
 Anyway you can combine Tocca.js with the default javascript touch events:
 
-	- <code>touchmove</code>
-	- <code>touchstart</code>
-	- <code>touchend</code>
-	- <code>touchcancel</code>
+ - <code>touchmove</code>
+ - <code>touchstart</code>
+ - <code>touchend</code>
+ - <code>touchcancel</code>
 
 To disable the default touch behaviours (zoom on double tap, scroll on swipe...) on a certain element via javascript you can always use the following snippet:
 
