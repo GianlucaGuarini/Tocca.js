@@ -1,5 +1,4 @@
 Tocca.js
-
 ========
 
 [![Build Status](https://travis-ci.org/GianlucaGuarini/Tocca.js.png?branch=master)](https://travis-ci.org/GianlucaGuarini/Tocca.js)
