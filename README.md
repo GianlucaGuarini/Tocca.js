@@ -1,4 +1,3 @@
-Tocca.js (Beta 0.0.2)
 ========
 
 Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
@@ -113,6 +112,9 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ### 0.0.2
  - Android Bug fix
+
+### 0.0.3
+ - Tests added
 
 ## What does Tocca mean?!
 
