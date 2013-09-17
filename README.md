@@ -1,4 +1,7 @@
+Tocca.js
+
 ========
+
 
 Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
 
