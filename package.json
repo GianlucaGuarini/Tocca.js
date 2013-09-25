@@ -1,0 +1,28 @@
+{
+  "name": "Tocca.js",
+  "version": "0.0.4",
+  "description": "Super lightweight script (1kb) to detect via Javascript events like 'tap' 'dbltap' 'swipeup' 'swipedown' 'swipeleft' 'swiperight' on any kind of device.",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/GianlucaGuarini/Tocca.js.git"
+  },
+  "author": "Gianluca Guarini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GianlucaGuarini/Tocca.js/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-mocha": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-cli": "~0.1.9"
+  }
+}

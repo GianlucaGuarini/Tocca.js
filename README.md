@@ -1,9 +1,11 @@
-Tocca.js (Beta 0.0.2)
+Tocca.js
 ========
+
+[![Build Status](https://travis-ci.org/GianlucaGuarini/Tocca.js.png?branch=master)](https://travis-ci.org/GianlucaGuarini/Tocca.js)
 
 Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
 
-<a href="http://gianlucaguarini.github.io/Tocca.js/demo.html" target="_blank">Demo</a>
+<a href="http://gianlucaguarini.github.io/Tocca.js/demo-fun.html" target="_blank">Demo</a>
 
 ## Usage
 
@@ -33,11 +35,11 @@ $(elm).on('swipeup',function(e,data){});
 $(elm).on('swipedown',function(e,data){});
 </pre>
 
-## API
+## API and Examples
 
 Anytime you will use a Tocca.js event the callback function will receive a special event object containing the following properties
 
- - <code>x</code> { Int }: latests x position of pointer at the end of the event
+ - <code>x</code> { Int }: latest x position of pointer at the end of the event
  - <code>y</code> { Int }: latest y position of pointer at the end of the event
  - <code>originalEvent</code> { Object }: the original javascript native event that has been triggered
  - <code>distance</code>: this property is available only for the swipe events
@@ -47,7 +49,7 @@ Anytime you will use a Tocca.js event the callback function will receive a speci
 Examples:
 
 <pre lang="javascript">
-elm.addEventListener('dpltap',function (e){
+elm.addEventListener('dbltap',function (e){
 	console.log(e.x);
 	console.log(e.y);
 });
@@ -60,7 +62,7 @@ elm.addEventListener('swipeup',function (e){
 
 // with jQuery
 
-$(elm).on('dpltap',function (e,data){
+$(elm).on('dbltap',function (e,data){
 	console.log(data.x);
 	console.log(data.y);
 });
@@ -71,6 +73,23 @@ $(elm).on('swipeup',function (e,data){
 	console.log(data.distance.y);
 });
 </pre>
+
+
+Anyway you can combine Tocca.js with the default javascript touch events:
+
+ - <code>touchmove</code>
+ - <code>touchstart</code>
+ - <code>touchend</code>
+ - <code>touchcancel</code>
+
+To disable the default touch behaviours (zoom on double tap, scroll on swipe...) on a certain element via javascript you can always use the following snippet:
+
+<pre lang="javascript">
+elm.addEventListener('touchmove',function(e){e.preventDefault()});
+elm.addEventListener('touchstart',function(e){e.preventDefault()});
+elm.addEventListener('touchend',function(e){e.preventDefault()});
+</pre>
+
 
 ## Configuration
 
@@ -90,12 +109,19 @@ Actually the script has been tested on all the modern browsers but it need a bet
 
 It works on mobile/tablet browsers and on desktop browsers as well.
 
-On the old browsers all the Tocca.js event cannot be triggered.
+On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
 ### 0.0.2
-	Android Bug fix
+ - Android Bug fix
+
+### 0.0.3
+ - Tests added
+
+### 0.0.4
+ - <code>dpltap</code> renamed <code>dbltap</code>
+ - new demo added demo-fun.html
 
 ## What does Tocca mean?!
 

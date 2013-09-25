@@ -1,6 +1,6 @@
 /**
 *
-* Version: 0.0.2
+* Version: 0.0.4
 * Author: Gianluca Guarini
 * Contact: gianluca.guarini@gmail.com
 * Website: http://www.gianlucaguarini.com/
@@ -34,7 +34,7 @@
 	'use strict';
 	if (typeof doc.createEvent !== 'function') return false; // no touch events here
 	// helpers
-	var useJquery = typeof jQuery != 'undefined',
+	var useJquery = typeof jQuery !== 'undefined',
 		setListener = function(elm, events, callback) {
 			var eventsArray = events.split(' '),
 				i = eventsArray.length;
@@ -46,18 +46,20 @@
 			return event.targetTouches ? event.targetTouches[0] : event;
 		},
 		sendEvent = function(elm, eventName, originalEvent, data) {
+			var customEvent = doc.createEvent('Event');
+			
 			data = data || {};
 			data.x = currX;
 			data.y = currY;
+			data.distance = data.distance;
 			if (useJquery)
 				jQuery(elm).trigger(eventName, data);
 			else {
-				var customEvent = doc.createEvent('Event');
 				customEvent.originalEvent = originalEvent;
 				for (var key in data) {
 					customEvent[key] = data[key];
 				}
-				customEvent.initEvent(eventName, true, true); 
+				customEvent.initEvent(eventName, true, true);
 				elm.dispatchEvent(customEvent);
 			}
 		};
@@ -81,9 +83,9 @@
 		// detecting if after 200ms the finger is still in the same position
 		clearTimeout(tapTimer);
 		tapTimer = setTimeout(function() {
-			if ((cachedX === currX) && !touchStarted && (cachedY === currY)) {
+			if (cachedX === currX && !touchStarted && cachedY === currY) {
 				// Here you get the Tap event
-				sendEvent(e.target, (tapNum == 2) ? 'dpltap' : 'tap', e);
+				sendEvent(e.target, (tapNum === 2) ? 'dbltap' : 'tap', e);
 			}
 			tapNum = 0;
 		}, taptreshold);

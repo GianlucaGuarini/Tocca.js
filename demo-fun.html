@@ -1,0 +1,182 @@
+<html>
+<head>
+	<title>Tocca.js</title>
+<link href='http://fonts.googleapis.com/css?family=Sansita+One' rel='stylesheet' type='text/css'>
+	<style>
+	body {
+		font-family: 'Sansita One', cursive;
+		color:#aaa;
+		background:radial-gradient(#002D59, #1B2836);
+		background-size: cover;
+		background-repeat: no-repeat;
+		height: 100%;
+		overflow: hidden;
+	}
+	a {
+		color:yellow;
+		text-decoration: none;
+	}
+	::selection { background: transparent; }
+	dl dd {
+		color:green;
+	}
+	b {
+		color:yellow;
+		margin-left:3px;
+	}
+	#wrapper {
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin-top:-200px;
+		margin-left:-200px;
+		width:400px;
+		height:400px;
+		color:white;
+		cursor:pointer;
+	}
+	#test {
+		pointer-events:none;
+		position:absolute;
+		text-align: center;
+		font-size: 30px;
+		line-height: 400px;
+		width:400px;
+		height:400px;
+		background:rgba(0,0,0,0.5);
+		border-radius:30px;
+	}
+	.swipedown {
+		animation: movedown 0.3s ease-in-out infinite alternate;
+	}
+	.swipeup {
+		animation: moveup 0.3s ease-in-out infinite alternate;
+	}
+	.swipeleft {
+		animation: moveleft 0.3s ease-in-out infinite alternate;
+	}
+	.swiperight {
+		animation: moveright 0.3s ease-in-out infinite alternate;
+	}
+	.tap {
+		animation: pulse 0.3s ease-in-out infinite alternate;
+	}
+	.dbltap {
+		animation: pulse 0.15s ease-in-out infinite alternate;
+	}
+	@keyframes movedown {
+		0% {
+			transform:translateY(0px);
+		}
+		100% {
+			transform:translateY(20px);
+		}
+	}
+	@keyframes moveup {
+		0% {
+			transform:translateY(0px);
+		}
+		100% {
+			transform:translateY(-20px);
+		}
+	}
+	@keyframes moveleft {
+		0% {
+			transform:translateX(0px);
+		}
+		100% {
+			transform:translateX(-20px);
+		}
+	}
+	@keyframes moveright {
+		0% {
+			transform:translateX(0px);
+		}
+		100% {
+			transform:translateX(20px);
+		}
+	}
+	@keyframes pulse {
+		0% {
+			transform:scale(1);
+		}
+		100% {
+			transform:scale(0.8);
+		}
+	}
+	</style>
+</head>
+<body>
+<h1><a href="https://github.com/GianlucaGuarini/Tocca.js" target="_blank">Tocca.js</a></h1>
+<p>Try the following events: <b>tap</b>, <b>dbltap</b>, <b>swipeup</b>, <b>swipedown</b>, <b>swipeleft</b>, <b>swiperight</b></p>
+<dl id="data">
+	<dt><strong>Event Name</strong></dt>
+	<dd id="eventName"></dd>
+	<dt>Event x</dt>
+	<dd id="currX"></dd>
+	<dt>Event y</dt>
+	<dd id="currY"></dd>
+	<dt>Swipe Event distance x</dt>
+	<dd id="distanceX"></dd>
+	<dt>Swipe Event distance y</dt>
+	<dd id="distanceY"></dd>
+</dl>
+<div id="wrapper"><div id="test">Touch me please!</div></div>
+
+<script src="Tocca.js"></script>
+<script>
+var $ = document.querySelector.bind(document),
+		eventName = $('#eventName'),
+		currX = $('#currX'),
+		currY = $('#currY'),
+		distanceX = $('#distanceX'),
+		distanceY = $('#distanceY'),
+		test = $('#test'),
+		wrapper = $('#wrapper'),
+		nookie = [
+			'Oh yes!',
+			'One more time!',
+			'Give me more!',
+			'Rock and roll baby!',
+			'Yeah right there!',
+			'Turn it on..',
+			'&#x2665; &#x2665; &#x2665;',
+			'OMG you are so good!'
+			// shell I keep going?!
+		];
+
+
+wrapper.addEventListener('tap',updateHtml)
+wrapper.addEventListener('dbltap',updateHtml)
+wrapper.addEventListener('swipeup',updateHtml)
+wrapper.addEventListener('swipedown',updateHtml)
+wrapper.addEventListener('swipeleft',updateHtml)
+wrapper.addEventListener('swiperight',updateHtml)
+wrapper.addEventListener('touchmove',function(e){e.preventDefault()})
+wrapper.addEventListener('touchstart',function(e){e.preventDefault()})
+wrapper.addEventListener('touchend',function(e){e.preventDefault()})
+wrapper.addEventListener('mousedown',function(e){e.preventDefault()})
+wrapper.addEventListener('mouseleave',function(e){e.preventDefault()})
+wrapper.addEventListener('mousemove',function(e){e.preventDefault()})
+function updateHtml (e){
+
+	currX.innerHTML = e.x;
+	currY.innerHTML = e.y;
+	test.innerHTML = nookie[~~(Math.random() * nookie.length)]
+	distanceX.innerHTML = e.distance ? e.distance.x : 'undefined';
+	distanceY.innerHTML = e.distance ? e.distance.y : 'undefined';
+
+	if (/swipedown|swipeup/.test(e.type))
+		test.classList.add(e.type);
+	else 
+		wrapper.classList.add(e.type);
+
+	setTimeout(function(){
+		test.className = '';
+		wrapper.className = '';
+	},600);
+}
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+</body>
+</html>
