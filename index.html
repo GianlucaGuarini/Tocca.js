@@ -31,8 +31,7 @@
         <hr>
 
         <section id="main_content">
-          <h1>
-<a name="toccajs-beta-001" class="anchor" href="#toccajs-beta-001"><span class="octicon octicon-link"></span></a>Tocca.js (Beta 0.0.1)</h1>
+          <h1></h1>
 
 <p>Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.</p>
 
@@ -43,13 +42,13 @@
 
 <p>Include the script into your page:</p>
 
-<div class="highlight"><pre>
+<div class="highlight highlight-html"><pre>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"path/to/Tocca.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></div>
 
 <p>Once you have included Tocca.js you will be able to catch all the new events:</p>
 
-<div class="highlight"><pre>
+<div class="highlight highlight-javascript"><pre>
 <span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'tap'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
 <span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'dbltap'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
 <span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'swipeleft'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
@@ -60,7 +59,7 @@
 
 <p>It works with jQuery as well:</p>
 
-<div class="highlight"><pre>
+<div class="highlight highlight-javascript"><pre>
 <span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'tap'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">data</span><span class="p">){});</span>
 <span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'dbltap'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">data</span><span class="p">){});</span>
 <span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'swipeleft'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">data</span><span class="p">){});</span>
@@ -70,13 +69,13 @@
 </pre></div>
 
 <h2>
-<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
+<a name="api-and-examples" class="anchor" href="#api-and-examples"><span class="octicon octicon-link"></span></a>API and Examples</h2>
 
 <p>Anytime you will use a Tocca.js event the callback function will receive a special event object containing the following properties</p>
 
 <ul>
 <li>
-<code>x</code> { Int }: latests x position of pointer at the end of the event</li>
+<code>x</code> { Int }: latest x position of pointer at the end of the event</li>
 <li>
 <code>y</code> { Int }: latest y position of pointer at the end of the event</li>
 <li>
@@ -93,7 +92,7 @@
 </li>
 </ul><p>Examples:</p>
 
-<div class="highlight"><pre>
+<div class="highlight highlight-javascript"><pre>
 <span class="nx">elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'dpltap'</span><span class="p">,</span><span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">){</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
@@ -119,12 +118,27 @@
 <span class="p">});</span>
 </pre></div>
 
+<p>Anyway you can combine Tocca.js with the default javascript touch events:</p>
+
+<ul>
+<li><code>touchmove</code></li>
+<li><code>touchstart</code></li>
+<li><code>touchend</code></li>
+<li><code>touchcancel</code></li>
+</ul><p>To disable the default touch behaviours (zoom on double tap, scroll on swipe...) on a certain element via javascript you can always use the following snippet:</p>
+
+<div class="highlight highlight-javascript"><pre>
+<span class="nx">elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'touchmove'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()});</span>
+<span class="nx">elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'touchstart'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()});</span>
+<span class="nx">elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'touchend'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()});</span>
+</pre></div>
+
 <h2>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
 <p>Whenever you want to configure the plugin events settings you can do that simply specifying two constants before including Tocca.js into the page</p>
 
-<div class="highlight"><pre>
+<div class="highlight highlight-html"><pre>
 <span class="nt">&lt;script&gt;</span>
 <span class="kd">var</span> <span class="nx">SWIPE_TRESHOLD</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="c1">// default value</span>
     <span class="nx">TAP_TRESHOLD</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span> <span class="c1">// default value</span>
@@ -139,9 +153,22 @@
 
 <p>It works on mobile/tablet browsers and on desktop browsers as well.</p>
 
-<p>On the old browsers all the Tocca.js event cannot be triggered.</p>
+<p>On the old browsers all the Tocca.js events cannot be triggered.</p>
 
 <h2>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
+
+<h3>
+<a name="002" class="anchor" href="#002"><span class="octicon octicon-link"></span></a>0.0.2</h3>
+
+<ul>
+<li>Android Bug fix</li>
+</ul><h3>
+<a name="003" class="anchor" href="#003"><span class="octicon octicon-link"></span></a>0.0.3</h3>
+
+<ul>
+<li>Tests added</li>
+</ul><h2>
 <a name="what-does-tocca-mean" class="anchor" href="#what-does-tocca-mean"><span class="octicon octicon-link"></span></a>What does Tocca mean?!</h2>
 
 <p>'Tocca' is the second person singular of the imperative Italian verb 'Toccare' that means to touch.</p>
