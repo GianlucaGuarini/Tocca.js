@@ -5,7 +5,7 @@ Tocca.js
 
 Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
 
-<a href="http://gianlucaguarini.github.io/Tocca.js/demo.html" target="_blank">Demo</a>
+<a href="http://gianlucaguarini.github.io/Tocca.js/demo-fun.html" target="_blank">Demo</a>
 
 ## Usage
 
@@ -49,7 +49,7 @@ Anytime you will use a Tocca.js event the callback function will receive a speci
 Examples:
 
 <pre lang="javascript">
-elm.addEventListener('dpltap',function (e){
+elm.addEventListener('dbltap',function (e){
 	console.log(e.x);
 	console.log(e.y);
 });
@@ -62,7 +62,7 @@ elm.addEventListener('swipeup',function (e){
 
 // with jQuery
 
-$(elm).on('dpltap',function (e,data){
+$(elm).on('dbltap',function (e,data){
 	console.log(data.x);
 	console.log(data.y);
 });
@@ -118,6 +118,10 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ### 0.0.3
  - Tests added
+
+### 0.0.4
+ - <code>dpltap</code> renamed <code>dbltap</code>
+ - new demo added demo-fun.html
 
 ## What does Tocca mean?!
 

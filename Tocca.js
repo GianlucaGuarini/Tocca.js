@@ -1,6 +1,6 @@
 /**
 *
-* Version: 0.0.3
+* Version: 0.0.4
 * Author: Gianluca Guarini
 * Contact: gianluca.guarini@gmail.com
 * Website: http://www.gianlucaguarini.com/
@@ -85,7 +85,7 @@
 		tapTimer = setTimeout(function() {
 			if (cachedX === currX && !touchStarted && cachedY === currY) {
 				// Here you get the Tap event
-				sendEvent(e.target, (tapNum === 2) ? 'dpltap' : 'tap', e);
+				sendEvent(e.target, (tapNum === 2) ? 'dbltap' : 'tap', e);
 			}
 			tapNum = 0;
 		}, taptreshold);

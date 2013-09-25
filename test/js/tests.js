@@ -65,8 +65,8 @@ describe('Tocca.js nojQuery events', function() {
 	 *
 	 *
 	 */
-	describe('dpltap event', function() {
-		it('The "dpltap" event gets fired correctly', function(done) {
+	describe('dbltap event', function() {
+		it('The "dbltap" event gets fired correctly', function(done) {
 			function onEventFired(e) {
 				check(done, function() {
 					expect(e).to.be.an('object');
@@ -79,11 +79,11 @@ describe('Tocca.js nojQuery events', function() {
 					expect(e.originalEvent).to.not.be.equal(undefined);
 					expect(e.distance).to.be.equal(undefined);
 				});
-				testDiv.removeEventListener('dpltap', onEventFired, false);
+				testDiv.removeEventListener('dbltap', onEventFired, false);
 			}
 
 
-			testDiv.addEventListener('dpltap', onEventFired, false);
+			testDiv.addEventListener('dbltap', onEventFired, false);
 			simulant.fire(testDiv, touchstart, {
 				clientX: 50,
 				clientY: 50
@@ -335,12 +335,12 @@ describe('Tocca.js validate events', function() {
 	/**
 	 *
 	 *
-	 * Test the dpltap event
+	 * Test the dbltap event
 	 *
 	 *
 	 */
-	describe('dpltap event', function() {
-		it('The "dpltap" event must not be triggered because out of the time range defined', function(done) {
+	describe('dbltap event', function() {
+		it('The "dbltap" event must not be triggered because out of the time range defined', function(done) {
 			var eventObject = false;
 
 			function onEventFired(e) {
@@ -349,7 +349,7 @@ describe('Tocca.js validate events', function() {
 					expect(true).to.be.equal(false);
 				});
 			}
-			testDiv.addEventListener('dpltap', onEventFired, false);
+			testDiv.addEventListener('dbltap', onEventFired, false);
 			simulant.fire(testDiv, touchstart, {
 				clientX: 99,
 				clientY: 99
@@ -368,7 +368,7 @@ describe('Tocca.js validate events', function() {
 				setTimeout(function() {
 					check(done, function() {
 						expect(eventObject).to.be.equal(false);
-						testDiv.removeEventListener('dpltap', onEventFired, false);
+						testDiv.removeEventListener('dbltap', onEventFired, false);
 					});
 				}, 500);
 			}, 200);
@@ -379,7 +379,7 @@ describe('Tocca.js validate events', function() {
 	/**
 	 *
 	 *
-	 * Test the dpltap event
+	 * Test the dbltap event
 	 *
 	 *
 	 */
