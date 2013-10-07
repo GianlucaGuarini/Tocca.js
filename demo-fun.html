@@ -159,7 +159,7 @@ wrapper.addEventListener('mousedown',function(e){e.preventDefault()})
 wrapper.addEventListener('mouseleave',function(e){e.preventDefault()})
 wrapper.addEventListener('mousemove',function(e){e.preventDefault()})
 function updateHtml (e){
-
+	eventName.innerHTML = e.type;
 	currX.innerHTML = e.x;
 	currY.innerHTML = e.y;
 	test.innerHTML = nookie[~~(Math.random() * nookie.length)]
