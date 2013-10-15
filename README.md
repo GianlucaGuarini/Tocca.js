@@ -113,15 +113,16 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
-### 0.0.2
- - Android Bug fix
+### 0.0.4
+ - <code>dpltap</code> renamed <code>dbltap</code>
+ - new demo added demo-fun.html
 
 ### 0.0.3
  - Tests added
 
-### 0.0.4
- - <code>dpltap</code> renamed <code>dbltap</code>
- - new demo added demo-fun.html
+### 0.0.2
+ - Android Bug fix
+
 
 ## What does Tocca mean?!
 
