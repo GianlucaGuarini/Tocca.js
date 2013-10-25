@@ -114,6 +114,9 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
+### 0.0.5
+ - tap precision option included 
+
 ### 0.0.4
  - <code>dpltap</code> renamed <code>dbltap</code>
  - new demo added demo-fun.html
