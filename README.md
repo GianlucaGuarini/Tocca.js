@@ -98,7 +98,8 @@ Whenever you want to configure the plugin events settings you can do that simply
 <pre lang="html">
 &lt;script&gt;
 var SWIPE_TRESHOLD = 80, // default value
-	TAP_TRESHOLD = 200; // default value
+	TAP_TRESHOLD = 200, // default value
+	TAP_PRECISION = 60; // default value (touch events boundaries)
 &lt;/script&gt;
 &lt;script src="path/to/Tocca.js"&gt;&lt;/script&gt;
 </pre>
