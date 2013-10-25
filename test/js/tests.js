@@ -290,8 +290,8 @@ describe('Tocca.js validate events', function() {
 
 			setTimeout(function() {
 				simulant.fire(testDiv, touchmove, {
-					clientX: 98,
-					clientY: 98
+					clientX: 28,
+					clientY: 28
 				});
 				setTimeout(function() {
 					simulant.fire(testDiv, touchend);

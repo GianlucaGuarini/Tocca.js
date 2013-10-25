@@ -1,6 +1,6 @@
 /**
 *
-* Version: 0.0.4
+* Version: 0.0.5
 * Author: Gianluca Guarini
 * Contact: gianluca.guarini@gmail.com
 * Website: http://www.gianlucaguarini.com/
@@ -67,6 +67,7 @@
 	var touchStarted = false, // detect if a touch event is sarted
 		swipeTreshold = win.SWIPE_TRESHOLD || 80,
 		taptreshold = win.TAP_TRESHOLD || 200,
+		precision =  win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
 		tapNum = 0,
 		currX, currY, cachedX, cachedY, tapTimer;
 
@@ -83,7 +84,13 @@
 		// detecting if after 200ms the finger is still in the same position
 		clearTimeout(tapTimer);
 		tapTimer = setTimeout(function() {
-			if (cachedX === currX && !touchStarted && cachedY === currY) {
+			if (
+				cachedX >= currX - precision &&
+				cachedX <= currX + precision &&
+				cachedY >= currY - precision &&
+				cachedY <= currY + precision &&
+				!touchStarted
+			) {
 				// Here you get the Tap event
 				sendEvent(e.target, (tapNum === 2) ? 'dbltap' : 'tap', e);
 			}
