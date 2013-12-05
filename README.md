@@ -99,7 +99,8 @@ Whenever you want to configure the plugin events settings you can do that simply
 &lt;script&gt;
 var SWIPE_TRESHOLD = 80, // default value
 	TAP_TRESHOLD = 200, // default value
-	TAP_PRECISION = 60; // default value (touch events boundaries)
+	TAP_PRECISION = 60, // default value (touch events boundaries)
+	JUST_ON_TOUCH_DEVICES = false; // default value ( decide whether you want to use the Tocca.js events only on the touch devices )
 &lt;/script&gt;
 &lt;script src="path/to/Tocca.js"&gt;&lt;/script&gt;
 </pre>
@@ -113,6 +114,10 @@ It works on mobile/tablet browsers and on desktop browsers as well.
 On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
+
+### 0.0.6
+ - bugfix: do not set the mouse event listeners on any touch device and vice versa
+ - added: new JUST_ON_TOUCH_DEVICES option to block all the Tocca.js events on the no-touch devices
 
 ### 0.0.5
  - tap precision option included 
