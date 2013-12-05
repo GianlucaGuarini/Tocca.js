@@ -1,6 +1,6 @@
 /**
 *
-* Version: 0.0.5
+* Version: 0.0.6
 * Author: Gianluca Guarini
 * Contact: gianluca.guarini@gmail.com
 * Website: http://www.gianlucaguarini.com/
@@ -35,9 +35,11 @@
 	if (typeof doc.createEvent !== 'function') return false; // no touch events here
 	// helpers
 	var useJquery = typeof jQuery !== 'undefined',
+		isTouch = !!('ontouchstart' in window),
 		setListener = function(elm, events, callback) {
 			var eventsArray = events.split(' '),
 				i = eventsArray.length;
+
 			while (i--) {
 				elm.addEventListener(eventsArray[i], callback, false);
 			}
@@ -71,8 +73,12 @@
 		tapNum = 0,
 		currX, currY, cachedX, cachedY, tapTimer;
 
+	// shall we use it just on the touch devices?
+	// by default Tocca.js detects also the mouse events
+	isTouch = win.JUST_ON_TOUCH_DEVICES ? true : isTouch;
+
 	//setting the events listeners
-	setListener(doc, 'touchstart mousedown', function(e) {
+	setListener(doc, isTouch ? 'touchstart' : 'mousedown', function(e) {
 		var pointer = getPointerEvent(e);
 		// caching the current x
 		cachedX = currX = pointer.pageX;
@@ -98,7 +104,7 @@
 		}, taptreshold);
 
 	});
-	setListener(doc, 'touchend mouseup touchcancel', function(e) {
+	setListener(doc, isTouch ? 'touchend touchcancel' : 'mouseup', function(e) {
 		var eventsArr = [],
 			deltaY = cachedY - currY,
 			deltaX = cachedX - currX;
@@ -126,7 +132,7 @@
 			}
 		}
 	});
-	setListener(doc, 'touchmove mousemove', function(e) {
+	setListener(doc, isTouch ? 'touchmove' : 'mousemove', function(e) {
 		var pointer = getPointerEvent(e);
 		currX = pointer.pageX;
 		currY = pointer.pageY;
