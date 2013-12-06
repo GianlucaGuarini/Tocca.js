@@ -1,6 +1,6 @@
 /**
 *
-* Version: 0.0.6
+* Version: 0.0.7
 * Author: Gianluca Guarini
 * Contact: gianluca.guarini@gmail.com
 * Website: http://www.gianlucaguarini.com/
@@ -35,7 +35,7 @@
 	if (typeof doc.createEvent !== 'function') return false; // no touch events here
 	// helpers
 	var useJquery = typeof jQuery !== 'undefined',
-		isTouch = !!('ontouchstart' in window),
+		isTouch = !!('ontouchstart' in window) && navigator.userAgent.indexOf('PhantomJS') < 0,
 		setListener = function(elm, events, callback) {
 			var eventsArray = events.split(' '),
 				i = eventsArray.length;

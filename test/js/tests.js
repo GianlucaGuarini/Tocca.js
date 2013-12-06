@@ -20,7 +20,6 @@ document.body.appendChild(testDiv);
 describe('Tocca.js nojQuery events', function() {
 
 
-
 	/**
 	 *
 	 *
