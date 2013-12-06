@@ -115,6 +115,9 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
+### 0.0.7
+ - nothing important (just a workaround to fix the tests on the motherfucker Phantomjs)
+
 ### 0.0.6
  - bugfix: do not set the mouse event listeners on any touch device and vice versa
  - added: new JUST_ON_TOUCH_DEVICES option to block all the Tocca.js events on the no-touch devices
