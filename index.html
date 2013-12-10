@@ -145,7 +145,8 @@
 <span class="nt">&lt;script&gt;</span>
 <span class="kd">var</span> <span class="nx">SWIPE_TRESHOLD</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="c1">// default value</span>
     <span class="nx">TAP_TRESHOLD</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="c1">// default value</span>
-    <span class="nx">TAP_PRECISION</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span> <span class="c1">// default value (touch events boundaries)</span>
+    <span class="nx">TAP_PRECISION</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span> <span class="c1">// default value (touch events boundaries)</span>
+    <span class="nx">JUST_ON_TOUCH_DEVICES</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// default value ( decide whether you want to use the Tocca.js events only on the touch devices )</span>
 <span class="nt">&lt;/script&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"path/to/Tocca.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></div>
@@ -163,6 +164,17 @@
 <a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
 
 <h3>
+<a name="007" class="anchor" href="#007"><span class="octicon octicon-link"></span></a>0.0.7</h3>
+
+<ul>
+<li>nothing important (just a workaround to fix the tests on the motherfucker Phantomjs)</li>
+</ul><h3>
+<a name="006" class="anchor" href="#006"><span class="octicon octicon-link"></span></a>0.0.6</h3>
+
+<ul>
+<li>bugfix: do not set the mouse event listeners on any touch device and vice versa</li>
+<li>added: new JUST_ON_TOUCH_DEVICES option to block all the Tocca.js events on the no-touch devices</li>
+</ul><h3>
 <a name="005" class="anchor" href="#005"><span class="octicon octicon-link"></span></a>0.0.5</h3>
 
 <ul>
