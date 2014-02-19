@@ -104,7 +104,7 @@
 		}, taptreshold);
 
 	});
-	setListener(doc, isTouch ? 'touchend touchcancel' : 'mouseup', function(e) {
+	setListener(doc, isTouch ? 'touchend' : 'mouseup', function(e) {
 		var eventsArr = [],
 			deltaY = cachedY - currY,
 			deltaX = cachedX - currX;
