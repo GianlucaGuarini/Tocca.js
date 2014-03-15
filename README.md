@@ -43,7 +43,7 @@ Anytime you will use a Tocca.js event the callback function will receive a speci
  - <code>y</code> { Int }: latest y position of pointer at the end of the event
  - <code>originalEvent</code> { Object }: the original javascript native event that has been triggered
  - <code>distance</code>: this property is available only for the swipe events
- 	- <code>x</code> { Int }: the x absolute difference between the beginning and the end of the swipe gesture 
+ 	- <code>x</code> { Int }: the x absolute difference between the beginning and the end of the swipe gesture
  	- <code>y</code> { Int }: the y absolute difference between the beginning and the end of the swipe gesture
 
 Examples:
@@ -115,6 +115,9 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
+### 0.0.8
+ - 'touchcancel' event removed to fix and android issue on page scroll
+
 ### 0.0.7
  - nothing important (just a workaround to fix the tests on the motherfucker Phantomjs)
 
@@ -123,7 +126,7 @@ On the old browsers all the Tocca.js events cannot be triggered.
  - added: new JUST_ON_TOUCH_DEVICES option to block all the Tocca.js events on the no-touch devices
 
 ### 0.0.5
- - tap precision option included 
+ - tap precision option included
 
 ### 0.0.4
  - <code>dpltap</code> renamed <code>dbltap</code>

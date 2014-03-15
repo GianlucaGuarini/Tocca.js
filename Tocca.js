@@ -1,6 +1,6 @@
 /**
 *
-* Version: 0.0.7
+* Version: 0.0.8
 * Author: Gianluca Guarini
 * Contact: gianluca.guarini@gmail.com
 * Website: http://www.gianlucaguarini.com/
@@ -49,7 +49,7 @@
 		},
 		sendEvent = function(elm, eventName, originalEvent, data) {
 			var customEvent = doc.createEvent('Event');
-			
+
 			data = data || {};
 			data.x = currX;
 			data.y = currY;
@@ -104,7 +104,7 @@
 		}, taptreshold);
 
 	});
-	setListener(doc, isTouch ? 'touchend touchcancel' : 'mouseup', function(e) {
+	setListener(doc, isTouch ? 'touchend' : 'mouseup', function(e) {
 		var eventsArr = [],
 			deltaY = cachedY - currY,
 			deltaX = cachedX - currX;
