@@ -43,13 +43,13 @@ var eventName = $('#eventName'),
 		distanceX = $('#distanceX'),
 		distanceY = $('#distanceY'),
 		test = $('#test');
-test.on('tap',updateHtml)
-test.on('dbltap',updateHtml)
-test.on('swipeup',updateHtml)
-test.on('swipedown',updateHtml)
-test.on('swipeleft',updateHtml)
-test.on('swiperight',updateHtml)
-test.on('touchmove touchstart touchend',function(e){e.preventDefault()})
+test.on('tap',updateHtml);
+test.on('dbltap',updateHtml);
+test.on('swipeup',updateHtml);
+test.on('swipedown',updateHtml);
+test.on('swipeleft',updateHtml);
+test.on('swiperight',updateHtml);
+test.on('touchmove touchstart touchend',function(e){e.preventDefault();});
 function updateHtml (e,data){
 	console.log(e);
 	console.log(data);
