@@ -122,7 +122,7 @@
 	<dd id="distanceY"></dd>
 </dl>
 <div id="wrapper"><div id="test">Touch me please!</div></div>
-
+<script src="bind.polyfill.js"></script>
 <script src="Tocca.js"></script>
 <script>
 var $ = document.querySelector.bind(document),
@@ -133,6 +133,7 @@ var $ = document.querySelector.bind(document),
 		distanceY = $('#distanceY'),
 		test = $('#test'),
 		wrapper = $('#wrapper'),
+		preventDefault = function(e){e.preventDefault();},
 		nookie = [
 			'Oh yes!',
 			'One more time!',
@@ -146,29 +147,32 @@ var $ = document.querySelector.bind(document),
 		];
 
 
-wrapper.addEventListener('tap',updateHtml)
-wrapper.addEventListener('dbltap',updateHtml)
-wrapper.addEventListener('swipeup',updateHtml)
-wrapper.addEventListener('swipedown',updateHtml)
-wrapper.addEventListener('swipeleft',updateHtml)
-wrapper.addEventListener('swiperight',updateHtml)
-wrapper.addEventListener('touchmove',function(e){e.preventDefault()})
-wrapper.addEventListener('touchstart',function(e){e.preventDefault()})
-wrapper.addEventListener('touchend',function(e){e.preventDefault()})
-wrapper.addEventListener('mousedown',function(e){e.preventDefault()})
-wrapper.addEventListener('mouseleave',function(e){e.preventDefault()})
-wrapper.addEventListener('mousemove',function(e){e.preventDefault()})
+wrapper.addEventListener('tap',updateHtml);
+wrapper.addEventListener('dbltap',updateHtml);
+wrapper.addEventListener('swipeup',updateHtml);
+wrapper.addEventListener('swipedown',updateHtml);
+wrapper.addEventListener('swipeleft',updateHtml);
+wrapper.addEventListener('swiperight',updateHtml);
+wrapper.addEventListener('touchmove',preventDefault);
+wrapper.addEventListener('touchstart',preventDefault);
+wrapper.addEventListener('touchend',preventDefault);
+wrapper.addEventListener('mousedown',preventDefault);
+wrapper.addEventListener('mouseleave',preventDefault);
+wrapper.addEventListener('mousemove',preventDefault);
 function updateHtml (e){
+
+
 	eventName.innerHTML = e.type;
+
 	currX.innerHTML = e.x;
 	currY.innerHTML = e.y;
-	test.innerHTML = nookie[~~(Math.random() * nookie.length)]
+	test.innerHTML = nookie[~~(Math.random() * nookie.length)];
 	distanceX.innerHTML = e.distance ? e.distance.x : 'undefined';
 	distanceY.innerHTML = e.distance ? e.distance.y : 'undefined';
 
 	if (/swipedown|swipeup/.test(e.type))
 		test.classList.add(e.type);
-	else 
+	else
 		wrapper.classList.add(e.type);
 
 	setTimeout(function(){

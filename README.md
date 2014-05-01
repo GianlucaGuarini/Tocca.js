@@ -43,7 +43,7 @@ Anytime you will use a Tocca.js event the callback function will receive a speci
  - <code>y</code> { Int }: latest y position of pointer at the end of the event
  - <code>originalEvent</code> { Object }: the original javascript native event that has been triggered
  - <code>distance</code>: this property is available only for the swipe events
- 	- <code>x</code> { Int }: the x absolute difference between the beginning and the end of the swipe gesture 
+ 	- <code>x</code> { Int }: the x absolute difference between the beginning and the end of the swipe gesture
  	- <code>y</code> { Int }: the y absolute difference between the beginning and the end of the swipe gesture
 
 Examples:
@@ -98,7 +98,9 @@ Whenever you want to configure the plugin events settings you can do that simply
 <pre lang="html">
 &lt;script&gt;
 var SWIPE_TRESHOLD = 80, // default value
-	TAP_TRESHOLD = 200; // default value
+	TAP_TRESHOLD = 200, // default value
+	TAP_PRECISION = 60, // default value (touch events boundaries)
+	JUST_ON_TOUCH_DEVICES = false; // default value ( decide whether you want to use the Tocca.js events only on the touch devices )
 &lt;/script&gt;
 &lt;script src="path/to/Tocca.js"&gt;&lt;/script&gt;
 </pre>
@@ -113,15 +115,29 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
-### 0.0.2
- - Android Bug fix
+### 0.0.8
+ - 'touchcancel' event removed to fix and android issue on page scroll
 
-### 0.0.3
- - Tests added
+### 0.0.7
+ - nothing important (just a workaround to fix the tests on the motherfucker Phantomjs)
+
+### 0.0.6
+ - bugfix: do not set the mouse event listeners on any touch device and vice versa
+ - added: new JUST_ON_TOUCH_DEVICES option to block all the Tocca.js events on the no-touch devices
+
+### 0.0.5
+ - tap precision option included
 
 ### 0.0.4
  - <code>dpltap</code> renamed <code>dbltap</code>
  - new demo added demo-fun.html
+
+### 0.0.3
+ - Tests added
+
+### 0.0.2
+ - Android Bug fix
+
 
 ## What does Tocca mean?!
 

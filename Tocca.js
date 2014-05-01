@@ -1,6 +1,6 @@
 /**
 *
-* Version: 0.0.4
+* Version: 0.0.8
 * Author: Gianluca Guarini
 * Contact: gianluca.guarini@gmail.com
 * Website: http://www.gianlucaguarini.com/
@@ -35,9 +35,11 @@
 	if (typeof doc.createEvent !== 'function') return false; // no touch events here
 	// helpers
 	var useJquery = typeof jQuery !== 'undefined',
+		isTouch = !!('ontouchstart' in window) && navigator.userAgent.indexOf('PhantomJS') < 0,
 		setListener = function(elm, events, callback) {
 			var eventsArray = events.split(' '),
 				i = eventsArray.length;
+
 			while (i--) {
 				elm.addEventListener(eventsArray[i], callback, false);
 			}
@@ -47,7 +49,7 @@
 		},
 		sendEvent = function(elm, eventName, originalEvent, data) {
 			var customEvent = doc.createEvent('Event');
-			
+
 			data = data || {};
 			data.x = currX;
 			data.y = currY;
@@ -67,11 +69,16 @@
 	var touchStarted = false, // detect if a touch event is sarted
 		swipeTreshold = win.SWIPE_TRESHOLD || 80,
 		taptreshold = win.TAP_TRESHOLD || 200,
+		precision =  win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
 		tapNum = 0,
 		currX, currY, cachedX, cachedY, tapTimer;
 
+	// shall we use it just on the touch devices?
+	// by default Tocca.js detects also the mouse events
+	isTouch = win.JUST_ON_TOUCH_DEVICES ? true : isTouch;
+
 	//setting the events listeners
-	setListener(doc, 'touchstart mousedown', function(e) {
+	setListener(doc, isTouch ? 'touchstart' : 'mousedown', function(e) {
 		var pointer = getPointerEvent(e);
 		// caching the current x
 		cachedX = currX = pointer.pageX;
@@ -83,7 +90,13 @@
 		// detecting if after 200ms the finger is still in the same position
 		clearTimeout(tapTimer);
 		tapTimer = setTimeout(function() {
-			if (cachedX === currX && !touchStarted && cachedY === currY) {
+			if (
+				cachedX >= currX - precision &&
+				cachedX <= currX + precision &&
+				cachedY >= currY - precision &&
+				cachedY <= currY + precision &&
+				!touchStarted
+			) {
 				// Here you get the Tap event
 				sendEvent(e.target, (tapNum === 2) ? 'dbltap' : 'tap', e);
 			}
@@ -91,7 +104,7 @@
 		}, taptreshold);
 
 	});
-	setListener(doc, 'touchend mouseup touchcancel', function(e) {
+	setListener(doc, isTouch ? 'touchend' : 'mouseup', function(e) {
 		var eventsArr = [],
 			deltaY = cachedY - currY,
 			deltaX = cachedX - currX;
@@ -119,7 +132,7 @@
 			}
 		}
 	});
-	setListener(doc, 'touchmove mousemove', function(e) {
+	setListener(doc, isTouch ? 'touchmove' : 'mousemove', function(e) {
 		var pointer = getPointerEvent(e);
 		currX = pointer.pageX;
 		currY = pointer.pageY;

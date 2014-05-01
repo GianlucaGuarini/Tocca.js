@@ -34,25 +34,27 @@
 	<dd id="distanceY"></dd>
 </dl>
 <div id="test"></div>
-
+<script src="bind.polyfill.js"></script>
 <script src="Tocca.js"></script>
 <script>
+
 var $ = document.querySelector.bind(document),
 		eventName = $('#eventName'),
 		currX = $('#currX'),
 		currY = $('#currY'),
 		distanceX = $('#distanceX'),
 		distanceY = $('#distanceY'),
-		test = $('#test');
-test.addEventListener('tap',updateHtml)
-test.addEventListener('dbltap',updateHtml)
-test.addEventListener('swipeup',updateHtml)
-test.addEventListener('swipedown',updateHtml)
-test.addEventListener('swipeleft',updateHtml)
-test.addEventListener('swiperight',updateHtml)
-test.addEventListener('touchmove',function(e){e.preventDefault()})
-test.addEventListener('touchstart',function(e){e.preventDefault()})
-test.addEventListener('touchend',function(e){e.preventDefault()})
+		test = $('#test'),
+		preventDefault = function(e){e.preventDefault();};
+test.addEventListener('tap',updateHtml);
+test.addEventListener('dbltap',updateHtml);
+test.addEventListener('swipeup',updateHtml);
+test.addEventListener('swipedown',updateHtml);
+test.addEventListener('swipeleft',updateHtml);
+test.addEventListener('swiperight',updateHtml);
+test.addEventListener('touchmove',preventDefault);
+test.addEventListener('touchstart',preventDefault);
+test.addEventListener('touchend',preventDefault);
 function updateHtml (e){
 	e.preventDefault();
 	eventName.innerHTML = test.innerHTML =  e.type;

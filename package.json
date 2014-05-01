@@ -1,6 +1,6 @@
 {
   "name": "Tocca.js",
-  "version": "0.0.4",
+  "version": "0.0.8",
   "description": "Super lightweight script (1kb) to detect via Javascript events like 'tap' 'dbltap' 'swipeup' 'swipedown' 'swipeleft' 'swiperight' on any kind of device.",
   "main": "Gruntfile.js",
   "directories": {
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-mocha": "~0.4.1",
+    "grunt-mocha": "~0.4.7",
     "grunt-contrib-uglify": "~0.2.4",
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-cli": "~0.1.9"
