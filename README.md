@@ -115,6 +115,9 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
+### 0.1.0
+ - bugfix: optimizing the support for the microsoft hybrid devices (IE10/IE11)
+
 ### 0.0.8
  - 'touchcancel' event removed to fix and android issue on page scroll
 
