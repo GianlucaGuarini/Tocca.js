@@ -21,8 +21,10 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-cli": "~0.1.9",
+    "grunt-contrib-connect": "^0.8.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "^0.5.0",
-    "grunt-mocha": "^0.4.11"
+    "grunt-mocha": "^0.4.11",
+    "grunt-saucelabs": "^8.1.0"
   }
 }

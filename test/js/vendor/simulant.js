@@ -47,7 +47,7 @@ var eventTypesByGroup = {
 	BeforeUnloadEvent:           'beforeunload',
 	TimeEvent:                   'beginEvent endEvent repeatEvent',
 	FocusEvent:                  'blur focus focusin focusout',
-	MouseEvent:                  'click contextmenu dblclick mousedown mouseenter mouseleave mousemove mouseout mouseover mouseup show',
+	MouseEvent:                  'click contextmenu dblclick mousedown mouseenter mouseleave mousemove mouseout mouseover mouseup show touchcancel touchend touchenter touchleave touchmove touchstart',
 	SensorEvent:                 'compassneedscalibration userproximity',
 	OfflineAudioCompletionEvent: 'complete',
 	CompositionEvent:            'compositionend compositionstart compositionupdate',
@@ -67,7 +67,7 @@ var eventTypesByGroup = {
 	StorageEvent:                'storage',
 	SVGEvent:                    'SVGAbort SVGError SVGLoad SVGResize SVGScroll SVGUnload',
 	SVGZoomEvent:                'SVGZoom',
-	TouchEvent:                  'touchcancel touchend touchenter touchleave touchmove touchstart',
+	TouchEvent:                  '',
 	TransitionEvent:             'transitionend',
 	WheelEvent:                  'wheel'
 };
@@ -97,7 +97,7 @@ var initialisersByGroup = {
 	MouseEvent:          [ global.MouseEvent,          'initMouseEvent'       ],
 	CompositionEvent:    [ global.CompositionEvent,    'initCompositionEvent' ],
 	HashChangeEvent:     [ global.HashChangeEvent,     'initHashChangeEvent'  ],
-	KeyboardEvent:       [ global.Event,               'initEvent'            ], 
+	KeyboardEvent:       [ global.Event,               'initEvent'            ],
 	ProgressEvent:       [ global.ProgressEvent,       'initEvent'            ],
 	MessageEvent:        [ global.MessageEvent,        'initMessageEvent'     ], // TODO prefixed?
 	PageTransitionEvent: [ global.PageTransitionEvent, 'initEvent'            ],
@@ -153,7 +153,7 @@ var useAncient = function () {
 
 		event = document.createEventObject();
 		initialise( event, type, params || {} );
-		
+
 		if ( isKeyboardEvent ) {
 			extendWithKeyboardParams( event, params );
 		}
@@ -209,7 +209,7 @@ var useLegacy = function () {
 			isKeyboardEvent = true;
 			group = 'Event';
 		}
-		
+
 		initialiserName = initialisersByGroup[ group ][1];
 		initialise = initialisers[ initialiserName ];
 
@@ -429,7 +429,7 @@ simulant.polyfill = function () {
 
 		listeners = element.listeners || ( element.listeners = [] );
 		i = listeners.length;
-		
+
 		listeners[i] = [ listener, function (e) {
 			listener.call( element, new Event( e, element ) );
 		}];
@@ -477,6 +477,11 @@ if ( typeof define === "function" && define.amd ) {
 	define( function () {
 		return simulant;
 	});
+}
+
+// ... or as CommonJS module
+else if ( typeof module !== 'undefined' && module.exports ) {
+	module.exports = simulant;
 }
 
 // ... or as browser global
