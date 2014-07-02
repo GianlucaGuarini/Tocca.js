@@ -141,11 +141,12 @@
 		swipeTreshold = win.SWIPE_TRESHOLD || 80,
 		taptreshold = win.TAP_TRESHOLD || 200,
 		precision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
+		justTouchEvents = win.JUST_ON_TOUCH_DEVICES || isTouch,
 		tapNum = 0,
 		currX, currY, cachedX, cachedY, tapTimer;
 
 	//setting the events listeners
-	setListener(doc, touchevents.touchstart + (win.JUST_ON_TOUCH_DEVICES || isTouch ? '' : ' mousedown'), onTouchStart);
-	setListener(doc, touchevents.touchend + (win.JUST_ON_TOUCH_DEVICES || isTouch ? '' : ' mouseup'), onTouchEnd);
-	setListener(doc, touchevents.touchmove + (win.JUST_ON_TOUCH_DEVICES || isTouch ? '' : ' mousemove'), onTouchMove);
+	setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), onTouchStart);
+	setListener(doc, touchevents.touchend + (justTouchEvents ? '' : ' mouseup'), onTouchEnd);
+	setListener(doc, touchevents.touchmove + (justTouchEvents ? '' : ' mousemove'), onTouchMove);
 }(document, window));

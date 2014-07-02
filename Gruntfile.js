@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 				options: {
 					run: true,
 					reporter: 'Spec',
-					log:true,
+					log: true,
 					timeout: 10000,
 					mocha: {
 						ignoreLeaks: false
