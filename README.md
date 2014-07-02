@@ -2,6 +2,7 @@ Tocca.js
 ========
 
 [![Build Status](https://travis-ci.org/GianlucaGuarini/Tocca.js.png?branch=master)](https://travis-ci.org/GianlucaGuarini/Tocca.js)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/Toccajs.svg)](https://saucelabs.com/u/Toccajs)
 
 Super lightweight script ( 1.57kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
 
