@@ -3,7 +3,7 @@ Tocca.js
 
 [![Build Status](https://travis-ci.org/GianlucaGuarini/Tocca.js.png?branch=master)](https://travis-ci.org/GianlucaGuarini/Tocca.js)
 
-Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
+Super lightweight script ( 1.57kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
 
 <a href="http://gianlucaguarini.github.io/Tocca.js/demo-fun.html" target="_blank">Demo</a>
 
@@ -114,6 +114,9 @@ It works on mobile/tablet browsers and on desktop browsers as well.
 On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
+
+### 0.1.0
+ - bugfix: optimizing the support for the microsoft hybrid devices (IE10/IE11)
 
 ### 0.0.8
  - 'touchcancel' event removed to fix and android issue on page scroll
