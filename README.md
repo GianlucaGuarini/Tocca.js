@@ -1,11 +1,31 @@
 Tocca.js
 ========
 
-[![Build Status](https://travis-ci.org/GianlucaGuarini/Tocca.js.png?branch=master)](https://travis-ci.org/GianlucaGuarini/Tocca.js)
+
+[![Build Status][travis-image]][travis-url]
+
+[![NPM version][npm-version-image]][npm-url]
+[![NPM downloads][npm-downloads-image]][npm-url]
+
+[![MIT License][license-image]][license-url]
+
+[![Sauce Test Status][saucelabs-image]][saucelabs-url]
 
 Super lightweight script ( 1.57kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
 
 <a href="http://gianlucaguarini.github.io/Tocca.js/demo-fun.html" target="_blank">Demo</a>
+
+## Installation
+
+### Npm
+```bash
+$ npm install tocca
+```
+
+### Bower
+```
+$ bower install Tocca.js -save
+```
 
 ## Usage
 
@@ -145,3 +165,16 @@ On the old browsers all the Tocca.js events cannot be triggered.
 ## What does Tocca mean?!
 
 'Tocca' is the second person singular of the imperative Italian verb 'Toccare' that means to touch.
+
+[npm-url]: https://npmjs.org/package/tocca
+[npm-version-image]: http://img.shields.io/npm/v/tocca.svg?style=flat-square
+[npm-downloads-image]: http://img.shields.io/npm/dm/tocca.svg?style=flat-square
+
+[travis-url]:https://travis-ci.org/GianlucaGuarini/Tocca.js
+[travis-image]: https://img.shields.io/travis/GianlucaGuarini/Tocca.js.svg?style=flat-square
+
+[saucelabs-image]:https://saucelabs.com/browser-matrix/Toccajs.svg
+[saucelabs-url]:https://saucelabs.com/u/Toccajs
+
+[license-url]: LICENSE
+[license-image]: http://img.shields.io/badge/license-MIT-000000.svg?style=flat-square

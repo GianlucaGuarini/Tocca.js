@@ -8,11 +8,13 @@ function check(done, f) {
 }
 
 var testDiv = document.createElement('div'),
-
-	isTouch = !! ('ontouchstart' in window) && navigator.userAgent.indexOf('PhantomJS') < 0,
+	msPointerEnabled = !!navigator.pointerEnabled || navigator.msPointerEnabled,
+	isTouch = (!!('ontouchstart' in window) && navigator.userAgent.indexOf('PhantomJS') < 0) || msPointerEnabled,
 	touchend = isTouch ? 'touchend' : 'mouseup',
 	touchmove = isTouch ? 'touchmove' : 'mousemove',
 	touchstart = isTouch ? 'touchstart' : 'mousedown';
+
+
 
 // append the test div into the body
 document.body.appendChild(testDiv);
@@ -44,7 +46,6 @@ describe('Tocca.js nojQuery events', function() {
 				testDiv.removeEventListener('tap', onEventFired, false);
 			}
 			testDiv.addEventListener('tap', onEventFired, false);
-
 			simulant.fire(testDiv, touchstart, {
 				clientX: 99,
 				clientY: 99
