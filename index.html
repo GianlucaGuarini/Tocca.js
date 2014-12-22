@@ -4,9 +4,9 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -32,47 +32,65 @@
 
         <section id="main_content">
           <h1>
-<a name="toccajs" class="anchor" href="#toccajs"><span class="octicon octicon-link"></span></a>Tocca.js</h1>
+<a id="toccajs" class="anchor" href="#toccajs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tocca.js</h1>
 
-<p><a href="https://travis-ci.org/GianlucaGuarini/Tocca.js"><img src="https://travis-ci.org/GianlucaGuarini/Tocca.js.png?branch=master" alt="Build Status"></a></p>
+<p><a href="https://travis-ci.org/GianlucaGuarini/Tocca.js"><img src="https://img.shields.io/travis/GianlucaGuarini/Tocca.js.svg?style=flat-square" alt="Build Status"></a></p>
 
-<p>Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.</p>
+<p><a href="https://npmjs.org/package/tocca"><img src="http://img.shields.io/npm/v/tocca.svg?style=flat-square" alt="NPM version"></a>
+<a href="https://npmjs.org/package/tocca"><img src="http://img.shields.io/npm/dm/tocca.svg?style=flat-square" alt="NPM downloads"></a></p>
+
+<p><a href="LICENSE"><img src="http://img.shields.io/badge/license-MIT-000000.svg?style=flat-square" alt="MIT License"></a></p>
+
+<p><a href="https://saucelabs.com/u/Toccajs"><img src="https://saucelabs.com/browser-matrix/Toccajs.svg" alt="Sauce Test Status"></a></p>
+
+<p>Super lightweight script ( 1.57kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.</p>
 
 <p><a href="http://gianlucaguarini.github.io/Tocca.js/demo-fun.html" target="_blank">Demo</a></p>
 
 <h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<h3>
+<a id="npm" class="anchor" href="#npm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Npm</h3>
+
+<div class="highlight highlight-bash"><pre>$ npm install tocca</pre></div>
+
+<h3>
+<a id="bower" class="anchor" href="#bower" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bower</h3>
+
+<pre><code>$ bower install Tocca.js -save
+</code></pre>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>Include the script into your page:</p>
 
 <div class="highlight highlight-html"><pre>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"path/to/Tocca.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-</pre></div>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>path/to/Tocca.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
 <p>Once you have included Tocca.js you will be able to catch all the new events:</p>
 
 <div class="highlight highlight-javascript"><pre>
-<span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'tap'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
-<span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'dbltap'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
-<span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'swipeleft'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
-<span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'swiperight'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
-<span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'swipeup'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
-<span class="nx">elm</span><span class="p">.</span><span class="nx">addeventListener</span><span class="p">(</span><span class="s1">'swipedown'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){});</span>
-</pre></div>
+elm.addeventListener(<span class="pl-s1"><span class="pl-pds">'</span>tap<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>){});
+elm.addeventListener(<span class="pl-s1"><span class="pl-pds">'</span>dbltap<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>){});
+elm.addeventListener(<span class="pl-s1"><span class="pl-pds">'</span>swipeleft<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>){});
+elm.addeventListener(<span class="pl-s1"><span class="pl-pds">'</span>swiperight<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>){});
+elm.addeventListener(<span class="pl-s1"><span class="pl-pds">'</span>swipeup<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>){});
+elm.addeventListener(<span class="pl-s1"><span class="pl-pds">'</span>swipedown<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>){});</pre></div>
 
 <p>It works with jQuery as well:</p>
 
 <div class="highlight highlight-javascript"><pre>
-<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'tap'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">data</span><span class="p">){});</span>
-<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'dbltap'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">data</span><span class="p">){});</span>
-<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'swipeleft'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">data</span><span class="p">){});</span>
-<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'swiperight'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">data</span><span class="p">){});</span>
-<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'swipeup'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">data</span><span class="p">){});</span>
-<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'swipedown'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">data</span><span class="p">){});</span>
-</pre></div>
+$(elm).on(<span class="pl-s1"><span class="pl-pds">'</span>tap<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>,<span class="pl-vpf">data</span>){});
+$(elm).on(<span class="pl-s1"><span class="pl-pds">'</span>dbltap<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>,<span class="pl-vpf">data</span>){});
+$(elm).on(<span class="pl-s1"><span class="pl-pds">'</span>swipeleft<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>,<span class="pl-vpf">data</span>){});
+$(elm).on(<span class="pl-s1"><span class="pl-pds">'</span>swiperight<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>,<span class="pl-vpf">data</span>){});
+$(elm).on(<span class="pl-s1"><span class="pl-pds">'</span>swipeup<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>,<span class="pl-vpf">data</span>){});
+$(elm).on(<span class="pl-s1"><span class="pl-pds">'</span>swipedown<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>,<span class="pl-vpf">data</span>){});</pre></div>
 
 <h2>
-<a name="api-and-examples" class="anchor" href="#api-and-examples"><span class="octicon octicon-link"></span></a>API and Examples</h2>
+<a id="api-and-examples" class="anchor" href="#api-and-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>API and Examples</h2>
 
 <p>Anytime you will use a Tocca.js event the callback function will receive a special event object containing the following properties</p>
 
@@ -93,33 +111,34 @@
 <code>y</code> { Int }: the y absolute difference between the beginning and the end of the swipe gesture</li>
 </ul>
 </li>
-</ul><p>Examples:</p>
+</ul>
+
+<p>Examples:</p>
 
 <div class="highlight highlight-javascript"><pre>
-<span class="nx">elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'dbltap'</span><span class="p">,</span><span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'swipeup'</span><span class="p">,</span><span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">distance</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">distance</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
-<span class="p">});</span>
+elm.addEventListener(<span class="pl-s1"><span class="pl-pds">'</span>dbltap<span class="pl-pds">'</span></span>,<span class="pl-st">function</span> (<span class="pl-vpf">e</span>){
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(e.<span class="pl-sc">x</span>);
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(e.<span class="pl-sc">y</span>);
+});
+elm.addEventListener(<span class="pl-s1"><span class="pl-pds">'</span>swipeup<span class="pl-pds">'</span></span>,<span class="pl-st">function</span> (<span class="pl-vpf">e</span>){
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(e.<span class="pl-sc">x</span>);
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(e.<span class="pl-sc">y</span>);
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(e.distance.<span class="pl-sc">x</span>);
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(e.distance.<span class="pl-sc">y</span>);
+});
 
-<span class="c1">// with jQuery</span>
+<span class="pl-c">// with jQuery</span>
 
-<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'dbltap'</span><span class="p">,</span><span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">data</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">$</span><span class="p">(</span><span class="nx">elm</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'swipeup'</span><span class="p">,</span><span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">data</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">distance</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">distance</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
-<span class="p">});</span>
-</pre></div>
+$(elm).on(<span class="pl-s1"><span class="pl-pds">'</span>dbltap<span class="pl-pds">'</span></span>,<span class="pl-st">function</span> (<span class="pl-vpf">e</span>,<span class="pl-vpf">data</span>){
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(data.<span class="pl-sc">x</span>);
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(data.<span class="pl-sc">y</span>);
+});
+$(elm).on(<span class="pl-s1"><span class="pl-pds">'</span>swipeup<span class="pl-pds">'</span></span>,<span class="pl-st">function</span> (<span class="pl-vpf">e</span>,<span class="pl-vpf">data</span>){
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(data.<span class="pl-sc">x</span>);
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(data.<span class="pl-sc">y</span>);
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(data.distance.<span class="pl-sc">x</span>);
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(data.distance.<span class="pl-sc">y</span>);
+});</pre></div>
 
 <p>Anyway you can combine Tocca.js with the default javascript touch events:</p>
 
@@ -128,31 +147,31 @@
 <li><code>touchstart</code></li>
 <li><code>touchend</code></li>
 <li><code>touchcancel</code></li>
-</ul><p>To disable the default touch behaviours (zoom on double tap, scroll on swipe...) on a certain element via javascript you can always use the following snippet:</p>
+</ul>
+
+<p>To disable the default touch behaviours (zoom on double tap, scroll on swipe...) on a certain element via javascript you can always use the following snippet:</p>
 
 <div class="highlight highlight-javascript"><pre>
-<span class="nx">elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'touchmove'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()});</span>
-<span class="nx">elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'touchstart'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()});</span>
-<span class="nx">elm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'touchend'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()});</span>
-</pre></div>
+elm.addEventListener(<span class="pl-s1"><span class="pl-pds">'</span>touchmove<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>){e.preventDefault()});
+elm.addEventListener(<span class="pl-s1"><span class="pl-pds">'</span>touchstart<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>){e.preventDefault()});
+elm.addEventListener(<span class="pl-s1"><span class="pl-pds">'</span>touchend<span class="pl-pds">'</span></span>,<span class="pl-st">function</span>(<span class="pl-vpf">e</span>){e.preventDefault()});</pre></div>
 
 <h2>
-<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
 <p>Whenever you want to configure the plugin events settings you can do that simply specifying two constants before including Tocca.js into the page</p>
 
 <div class="highlight highlight-html"><pre>
-<span class="nt">&lt;script&gt;</span>
-<span class="kd">var</span> <span class="nx">SWIPE_TRESHOLD</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="c1">// default value</span>
-    <span class="nx">TAP_TRESHOLD</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="c1">// default value</span>
-    <span class="nx">TAP_PRECISION</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span> <span class="c1">// default value (touch events boundaries)</span>
-    <span class="nx">JUST_ON_TOUCH_DEVICES</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// default value ( decide whether you want to use the Tocca.js events only on the touch devices )</span>
-<span class="nt">&lt;/script&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"path/to/Tocca.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-</pre></div>
+<span class="pl-s2">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s2"><span class="pl-s">var</span> SWIPE_TRESHOLD <span class="pl-k">=</span> <span class="pl-c1">80</span>, <span class="pl-c">// default value</span></span>
+<span class="pl-s2">    TAP_TRESHOLD <span class="pl-k">=</span> <span class="pl-c1">200</span>, <span class="pl-c">// default value</span></span>
+<span class="pl-s2">    TAP_PRECISION <span class="pl-k">=</span> <span class="pl-c1">60</span>, <span class="pl-c">// default value (touch events boundaries)</span></span>
+<span class="pl-s2">    JUST_ON_TOUCH_DEVICES <span class="pl-k">=</span> <span class="pl-c1">false</span>; <span class="pl-c">// default value ( decide whether you want to use the Tocca.js events only on the touch devices )</span></span>
+<span class="pl-s2">&lt;/<span class="pl-ent">script</span>&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>path/to/Tocca.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
 <h2>
-<a name="browser-support" class="anchor" href="#browser-support"><span class="octicon octicon-link"></span></a>Browser Support</h2>
+<a id="browser-support" class="anchor" href="#browser-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Browser Support</h2>
 
 <p>Actually the script has been tested on all the modern browsers but it need a better testing phase over several platforms: Chrome 29+ Firefox 23+ Opera 12+ Safari 5+</p>
 
@@ -161,49 +180,70 @@
 <p>On the old browsers all the Tocca.js events cannot be triggered.</p>
 
 <h2>
-<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
+<a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changelog</h2>
 
 <h3>
-<a name="008" class="anchor" href="#008"><span class="octicon octicon-link"></span></a>0.0.8</h3>
+<a id="010" class="anchor" href="#010" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.1.0</h3>
+
+<ul>
+<li>bugfix: optimizing the support for the microsoft hybrid devices (IE10/IE11)</li>
+</ul>
+
+<h3>
+<a id="008" class="anchor" href="#008" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.0.8</h3>
 
 <ul>
 <li>'touchcancel' event removed to fix and android issue on page scroll</li>
-</ul><h3>
-<a name="007" class="anchor" href="#007"><span class="octicon octicon-link"></span></a>0.0.7</h3>
+</ul>
+
+<h3>
+<a id="007" class="anchor" href="#007" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.0.7</h3>
 
 <ul>
 <li>nothing important (just a workaround to fix the tests on the motherfucker Phantomjs)</li>
-</ul><h3>
-<a name="006" class="anchor" href="#006"><span class="octicon octicon-link"></span></a>0.0.6</h3>
+</ul>
+
+<h3>
+<a id="006" class="anchor" href="#006" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.0.6</h3>
 
 <ul>
 <li>bugfix: do not set the mouse event listeners on any touch device and vice versa</li>
 <li>added: new JUST_ON_TOUCH_DEVICES option to block all the Tocca.js events on the no-touch devices</li>
-</ul><h3>
-<a name="005" class="anchor" href="#005"><span class="octicon octicon-link"></span></a>0.0.5</h3>
+</ul>
+
+<h3>
+<a id="005" class="anchor" href="#005" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.0.5</h3>
 
 <ul>
 <li>tap precision option included</li>
-</ul><h3>
-<a name="004" class="anchor" href="#004"><span class="octicon octicon-link"></span></a>0.0.4</h3>
+</ul>
+
+<h3>
+<a id="004" class="anchor" href="#004" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.0.4</h3>
 
 <ul>
 <li>
 <code>dpltap</code> renamed <code>dbltap</code>
 </li>
 <li>new demo added demo-fun.html</li>
-</ul><h3>
-<a name="003" class="anchor" href="#003"><span class="octicon octicon-link"></span></a>0.0.3</h3>
+</ul>
+
+<h3>
+<a id="003" class="anchor" href="#003" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.0.3</h3>
 
 <ul>
 <li>Tests added</li>
-</ul><h3>
-<a name="002" class="anchor" href="#002"><span class="octicon octicon-link"></span></a>0.0.2</h3>
+</ul>
+
+<h3>
+<a id="002" class="anchor" href="#002" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.0.2</h3>
 
 <ul>
 <li>Android Bug fix</li>
-</ul><h2>
-<a name="what-does-tocca-mean" class="anchor" href="#what-does-tocca-mean"><span class="octicon octicon-link"></span></a>What does Tocca mean?!</h2>
+</ul>
+
+<h2>
+<a id="what-does-tocca-mean" class="anchor" href="#what-does-tocca-mean" aria-hidden="true"><span class="octicon octicon-link"></span></a>What does Tocca mean?!</h2>
 
 <p>'Tocca' is the second person singular of the imperative Italian verb 'Toccare' that means to touch.</p>
         </section>
