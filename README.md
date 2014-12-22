@@ -3,9 +3,7 @@ Tocca.js
 
 
 [![Build Status][travis-image]][travis-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
 
-[![Dependency Status][gemnasium-image]][gemnasium-url]
 [![NPM version][npm-version-image]][npm-url]
 [![NPM downloads][npm-downloads-image]][npm-url]
 
@@ -171,12 +169,6 @@ On the old browsers all the Tocca.js events cannot be triggered.
 [npm-url]: https://npmjs.org/package/tocca
 [npm-version-image]: http://img.shields.io/npm/v/tocca.svg?style=flat-square
 [npm-downloads-image]: http://img.shields.io/npm/dm/tocca.svg?style=flat-square
-
-[coveralls-image]:https://img.shields.io/coveralls/GianlucaGuarini/Tocca.js.svg?style=flat-square
-[coveralls-url]:https://coveralls.io/r/GianlucaGuarini/Tocca.js
-
-[gemnasium-image]: https://img.shields.io/gemnasium/GianlucaGuarini/Tocca.js.svg?style=flat-square
-[gemnasium-url]: https://gemnasium.com/GianlucaGuarini/Tocca.js
 
 [travis-url]:https://travis-ci.org/GianlucaGuarini/Tocca.js
 [travis-image]: https://img.shields.io/travis/GianlucaGuarini/Tocca.js.svg?style=flat-square
