@@ -1,7 +1,7 @@
 Tocca.js
 ========
 
-[![Build Status](https://travis-ci.org/GianlucaGuarini/Tocca.js.png?branch=master)](https://travis-ci.org/GianlucaGuarini/Tocca.js)
+[![Build Status](https://travis-ci.org/GianlucaGuarini/Tocca.js.svg?branch=master)](https://travis-ci.org/GianlucaGuarini/Tocca.js)
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/Toccajs.svg)](https://saucelabs.com/u/Toccajs)
 
