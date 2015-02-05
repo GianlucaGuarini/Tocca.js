@@ -101,7 +101,7 @@ describe('Tocca.js nojQuery events', function() {
 					clientX: 50,
 					clientY: 50
 				});
-			}, 100);
+			}, 40);
 		});
 	});
 	/**
@@ -305,7 +305,7 @@ describe('Tocca.js validate events', function() {
 				}, 500);
 			}, 20);
 		});
-		it('The "tap" event must not be triggered becouse out of the time range defined', function(done) {
+		it('The "tap" event must not be triggered because out of the time range defined', function(done) {
 			var eventObject = false;
 
 			function onEventFired(e) {
