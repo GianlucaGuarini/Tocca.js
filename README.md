@@ -118,8 +118,9 @@ Whenever you want to configure the plugin events settings you can do that simply
 <pre lang="html">
 &lt;script&gt;
 var SWIPE_TRESHOLD = 80, // default value
-	TAP_TRESHOLD = 200, // default value
-	TAP_PRECISION = 60, // default value (touch events boundaries)
+	DBL_TAP_TRESHOLD || 50, // range of time in which a dbltap event could be detected
+	TAP_TRESHOLD = 200, // range of time in which a tap event could be detected
+	TAP_PRECISION = 60 / 2, // default value (touch events boundaries)
 	JUST_ON_TOUCH_DEVICES = false; // default value ( decide whether you want to use the Tocca.js events only on the touch devices )
 &lt;/script&gt;
 &lt;script src="path/to/Tocca.js"&gt;&lt;/script&gt;
@@ -134,6 +135,11 @@ It works on mobile/tablet browsers and on desktop browsers as well.
 On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
+
+### 0.1.1
+ - updated: better and faster tap events detection
+ - updated: node devDependecies updated
+ - added: DBL_TAP_TRESHOLD option
 
 ### 0.1.0
  - bugfix: optimizing the support for the microsoft hybrid devices (IE10/IE11)
