@@ -121,8 +121,6 @@
           });
         }
       } else {
-        // if it's not a swipe it could be a tap or doble tap
-        // defer the event to detect also the double tap
 
         if (
           (timestamp + tapTreshold) - getTimestamp() >= 0 &&
@@ -135,6 +133,7 @@
           sendEvent(e.target, (tapNum === 2) ? 'dbltap' : 'tap', e);
         }
 
+        // reset the tap counter
         tapTimer = setTimeout(function() {
           tapNum = 0;
         }, dbltapTreshold);
@@ -152,7 +151,7 @@
     tapPrecision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
     justTouchEvents = win.JUST_ON_TOUCH_DEVICES || isTouch,
     tapNum = 0,
-    currX, currY, cachedX, cachedY,tapTimer, timestamp;
+    currX, currY, cachedX, cachedY, tapTimer, timestamp;
 
   //setting the events listeners
   setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), onTouchStart);
