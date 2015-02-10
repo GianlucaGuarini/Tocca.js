@@ -1,6 +1,6 @@
 /**
  *
- * Version: 0.1.1
+ * Version: 0.1.2
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
@@ -86,8 +86,7 @@
       cachedX = currX = pointer.pageX;
       // caching the current y
       cachedY = currY = pointer.pageY;
-      // a touch event is detected
-      touchStarted = true;
+
       timestamp = getTimestamp();
       tapNum++;
       // we will use these variables on the touchend events
@@ -96,7 +95,6 @@
       var eventsArr = [],
         deltaY = cachedY - currY,
         deltaX = cachedX - currX;
-      touchStarted = false;
 
       // clear the previous timer in case it was set
       clearTimeout(tapTimer);
@@ -123,22 +121,23 @@
           });
         }
       } else {
-        // if it's not a swipe it could be a tap or doble tap
-        // defer the event to detect also the double tap
+
+        if (
+          (timestamp + tapTreshold) - getTimestamp() >= 0 &&
+          cachedX >= currX - tapPrecision &&
+          cachedX <= currX + tapPrecision &&
+          cachedY >= currY - tapPrecision &&
+          cachedY <= currY + tapPrecision
+        ) {
+          // Here you get the Tap event
+          sendEvent(e.target, (tapNum === 2) ? 'dbltap' : 'tap', e);
+        }
+
+        // reset the tap counter
         tapTimer = setTimeout(function() {
-          if (
-            (timestamp + tapTreshold) - getTimestamp() >= 0 &&
-            cachedX >= currX - tapPrecision &&
-            cachedX <= currX + tapPrecision &&
-            cachedY >= currY - tapPrecision &&
-            cachedY <= currY + tapPrecision &&
-            !touchStarted
-          ) {
-            // Here you get the Tap event
-            sendEvent(e.target, (tapNum === 2) ? 'dbltap' : 'tap', e);
-          }
           tapNum = 0;
         }, dbltapTreshold);
+
       }
     },
     onTouchMove = function(e) {
@@ -146,7 +145,6 @@
       currX = pointer.pageX;
       currY = pointer.pageY;
     },
-    touchStarted = false, // detect if a touch event is sarted
     swipeTreshold = win.SWIPE_TRESHOLD || 80,
     tapTreshold = win.TAP_TRESHOLD || 200, // range of time where a tap event could be detected
     dbltapTreshold = win.DBL_TAP_TRESHOLD || 50, // delay needed to detect a double tap
