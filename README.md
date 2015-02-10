@@ -136,6 +136,10 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
+### 0.1.2
+ - updated: no more deferred `tap` events, a `tap` event gets triggered immediately if it's in the `TAP_TRESHOLD` time range
+ - updated: a `tap` event will always come first a `dbltap` event
+
 ### 0.1.1
  - updated: better and faster tap events detection
  - updated: node devDependecies updated
