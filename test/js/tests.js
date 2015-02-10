@@ -92,16 +92,16 @@ describe('Tocca.js nojQuery events', function() {
 				clientX: 50,
 				clientY: 50
 			});
-			setTimeout(function() {
-				simulant.fire(testDiv, touchstart, {
-					clientX: 50,
-					clientY: 50
-				});
-				simulant.fire(testDiv, touchend, {
-					clientX: 50,
-					clientY: 50
-				});
-			}, 40);
+
+			simulant.fire(testDiv, touchstart, {
+				clientX: 50,
+				clientY: 50
+			});
+			simulant.fire(testDiv, touchend, {
+				clientX: 50,
+				clientY: 50
+			});
+
 		});
 	});
 	/**
@@ -288,22 +288,21 @@ describe('Tocca.js validate events', function() {
 				clientY: 99
 			});
 
-			setTimeout(function() {
-				simulant.fire(testDiv, touchmove, {
-					clientX: 28,
-					clientY: 28
-				});
-				setTimeout(function() {
-					simulant.fire(testDiv, touchend);
-				}, 20);
 
-				setTimeout(function() {
-					check(done, function() {
-						expect(eventObject).to.be.equal(false);
-						testDiv.removeEventListener('tap', onEventFired, false);
-					});
-				}, 500);
-			}, 20);
+			simulant.fire(testDiv, touchmove, {
+				clientX: 28,
+				clientY: 28
+			});
+
+			simulant.fire(testDiv, touchend);
+
+
+			check(done, function() {
+				expect(eventObject).to.be.equal(false);
+				testDiv.removeEventListener('tap', onEventFired, false);
+			});
+
+
 		});
 		it('The "tap" event must not be triggered because out of the time range defined', function(done) {
 			var eventObject = false;
@@ -314,20 +313,22 @@ describe('Tocca.js validate events', function() {
 					expect(true).to.be.equal(false);
 				});
 			}
+
 			testDiv.addEventListener('tap', onEventFired, false);
 
 			simulant.fire(testDiv, touchstart, {
 				clientX: 99,
 				clientY: 99
 			});
+
 			setTimeout(function() {
 				simulant.fire(testDiv, touchend);
-				setTimeout(function() {
-					check(done, function() {
-						expect(eventObject).to.be.equal(false);
-						testDiv.removeEventListener('tap', onEventFired, false);
-					});
-				}, 500);
+
+				check(done, function() {
+					expect(eventObject).to.be.equal(false);
+					testDiv.removeEventListener('tap', onEventFired, false);
+				});
+
 			}, 220);
 
 		});
