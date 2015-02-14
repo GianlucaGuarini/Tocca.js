@@ -98,7 +98,7 @@
 
       // clear the previous timer in case it was set
       clearTimeout(tapTimer);
-		
+	
       if (deltaX <= -swipeTreshold)
         eventsArr.push('swiperight');
 
@@ -150,16 +150,15 @@
       var pointer = getPointerEvent(e);
       currX = pointer.pageX;
       currY = pointer.pageY;
-		
+
       if (tapNum > 0) {
         if (panStarted) {
-         sendEvent(e.target, 'pan', e);	
+          sendEvent(e.target, 'pan', e);	
         } else {
-           if ((timestamp + tapTreshold) - getTimestamp() >= 0) {
-	           sendEvent(e.target, 'panstart', e);
-	           panStarted = true;
-			  }
-         
+          if ((timestamp + tapTreshold) - getTimestamp() >= 0) {
+	    sendEvent(e.target, 'panstart', e);
+	    panStarted = true;
+          }
         }
       }
     },
