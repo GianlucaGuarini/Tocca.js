@@ -112,7 +112,7 @@
         eventsArr.push('swipeup');
 
       if (panStarted) {
-		  eventsArr.push('panend');
+        eventsArr.push('panend');
         panStarted = false;		  
       }
 
