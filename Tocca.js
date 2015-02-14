@@ -98,7 +98,7 @@
 
       // clear the previous timer in case it was set
       clearTimeout(tapTimer);
-
+	
       if (deltaX <= -swipeTreshold)
         eventsArr.push('swiperight');
 
@@ -110,6 +110,12 @@
 
       if (deltaY >= swipeTreshold)
         eventsArr.push('swipeup');
+
+      if (panStarted) {
+        eventsArr.push('panend');
+        panStarted = false;		  
+      }
+
       if (eventsArr.length) {
         for (var i = 0; i < eventsArr.length; i++) {
           var eventName = eventsArr[i];
@@ -144,7 +150,19 @@
       var pointer = getPointerEvent(e);
       currX = pointer.pageX;
       currY = pointer.pageY;
+
+      if (tapNum > 0) {
+        if (panStarted) {
+          sendEvent(e.target, 'pan', e);	
+        } else {
+          if ((timestamp + tapTreshold) - getTimestamp() >= 0) {
+	    sendEvent(e.target, 'panstart', e);
+	    panStarted = true;
+          }
+        }
+      }
     },
+    panStarted = false,
     swipeTreshold = win.SWIPE_TRESHOLD || 80,
     tapTreshold = win.TAP_TRESHOLD || 200, // range of time where a tap event could be detected
     dbltapTreshold = win.DBL_TAP_TRESHOLD || 50, // delay needed to detect a double tap
