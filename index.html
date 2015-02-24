@@ -163,9 +163,9 @@ elm.addEventListener(<span class="pl-s1"><span class="pl-pds">'</span>touchend<s
 
 <div class="highlight highlight-html"><pre>
 <span class="pl-s2">&lt;<span class="pl-ent">script</span>&gt;</span>
-<span class="pl-s2"><span class="pl-s">var</span> SWIPE_TRESHOLD <span class="pl-k">=</span> <span class="pl-c1">80</span>, <span class="pl-c">// default value</span></span>
-<span class="pl-s2">    DBL_TAP_TRESHOLD <span class="pl-k">||</span> <span class="pl-c1">50</span>, <span class="pl-c">// range of time in which a dbltap event could be detected</span></span>
-<span class="pl-s2">    TAP_TRESHOLD <span class="pl-k">=</span> <span class="pl-c1">200</span>, <span class="pl-c">// range of time in which a tap event could be detected</span></span>
+<span class="pl-s2"><span class="pl-s">var</span> SWIPE_THRESHOLD <span class="pl-k">=</span> <span class="pl-c1">80</span>, <span class="pl-c">// default value</span></span>
+<span class="pl-s2">    DBL_TAP_THRESHOLD <span class="pl-k">||</span> <span class="pl-c1">50</span>, <span class="pl-c">// range of time in which a dbltap event could be detected</span></span>
+<span class="pl-s2">    TAP_THRESHOLD <span class="pl-k">=</span> <span class="pl-c1">200</span>, <span class="pl-c">// range of time in which a tap event could be detected</span></span>
 <span class="pl-s2">    TAP_PRECISION <span class="pl-k">=</span> <span class="pl-c1">60</span> / <span class="pl-c1">2</span>, <span class="pl-c">// default value (touch events boundaries)</span></span>
 <span class="pl-s2">    JUST_ON_TOUCH_DEVICES <span class="pl-k">=</span> <span class="pl-c1">false</span>; <span class="pl-c">// default value ( decide whether you want to use the Tocca.js events only on the touch devices )</span></span>
 <span class="pl-s2">&lt;/<span class="pl-ent">script</span>&gt;</span>
@@ -187,7 +187,7 @@ elm.addEventListener(<span class="pl-s1"><span class="pl-pds">'</span>touchend<s
 <a id="012" class="anchor" href="#012" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.1.2</h3>
 
 <ul>
-<li>updated: no more deferred <code>tap</code> events, a <code>tap</code> event gets triggered immediately if it's in the <code>TAP_TRESHOLD</code> time range</li>
+<li>updated: no more deferred <code>tap</code> events, a <code>tap</code> event gets triggered immediately if it's in the <code>TAP_THRESHOLD</code> time range</li>
 <li>updated: a <code>tap</code> event will always come first a <code>dbltap</code> event</li>
 </ul>
 
@@ -197,7 +197,7 @@ elm.addEventListener(<span class="pl-s1"><span class="pl-pds">'</span>touchend<s
 <ul>
 <li>updated: better and faster tap events detection</li>
 <li>updated: node devDependecies updated</li>
-<li>added: DBL_TAP_TRESHOLD option</li>
+<li>added: DBL_TAP_THRESHOLD option</li>
 </ul>
 
 <h3>
