@@ -99,16 +99,16 @@
       // clear the previous timer in case it was set
       clearTimeout(tapTimer);
 
-      if (deltaX <= -swipeTreshold)
+      if (deltaX <= -swipeThreshold)
         eventsArr.push('swiperight');
 
-      if (deltaX >= swipeTreshold)
+      if (deltaX >= swipeThreshold)
         eventsArr.push('swipeleft');
 
-      if (deltaY <= -swipeTreshold)
+      if (deltaY <= -swipeThreshold)
         eventsArr.push('swipedown');
 
-      if (deltaY >= swipeTreshold)
+      if (deltaY >= swipeThreshold)
         eventsArr.push('swipeup');
       if (eventsArr.length) {
         for (var i = 0; i < eventsArr.length; i++) {
@@ -123,7 +123,7 @@
       } else {
 
         if (
-          (timestamp + tapTreshold) - getTimestamp() >= 0 &&
+          (timestamp + tapThreshold) - getTimestamp() >= 0 &&
           cachedX >= currX - tapPrecision &&
           cachedX <= currX + tapPrecision &&
           cachedY >= currY - tapPrecision &&
@@ -136,7 +136,7 @@
         // reset the tap counter
         tapTimer = setTimeout(function() {
           tapNum = 0;
-        }, dbltapTreshold);
+        }, dbltapThreshold);
 
       }
     },
@@ -145,9 +145,9 @@
       currX = pointer.pageX;
       currY = pointer.pageY;
     },
-    swipeTreshold = win.SWIPE_TRESHOLD || 80,
-    tapTreshold = win.TAP_TRESHOLD || 200, // range of time where a tap event could be detected
-    dbltapTreshold = win.DBL_TAP_TRESHOLD || 50, // delay needed to detect a double tap
+    swipeThreshold = win.SWIPE_THRESHOLD || 80,
+    tapThreshold = win.TAP_THRESHOLD || 200, // range of time where a tap event could be detected
+    dbltapThreshold = win.DBL_TAP_THRESHOLD || 50, // delay needed to detect a double tap
     tapPrecision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
     justTouchEvents = win.JUST_ON_TOUCH_DEVICES || isTouch,
     tapNum = 0,
