@@ -1,6 +1,6 @@
 /**
  *
- * Version: 0.1.2
+ * Version: 0.1.3
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
@@ -145,7 +145,7 @@
       currX = pointer.pageX;
       currY = pointer.pageY;
     },
-    swipeThreshold = win.SWIPE_THRESHOLD || 80,
+    swipeThreshold = win.SWIPE_THRESHOLD || 100,
     tapThreshold = win.TAP_THRESHOLD || 150, // range of time where a tap event could be detected
     dbltapThreshold = win.DBL_TAP_THRESHOLD || 200, // delay needed to detect a double tap
     tapPrecision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
