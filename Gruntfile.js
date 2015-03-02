@@ -21,17 +21,22 @@ module.exports = function(grunt) {
 		platform: 'OS X 10.9',
 		deviceName: 'iPhone',
 		browserName: 'iphone',
-		version: '7.0'
+		version: '8.1'
 	}, {
 		platform: 'OS X 10.9',
 		deviceName: 'iPad',
 		browserName: 'ipad',
-		version: '7.0'
+		version: '8.1'
 	}, {
 		platform: 'Linux',
 		deviceName: 'Android',
 		browserName: 'android',
 		version: '4.1'
+	},{
+		platform: 'Linux',
+		deviceName: 'Android',
+		browserName: 'android',
+		version: '5.0'
 	}];
 
 	grunt.loadNpmTasks('grunt-mocha');
