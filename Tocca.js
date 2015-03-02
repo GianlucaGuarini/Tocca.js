@@ -146,8 +146,8 @@
       currY = pointer.pageY;
     },
     swipeThreshold = win.SWIPE_THRESHOLD || 80,
-    tapThreshold = win.TAP_THRESHOLD || 200, // range of time where a tap event could be detected
-    dbltapThreshold = win.DBL_TAP_THRESHOLD || 50, // delay needed to detect a double tap
+    tapThreshold = win.TAP_THRESHOLD || 150, // range of time where a tap event could be detected
+    dbltapThreshold = win.DBL_TAP_THRESHOLD || 200, // delay needed to detect a double tap
     tapPrecision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
     justTouchEvents = win.JUST_ON_TOUCH_DEVICES || isTouch,
     tapNum = 0,
