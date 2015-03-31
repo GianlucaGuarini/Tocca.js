@@ -151,7 +151,7 @@
     tapPrecision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
     justTouchEvents = win.JUST_ON_TOUCH_DEVICES || isTouch,
     tapNum = 0,
-    currX, currY, cachedX, cachedY, tapTimer, timestamp;
+    currX, currY, cachedX, cachedY, tapTimer, timestamp, target;
 
   //setting the events listeners
   setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), onTouchStart);
