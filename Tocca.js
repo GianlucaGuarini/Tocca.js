@@ -130,7 +130,8 @@
           cachedY <= currY + tapPrecision
         ) {
           // Here you get the Tap event
-          sendEvent(e.target, (tapNum === 2) ? 'dbltap' : 'tap', e);
+          sendEvent(e.target, ((tapNum === 2)&&(target===e.target)) ? 'dbltap' : 'tap', e);
+          target= e.target;
         }
 
         // reset the tap counter
