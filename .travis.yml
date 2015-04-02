@@ -9,5 +9,8 @@ branches:
 before_script:
     - npm install grunt-cli -g
 
+after_success:
+    - grunt sauce
+
 notifications:
     email: false

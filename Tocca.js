@@ -1,6 +1,6 @@
 /**
  *
- * Version: 0.1.3
+ * Version: 0.1.4
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
@@ -130,7 +130,7 @@
           cachedY <= currY + tapPrecision
         ) {
           // Here you get the Tap event
-          sendEvent(e.target, ((tapNum === 2)&&(target===e.target)) ? 'dbltap' : 'tap', e);
+          sendEvent(e.target, (tapNum === 2) && (target === e.target) ? 'dbltap' : 'tap', e);
           target= e.target;
         }
 

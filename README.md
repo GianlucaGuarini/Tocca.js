@@ -136,6 +136,10 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
+### 0.1.4
+ - fixed: `dbltap` https://github.com/GianlucaGuarini/Tocca.js/pull/16
+ - updated: node devDependecies updated
+
 ### 0.1.3
  - fixed: `dbltap` issue https://github.com/GianlucaGuarini/Tocca.js/issues/14
 
