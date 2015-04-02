@@ -130,7 +130,8 @@
           cachedY <= currY + tapPrecision
         ) {
           // Here you get the Tap event
-          sendEvent(e.target, (tapNum === 2) ? 'dbltap' : 'tap', e);
+          sendEvent(e.target, ((tapNum === 2)&&(target===e.target)) ? 'dbltap' : 'tap', e);
+          target= e.target;
         }
 
         // reset the tap counter
@@ -151,7 +152,7 @@
     tapPrecision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
     justTouchEvents = win.JUST_ON_TOUCH_DEVICES || isTouch,
     tapNum = 0,
-    currX, currY, cachedX, cachedY, tapTimer, timestamp;
+    currX, currY, cachedX, cachedY, tapTimer, timestamp, target;
 
   //setting the events listeners
   setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), onTouchStart);
