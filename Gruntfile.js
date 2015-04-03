@@ -44,6 +44,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-saucelabs');
+	grunt.loadNpmTasks('grunt-chmod');
 
 	// Project configuration.
 	grunt.initConfig({
@@ -110,12 +111,20 @@ module.exports = function(grunt) {
 				src: 'Tocca.js',
 				dest: 'Tocca.min.js'
 			}
+		},
+		chmod: {
+			options: {
+				mode: '644'
+			},
+			yourTarget1: {
+				src: ['*.js']
+			}
 		}
 	});
 	// test js files
 	grunt.registerTask('test', ['jshint', 'mocha']);
 	grunt.registerTask('sauce', ['connect', 'saucelabs-mocha']);
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'mocha', 'uglify']);
+	grunt.registerTask('default', ['jshint', 'mocha', 'uglify', 'chmod']);
 
 };
