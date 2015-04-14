@@ -37,12 +37,12 @@ Include the script into your page:
 Once you have included Tocca.js you will be able to catch all the new events:
 
 <pre lang="javascript">
-elm.addeventListener('tap',function(e){});
-elm.addeventListener('dbltap',function(e){});
-elm.addeventListener('swipeleft',function(e){});
-elm.addeventListener('swiperight',function(e){});
-elm.addeventListener('swipeup',function(e){});
-elm.addeventListener('swipedown',function(e){});
+elm.addEventListener('tap',function(e){});
+elm.addEventListener('dbltap',function(e){});
+elm.addEventListener('swipeleft',function(e){});
+elm.addEventListener('swiperight',function(e){});
+elm.addEventListener('swipeup',function(e){});
+elm.addEventListener('swipedown',function(e){});
 </pre>
 
 It works with jQuery as well:
