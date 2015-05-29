@@ -63,14 +63,16 @@
       return new Date().getTime();
     },
     sendEvent = function(elm, eventName, originalEvent, data) {
-      var customEvent = doc.createEvent('Event');
+      var customEvent;
       data = data || {};
       data.x = currX;
       data.y = currY;
       data.distance = data.distance;
-      if (useJquery)
-        jQuery(elm).trigger(eventName, data);
-      else {
+      if (useJquery) {
+        customEvent = $.Event(eventName, {originalEvent: originalEvent});
+        jQuery(elm).trigger(customEvent, data);
+      } else {
+        customEvent = doc.createEvent('Event');
         customEvent.originalEvent = originalEvent;
         for (var key in data) {
           customEvent[key] = data[key];
