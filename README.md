@@ -30,40 +30,40 @@ $ bower install Tocca.js -save
 ## Usage
 
 Include the script into your page:
-<pre lang="html">
-&lt;script src="path/to/Tocca.js"&gt;&lt;/script&gt;
-</pre>
+``` html
+<script src="path/to/Tocca.js"></script>
+```
 
 Once you have included Tocca.js you will be able to catch all the new events:
 
-<pre lang="javascript">
+``` javascript
 elm.addEventListener('tap',function(e){});
 elm.addEventListener('dbltap',function(e){});
 elm.addEventListener('swipeleft',function(e){});
 elm.addEventListener('swiperight',function(e){});
 elm.addEventListener('swipeup',function(e){});
 elm.addEventListener('swipedown',function(e){});
-</pre>
+```
 
 It works with jQuery as well:
-<pre lang="javascript">
+``` javascript
 $(elm).on('tap',function(e,data){});
 $(elm).on('dbltap',function(e,data){});
 $(elm).on('swipeleft',function(e,data){});
 $(elm).on('swiperight',function(e,data){});
 $(elm).on('swipeup',function(e,data){});
 $(elm).on('swipedown',function(e,data){});
-</pre>
+```
 
 Tocca.js supports also the inline events!
-<pre lang="javascript">
+``` html
 <div ontap="function(e){})"></div>
 <div ondbltap="function(e){})"></div>
 <div onswipeleft="function(e){})"></div>
 <div onswiperight="function(e){})"></div>
 <div onswipeup="function(e){})"></div>
 <div onswipedown="function(e){})"></div>
-</pre>
+```
 
 ## API and Examples
 
@@ -78,7 +78,7 @@ Anytime you will use a Tocca.js event the callback function will receive a speci
 
 Examples:
 
-<pre lang="javascript">
+``` javascript
 elm.addEventListener('dbltap',function (e){
 	console.log(e.x);
 	console.log(e.y);
@@ -102,7 +102,7 @@ $(elm).on('swipeup',function (e,data){
 	console.log(data.distance.x);
 	console.log(data.distance.y);
 });
-</pre>
+```
 
 
 Anyway you can combine Tocca.js with the default javascript touch events:
@@ -114,27 +114,27 @@ Anyway you can combine Tocca.js with the default javascript touch events:
 
 To disable the default touch behaviours (zoom on double tap, scroll on swipe...) on a certain element via javascript you can always use the following snippet:
 
-<pre lang="javascript">
+``` javascript
 elm.addEventListener('touchmove',function(e){e.preventDefault()});
 elm.addEventListener('touchstart',function(e){e.preventDefault()});
 elm.addEventListener('touchend',function(e){e.preventDefault()});
-</pre>
+```
 
 
 ## Configuration
 
 Whenever you want to configure the plugin events settings you can do that simply specifying two constants before including Tocca.js into the page
 
-<pre lang="html">
-&lt;script&gt;
+``` html
+<script>
 var SWIPE_THRESHOLD = 100, // default value
 	DBL_TAP_THRESHOLD = 200, // range of time in which a dbltap event could be detected
 	TAP_THRESHOLD = 150, // range of time in which a tap event could be detected
 	TAP_PRECISION = 60 / 2, // default value (touch events boundaries)
 	JUST_ON_TOUCH_DEVICES = false; // default value ( decide whether you want to use the Tocca.js events only on the touch devices )
-&lt;/script&gt;
-&lt;script src="path/to/Tocca.js"&gt;&lt;/script&gt;
-</pre>
+</script>
+<script src="path/to/Tocca.js"></script>
+```
 
 ## Browser Support
 
