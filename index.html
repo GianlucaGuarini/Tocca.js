@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -66,28 +66,34 @@
 
 <p>Include the script into your page:</p>
 
-<div class="highlight highlight-html"><pre>
-&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>path/to/Tocca.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>path/to/Tocca.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
 <p>Once you have included Tocca.js you will be able to catch all the new events:</p>
 
-<div class="highlight highlight-javascript"><pre>
-elm.addeventListener(<span class="pl-s"><span class="pl-pds">'</span>tap<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){});
-elm.addeventListener(<span class="pl-s"><span class="pl-pds">'</span>dbltap<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){});
-elm.addeventListener(<span class="pl-s"><span class="pl-pds">'</span>swipeleft<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){});
-elm.addeventListener(<span class="pl-s"><span class="pl-pds">'</span>swiperight<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){});
-elm.addeventListener(<span class="pl-s"><span class="pl-pds">'</span>swipeup<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){});
-elm.addeventListener(<span class="pl-s"><span class="pl-pds">'</span>swipedown<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){});</pre></div>
+<div class="highlight highlight-javascript"><pre>elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>tap<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){});
+elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>dbltap<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){});
+elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>swipeleft<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){});
+elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>swiperight<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){});
+elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>swipeup<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){});
+elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>swipedown<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){});</pre></div>
 
 <p>It works with jQuery as well:</p>
 
-<div class="highlight highlight-javascript"><pre>
-$(elm).on(<span class="pl-s"><span class="pl-pds">'</span>tap<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>,<span class="pl-smi">data</span>){});
+<div class="highlight highlight-javascript"><pre>$(elm).on(<span class="pl-s"><span class="pl-pds">'</span>tap<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>,<span class="pl-smi">data</span>){});
 $(elm).on(<span class="pl-s"><span class="pl-pds">'</span>dbltap<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>,<span class="pl-smi">data</span>){});
 $(elm).on(<span class="pl-s"><span class="pl-pds">'</span>swipeleft<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>,<span class="pl-smi">data</span>){});
 $(elm).on(<span class="pl-s"><span class="pl-pds">'</span>swiperight<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>,<span class="pl-smi">data</span>){});
 $(elm).on(<span class="pl-s"><span class="pl-pds">'</span>swipeup<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>,<span class="pl-smi">data</span>){});
 $(elm).on(<span class="pl-s"><span class="pl-pds">'</span>swipedown<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>,<span class="pl-smi">data</span>){});</pre></div>
+
+<p>Tocca.js supports also the inline events!</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">ontap</span>=<span class="pl-s"><span class="pl-pds">"</span>function(e){})<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">ondbltap</span>=<span class="pl-s"><span class="pl-pds">"</span>function(e){})<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">onswipeleft</span>=<span class="pl-s"><span class="pl-pds">"</span>function(e){})<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">onswiperight</span>=<span class="pl-s"><span class="pl-pds">"</span>function(e){})<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">onswipeup</span>=<span class="pl-s"><span class="pl-pds">"</span>function(e){})<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">onswipedown</span>=<span class="pl-s"><span class="pl-pds">"</span>function(e){})<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 
 <h2>
 <a id="api-and-examples" class="anchor" href="#api-and-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>API and Examples</h2>
@@ -115,8 +121,7 @@ $(elm).on(<span class="pl-s"><span class="pl-pds">'</span>swipedown<span class="
 
 <p>Examples:</p>
 
-<div class="highlight highlight-javascript"><pre>
-elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>dbltap<span class="pl-pds">'</span></span>,<span class="pl-k">function</span> (<span class="pl-smi">e</span>){
+<div class="highlight highlight-javascript"><pre>elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>dbltap<span class="pl-pds">'</span></span>,<span class="pl-k">function</span> (<span class="pl-smi">e</span>){
     <span class="pl-en">console</span><span class="pl-c1">.log</span>(e.<span class="pl-c1">x</span>);
     <span class="pl-en">console</span><span class="pl-c1">.log</span>(e.<span class="pl-c1">y</span>);
 });
@@ -151,8 +156,7 @@ $(elm).on(<span class="pl-s"><span class="pl-pds">'</span>swipeup<span class="pl
 
 <p>To disable the default touch behaviours (zoom on double tap, scroll on swipe...) on a certain element via javascript you can always use the following snippet:</p>
 
-<div class="highlight highlight-javascript"><pre>
-elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>touchmove<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){e.preventDefault()});
+<div class="highlight highlight-javascript"><pre>elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>touchmove<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){e.preventDefault()});
 elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>touchstart<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){e.preventDefault()});
 elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>touchend<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">e</span>){e.preventDefault()});</pre></div>
 
@@ -161,13 +165,12 @@ elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>touchend<sp
 
 <p>Whenever you want to configure the plugin events settings you can do that simply specifying two constants before including Tocca.js into the page</p>
 
-<div class="highlight highlight-html"><pre>
-<span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
-<span class="pl-s1"><span class="pl-k">var</span> SWIPE_THRESHOLD <span class="pl-k">=</span> <span class="pl-c1">100</span>, <span class="pl-c">// default value</span></span>
-<span class="pl-s1">    DBL_TAP_THRESHOLD <span class="pl-k">=</span> <span class="pl-c1">200</span>, <span class="pl-c">// range of time in which a dbltap event could be detected</span></span>
-<span class="pl-s1">    TAP_THRESHOLD <span class="pl-k">=</span> <span class="pl-c1">150</span>, <span class="pl-c">// range of time in which a tap event could be detected</span></span>
-<span class="pl-s1">    TAP_PRECISION <span class="pl-k">=</span> <span class="pl-c1">60</span> / <span class="pl-c1">2</span>, <span class="pl-c">// default value (touch events boundaries)</span></span>
-<span class="pl-s1">    JUST_ON_TOUCH_DEVICES <span class="pl-k">=</span> <span class="pl-c1">false</span>; <span class="pl-c">// default value ( decide whether you want to use the Tocca.js events only on the touch devices )</span></span>
+<div class="highlight highlight-html"><pre><span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1"><span class="pl-k">var</span> <span class="pl-c1">SWIPE_THRESHOLD</span> <span class="pl-k">=</span> <span class="pl-c1">100</span>, <span class="pl-c">// default value</span></span>
+<span class="pl-s1">    <span class="pl-c1">DBL_TAP_THRESHOLD</span> <span class="pl-k">=</span> <span class="pl-c1">200</span>, <span class="pl-c">// range of time in which a dbltap event could be detected</span></span>
+<span class="pl-s1">    <span class="pl-c1">TAP_THRESHOLD</span> <span class="pl-k">=</span> <span class="pl-c1">150</span>, <span class="pl-c">// range of time in which a tap event could be detected</span></span>
+<span class="pl-s1">    <span class="pl-c1">TAP_PRECISION</span> <span class="pl-k">=</span> <span class="pl-c1">60</span> / <span class="pl-c1">2</span>, <span class="pl-c">// default value (touch events boundaries)</span></span>
+<span class="pl-s1">    <span class="pl-c1">JUST_ON_TOUCH_DEVICES</span> <span class="pl-k">=</span> <span class="pl-c1">false</span>; <span class="pl-c">// default value ( decide whether you want to use the Tocca.js events only on the touch devices )</span></span>
 <span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span>
 &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>path/to/Tocca.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
@@ -182,6 +185,13 @@ elm.addEventListener(<span class="pl-s"><span class="pl-pds">'</span>touchend<sp
 
 <h2>
 <a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changelog</h2>
+
+<h3>
+<a id="015" class="anchor" href="#015" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.1.5</h3>
+
+<ul>
+<li> added: support for the inline events</li>
+</ul>
 
 <h3>
 <a id="014" class="anchor" href="#014" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.1.4</h3>
