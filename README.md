@@ -55,6 +55,16 @@ $(elm).on('swipeup',function(e,data){});
 $(elm).on('swipedown',function(e,data){});
 </pre>
 
+Tocca.js supports also the inline events!
+<pre lang="javascript">
+<div ontap="function(e){})"></div>
+<div ondbltap="function(e){})"></div>
+<div onswipeleft="function(e){})"></div>
+<div onswiperight="function(e){})"></div>
+<div onswipeup="function(e){})"></div>
+<div onswipedown="function(e){})"></div>
+</pre>
+
 ## API and Examples
 
 Anytime you will use a Tocca.js event the callback function will receive a special event object containing the following properties
@@ -135,6 +145,9 @@ It works on mobile/tablet browsers and on desktop browsers as well.
 On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
+
+### 0.1.5
+-  added: support for the inline events
 
 ### 0.1.4
  - fixed: `dbltap` https://github.com/GianlucaGuarini/Tocca.js/pull/16
