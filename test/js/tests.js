@@ -104,6 +104,7 @@ describe('Tocca.js nojQuery events', function() {
 
 		});
 	});
+
 	/**
 	 *
 	 *
@@ -260,6 +261,76 @@ describe('Tocca.js nojQuery events', function() {
 
 });
 
+
+describe('Inline events', function() {
+  it('The "tap" event gets fired correctly', function(done) {
+    function onEventFired(e) {
+      check(done, function() {
+        expect(e).to.be.an('object');
+        expect(e).to.contain.keys(['x', 'y', 'originalEvent']);
+        expect(e.x).to.be.an('number');
+        expect(e.x).to.be.equal(99);
+        expect(e.y).to.be.an('number');
+        expect(e.y).to.be.equal(99);
+        expect(e.originalEvent).to.be.an('object');
+        expect(e.originalEvent).to.not.be.equal(undefined);
+        expect(e.distance).to.be.equal(undefined);
+      });
+      testDiv.ontap = null
+    }
+    testDiv.ontap = onEventFired;
+    simulant.fire(testDiv, touchstart, {
+      clientX: 99,
+      clientY: 99
+    });
+    setTimeout(function() {
+      simulant.fire(testDiv, touchend, {
+        clientX: 99,
+        clientY: 99
+      });
+    }, 20);
+  });
+
+  it('The "dbltap" event gets fired correctly', function(done) {
+    function onEventFired(e) {
+      check(done, function() {
+        expect(e).to.be.an('object');
+        expect(e).to.contain.keys(['x', 'y', 'originalEvent']);
+        expect(e.x).to.be.an('number');
+        expect(e.x).to.be.equal(50);
+        expect(e.y).to.be.an('number');
+        expect(e.y).to.be.equal(50);
+        expect(e.originalEvent).to.be.an('object');
+        expect(e.originalEvent).to.not.be.equal(undefined);
+        expect(e.distance).to.be.equal(undefined);
+      });
+      testDiv.ondbltap = null;
+    }
+
+    testDiv.ondbltap = onEventFired;
+    setTimeout(function(){
+      simulant.fire(testDiv, touchstart, {
+        clientX: 50,
+        clientY: 50
+      });
+      simulant.fire(testDiv, touchend, {
+        clientX: 50,
+        clientY: 50
+      });
+
+      simulant.fire(testDiv, touchstart, {
+        clientX: 50,
+        clientY: 50
+      });
+      simulant.fire(testDiv, touchend, {
+        clientX: 50,
+        clientY: 50
+      });
+    }, 1000)
+
+
+  });
+})
 
 describe('Tocca.js validate events', function() {
 

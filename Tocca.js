@@ -63,23 +63,29 @@
       return new Date().getTime();
     },
     sendEvent = function(elm, eventName, originalEvent, data) {
-      var customEvent;
+      var customEvent = doc.createEvent('Event');
+      customEvent.originalEvent = originalEvent;
       data = data || {};
       data.x = currX;
       data.y = currY;
       data.distance = data.distance;
+
+      // jquery
       if (useJquery) {
         customEvent = $.Event(eventName, {originalEvent: originalEvent});
         jQuery(elm).trigger(customEvent, data);
-      } else {
-        customEvent = doc.createEvent('Event');
-        customEvent.originalEvent = originalEvent;
-        for (var key in data) {
-          customEvent[key] = data[key];
-        }
-        customEvent.initEvent(eventName, true, true);
-        elm.dispatchEvent(customEvent);
       }
+
+      // addEventListener
+      for (var key in data) {
+        customEvent[key] = data[key];
+      }
+      customEvent.initEvent(eventName, true, true);
+      elm.dispatchEvent(customEvent);
+
+      // inline
+      if (elm['on' + eventName])
+        elm['on' + eventName](customEvent);
     },
 
     onTouchStart = function(e) {
