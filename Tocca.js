@@ -1,6 +1,6 @@
 /**
  *
- * Version: 0.1.5
+ * Version: 0.1.6
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
@@ -77,11 +77,13 @@
       }
 
       // addEventListener
-      for (var key in data) {
-        customEvent[key] = data[key];
+      if (customEvent.initEvent) {
+        for (var key in data) {
+          customEvent[key] = data[key];
+        }
+        customEvent.initEvent(eventName, true, true);
+        elm.dispatchEvent(customEvent);
       }
-      customEvent.initEvent(eventName, true, true);
-      elm.dispatchEvent(customEvent);
 
       // inline
       if (elm['on' + eventName])
