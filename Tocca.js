@@ -74,14 +74,14 @@
       if (useJquery) {
         customEvent = $.Event(eventName, {originalEvent: originalEvent});
         jQuery(elm).trigger(customEvent, data);
+      } else {
+        // addEventListener
+        for (var key in data) {
+          customEvent[key] = data[key];
+        }
+        customEvent.initEvent(eventName, true, true);
+        elm.dispatchEvent(customEvent);
       }
-
-      // addEventListener
-      for (var key in data) {
-        customEvent[key] = data[key];
-      }
-      customEvent.initEvent(eventName, true, true);
-      elm.dispatchEvent(customEvent);
 
       // inline
       if (elm['on' + eventName])
