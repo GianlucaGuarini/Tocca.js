@@ -56,6 +56,7 @@ module.exports = function(grunt) {
 				browser: true,
 				strict: true,
 				unused: true,
+				asi: true,
 				quotmark: 'single'
 			},
 			files: {

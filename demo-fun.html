@@ -61,6 +61,9 @@
 	.tap {
 		animation: pulse 0.3s ease-in-out infinite alternate;
 	}
+	.longtap {
+		animation: pulse 0.10s ease-in-out infinite alternate;
+	}
 	.dbltap {
 		animation: pulse 0.15s ease-in-out infinite alternate;
 	}
@@ -149,6 +152,7 @@ var $ = document.querySelector.bind(document),
 
 wrapper.addEventListener('tap',updateHtml);
 wrapper.addEventListener('dbltap',updateHtml);
+wrapper.addEventListener('longtap',updateHtml);
 wrapper.addEventListener('swipeup',updateHtml);
 wrapper.addEventListener('swipedown',updateHtml);
 wrapper.addEventListener('swipeleft',updateHtml);

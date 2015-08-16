@@ -11,7 +11,7 @@ Tocca.js
 
 [![Sauce Test Status][saucelabs-image]][saucelabs-url]
 
-Super lightweight script ( 1.57kB ) to detect via Javascript events like 'tap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
+Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'longtap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
 
 <a href="http://gianlucaguarini.github.io/Tocca.js/demo-fun.html" target="_blank">Demo</a>
 
@@ -149,6 +149,9 @@ It works on mobile/tablet browsers and on desktop browsers as well.
 On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
+
+### 0.1.7
+-  added: `longtap` event and the `LONG_TAP_THRESHOLD` variable
 
 ### 0.1.5
 -  added: support for the inline events
