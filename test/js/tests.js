@@ -564,32 +564,34 @@ describe('Tocca.js validate events', function() {
 
 
         });
+
         it('The "longtap" event must not be triggered because out of the time range defined', function(done) {
-            var eventObject = false;
+            var eventObject=false;
 
             function onEventFired(e) {
                 check(done, function() {
-                    eventObject = e;
+                    eventObject=e;
                     expect(true).to.be.equal(false);
                 });
+                
             }
 
+
             testDiv.addEventListener('longtap', onEventFired, false);
-
             simulant.fire(testDiv, touchstart, {
-                clientX: 99,
-                clientY: 99
+                clientX: 50,
+                clientY: 50
             });
-
             setTimeout(function() {
-                simulant.fire(testDiv, touchend);
-
+                simulant.fire(testDiv, touchend, {
+                    clientX: 50,
+                    clientY: 50
+                });
                 check(done, function() {
                     expect(eventObject).to.be.equal(false);
-                    testDiv.removeEventListener('longtap', onEventFired, false);
                 });
-
-            }, 1001);
+                testDiv.removeEventListener('longtap', onEventFired, false);
+            }, 700);
 
         });
     });
