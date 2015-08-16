@@ -39,6 +39,7 @@ Once you have included Tocca.js you will be able to catch all the new events:
 ``` javascript
 elm.addEventListener('tap',function(e){});
 elm.addEventListener('dbltap',function(e){});
+elm.addEventListener('longtap',function(e){});
 elm.addEventListener('swipeleft',function(e){});
 elm.addEventListener('swiperight',function(e){});
 elm.addEventListener('swipeup',function(e){});
@@ -49,6 +50,7 @@ It works with jQuery as well:
 ``` javascript
 $(elm).on('tap',function(e,data){});
 $(elm).on('dbltap',function(e,data){});
+$(elm).on('longtap',function(e,data){});
 $(elm).on('swipeleft',function(e,data){});
 $(elm).on('swiperight',function(e,data){});
 $(elm).on('swipeup',function(e,data){});
@@ -59,6 +61,7 @@ Tocca.js supports also the inline events!
 ``` html
 <div ontap="function(e){})"></div>
 <div ondbltap="function(e){})"></div>
+<div onlongtap="function(e){})"></div>
 <div onswipeleft="function(e){})"></div>
 <div onswiperight="function(e){})"></div>
 <div onswipeup="function(e){})"></div>
@@ -128,7 +131,8 @@ Whenever you want to configure the plugin events settings you can do that simply
 ``` html
 <script>
 var SWIPE_THRESHOLD = 100, // default value
-	DBL_TAP_THRESHOLD = 200, // range of time in which a dbltap event could be detected
+	DBL_TAP_THRESHOLD = 200, // range of time in which a dbltap event could be detected,
+	LONG_TAP_THRESHOLD = 1000, // range of time after which a longtap event could be detected
 	TAP_THRESHOLD = 150, // range of time in which a tap event could be detected
 	TAP_PRECISION = 60 / 2, // default value (touch events boundaries)
 	JUST_ON_TOUCH_DEVICES = false; // default value ( decide whether you want to use the Tocca.js events only on the touch devices )
