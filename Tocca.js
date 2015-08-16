@@ -102,6 +102,7 @@
       // we will use these variables on the touchend events
     },
     onTouchEnd = function(e) {
+      
       var eventsArr = [],
         deltaY = cachedY - currY,
         deltaX = cachedX - currX;
@@ -120,6 +121,7 @@
 
       if (deltaY >= swipeThreshold)
         eventsArr.push('swipeup');
+
       if (eventsArr.length) {
         for (var i = 0; i < eventsArr.length; i++) {
           var eventName = eventsArr[i];
@@ -133,15 +135,22 @@
       } else {
 
         if (
-          (timestamp + tapThreshold) - getTimestamp() >= 0 &&
           cachedX >= currX - tapPrecision &&
           cachedX <= currX + tapPrecision &&
           cachedY >= currY - tapPrecision &&
           cachedY <= currY + tapPrecision
         ) {
-          // Here you get the Tap event
-          sendEvent(e.target, (tapNum === 2) && (target === e.target) ? 'dbltap' : 'tap', e);
-          target= e.target;
+          if((timestamp + tapThreshold) - getTimestamp() >= 0)
+          {
+            // Here you get the Tap event
+            sendEvent(e.target, (tapNum === 2) && (target === e.target) ? 'dbltap' : 'tap', e);
+            target= e.target;  
+          } 
+          else if((timestamp + longtapThreshold) - getTimestamp() <= 0){
+            // Here you get the Tap event
+            sendEvent(e.target,'longtap', e);
+            target= e.target;
+          }
         }
 
         // reset the tap counter
@@ -159,6 +168,7 @@
     swipeThreshold = win.SWIPE_THRESHOLD || 100,
     tapThreshold = win.TAP_THRESHOLD || 150, // range of time where a tap event could be detected
     dbltapThreshold = win.DBL_TAP_THRESHOLD || 200, // delay needed to detect a double tap
+    longtapThreshold = win.LONG_TAP_THRESHOLD || 1000, // delay needed to detect a long tap
     tapPrecision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
     justTouchEvents = win.JUST_ON_TOUCH_DEVICES || isTouch,
     tapNum = 0,
