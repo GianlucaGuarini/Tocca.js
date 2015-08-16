@@ -1,6 +1,6 @@
 /**
  *
- * Version: 0.1.6
+ * Version: 0.1.7
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
@@ -31,8 +31,8 @@
  **/
 
 (function(doc, win) {
-  'use strict';
-  if (typeof doc.createEvent !== 'function') return false; // no tap events here
+  'use strict'
+  if (typeof doc.createEvent !== 'function') return false // no tap events here
   // helpers
   var useJquery = typeof jQuery !== 'undefined',
     // some helpers borrowed from https://github.com/WebReflection/ie-touch
@@ -40,8 +40,8 @@
     isTouch = (!!('ontouchstart' in win) && navigator.userAgent.indexOf('PhantomJS') < 0) || msPointerEnabled,
     msEventType = function(type) {
       var lo = type.toLowerCase(),
-        ms = 'MS' + type;
-      return navigator.msPointerEnabled ? ms : lo;
+        ms = 'MS' + type
+      return navigator.msPointerEnabled ? ms : lo
     },
     touchevents = {
       touchstart: msEventType('PointerDown') + ' touchstart',
@@ -50,122 +50,133 @@
     },
     setListener = function(elm, events, callback) {
       var eventsArray = events.split(' '),
-        i = eventsArray.length;
+        i = eventsArray.length
 
       while (i--) {
-        elm.addEventListener(eventsArray[i], callback, false);
+        elm.addEventListener(eventsArray[i], callback, false)
       }
     },
     getPointerEvent = function(event) {
-      return event.targetTouches ? event.targetTouches[0] : event;
+      return event.targetTouches ? event.targetTouches[0] : event
     },
     getTimestamp = function () {
-      return new Date().getTime();
+      return new Date().getTime()
     },
     sendEvent = function(elm, eventName, originalEvent, data) {
-      var customEvent = doc.createEvent('Event');
-      customEvent.originalEvent = originalEvent;
-      data = data || {};
-      data.x = currX;
-      data.y = currY;
-      data.distance = data.distance;
+      var customEvent = doc.createEvent('Event')
+      customEvent.originalEvent = originalEvent
+      data = data || {}
+      data.x = currX
+      data.y = currY
+      data.distance = data.distance
 
       // jquery
       if (useJquery) {
-        customEvent = $.Event(eventName, {originalEvent: originalEvent});
-        jQuery(elm).trigger(customEvent, data);
+        customEvent = $.Event(eventName, {originalEvent: originalEvent})
+        jQuery(elm).trigger(customEvent, data)
       }
 
       // addEventListener
       if (customEvent.initEvent) {
         for (var key in data) {
-          customEvent[key] = data[key];
+          customEvent[key] = data[key]
         }
-        customEvent.initEvent(eventName, true, true);
-        elm.dispatchEvent(customEvent);
+        customEvent.initEvent(eventName, true, true)
+        elm.dispatchEvent(customEvent)
       }
 
       // inline
       if (elm['on' + eventName])
-        elm['on' + eventName](customEvent);
+        elm['on' + eventName](customEvent)
     },
 
     onTouchStart = function(e) {
-      var pointer = getPointerEvent(e);
+      var pointer = getPointerEvent(e)
       // caching the current x
-      cachedX = currX = pointer.pageX;
+      cachedX = currX = pointer.pageX
       // caching the current y
-      cachedY = currY = pointer.pageY;
+      cachedY = currY = pointer.pageY
 
-      timestamp = getTimestamp();
-      tapNum++;
+      timestamp = getTimestamp()
+      tapNum++
       // we will use these variables on the touchend events
     },
     onTouchEnd = function(e) {
+
       var eventsArr = [],
+        now = getTimestamp(),
         deltaY = cachedY - currY,
-        deltaX = cachedX - currX;
+        deltaX = cachedX - currX
 
       // clear the previous timer in case it was set
-      clearTimeout(tapTimer);
+      clearTimeout(tapTimer)
 
       if (deltaX <= -swipeThreshold)
-        eventsArr.push('swiperight');
+        eventsArr.push('swiperight')
 
       if (deltaX >= swipeThreshold)
-        eventsArr.push('swipeleft');
+        eventsArr.push('swipeleft')
 
       if (deltaY <= -swipeThreshold)
-        eventsArr.push('swipedown');
+        eventsArr.push('swipedown')
 
       if (deltaY >= swipeThreshold)
-        eventsArr.push('swipeup');
+        eventsArr.push('swipeup')
+
       if (eventsArr.length) {
         for (var i = 0; i < eventsArr.length; i++) {
-          var eventName = eventsArr[i];
+          var eventName = eventsArr[i]
           sendEvent(e.target, eventName, e, {
             distance: {
               x: Math.abs(deltaX),
               y: Math.abs(deltaY)
             }
-          });
+          })
         }
       } else {
 
         if (
-          (timestamp + tapThreshold) - getTimestamp() >= 0 &&
           cachedX >= currX - tapPrecision &&
           cachedX <= currX + tapPrecision &&
           cachedY >= currY - tapPrecision &&
           cachedY <= currY + tapPrecision
         ) {
-          // Here you get the Tap event
-          sendEvent(e.target, (tapNum === 2) && (target === e.target) ? 'dbltap' : 'tap', e);
-          target= e.target;
+          if((timestamp + tapThreshold) - now >= 0)
+          {
+            // Here you get the Tap event
+            sendEvent(e.target, (tapNum === 2) && (target === e.target) ? 'dbltap' : 'tap', e)
+            target= e.target
+          }
+          else if((timestamp + longtapThreshold) - now <= 0){
+            // Here you get the Tap event
+            sendEvent(e.target,'longtap', e)
+            target= e.target
+          }
         }
 
         // reset the tap counter
         tapTimer = setTimeout(function() {
-          tapNum = 0;
-        }, dbltapThreshold);
+          tapNum = 0
+        }, dbltapThreshold)
 
       }
     },
     onTouchMove = function(e) {
-      var pointer = getPointerEvent(e);
-      currX = pointer.pageX;
-      currY = pointer.pageY;
+      var pointer = getPointerEvent(e)
+      currX = pointer.pageX
+      currY = pointer.pageY
     },
     swipeThreshold = win.SWIPE_THRESHOLD || 100,
     tapThreshold = win.TAP_THRESHOLD || 150, // range of time where a tap event could be detected
     dbltapThreshold = win.DBL_TAP_THRESHOLD || 200, // delay needed to detect a double tap
+    longtapThreshold = win.LONG_TAP_THRESHOLD || 1000, // delay needed to detect a long tap
     tapPrecision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
     justTouchEvents = win.JUST_ON_TOUCH_DEVICES || isTouch,
     tapNum = 0,
-    currX, currY, cachedX, cachedY, tapTimer, timestamp, target;
+    currX, currY, cachedX, cachedY, tapTimer, timestamp, target
 
   //setting the events listeners
-  setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), onTouchStart);
-  setListener(doc, touchevents.touchend + (justTouchEvents ? '' : ' mouseup'), onTouchEnd);
-  setListener(doc, touchevents.touchmove + (justTouchEvents ? '' : ' mousemove'), onTouchMove);
-}(document, window));
+  setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), onTouchStart)
+  setListener(doc, touchevents.touchend + (justTouchEvents ? '' : ' mouseup'), onTouchEnd)
+  setListener(doc, touchevents.touchmove + (justTouchEvents ? '' : ' mousemove'), onTouchMove)
+}(document, window))
