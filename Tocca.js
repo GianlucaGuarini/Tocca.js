@@ -1,6 +1,6 @@
 /**
  *
- * Version: 0.2.0-beta
+ * Version: 0.2.0-beta.2
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
@@ -40,15 +40,18 @@
         ms = 'MS' + type
       return navigator.msPointerEnabled ? ms : lo
     },
+    pointerEnabled = !!navigator.pointerEnabled || navigator.msPointerEnabled,
     isTouch = function() {
       return 'ontouchstart' in window ||
         window.DocumentTouch && document instanceof DocumentTouch ||
-        !!navigator.pointerEnabled || navigator.msPointerEnabled
+        pointerEnabled
     },
     isValid = function(e) {
       var _isTouch = isTouch(),
         isMouse = /mouse/.test(e.type)
-      return !isMouse && _isTouch || isMouse && !_isTouch
+      return !isMouse && _isTouch && /touch/.test(e.type) && !pointerEnabled ||
+        !isMouse && _isTouch && !/touch/.test(e.type) && pointerEnabled ||
+        isMouse && !_isTouch
     },
     touchevents = {
       touchstart: msEventType('PointerDown') + ' touchstart',
