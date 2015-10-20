@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-	'use strict';
+	'use strict'
 	var browsers = [{
 		browserName: 'firefox',
 		platform: 'Windows 7'
@@ -37,14 +37,14 @@ module.exports = function(grunt) {
 		deviceName: 'Android',
 		browserName: 'android',
 		version: '5.0'
-	}];
+	}]
 
-	grunt.loadNpmTasks('grunt-mocha');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-connect');
-	grunt.loadNpmTasks('grunt-saucelabs');
-	grunt.loadNpmTasks('grunt-chmod');
+	grunt.loadNpmTasks('grunt-mocha')
+	grunt.loadNpmTasks('grunt-contrib-jshint')
+	grunt.loadNpmTasks('grunt-contrib-uglify')
+	grunt.loadNpmTasks('grunt-contrib-connect')
+	grunt.loadNpmTasks('grunt-saucelabs')
+	grunt.loadNpmTasks('grunt-chmod')
 
 	// Project configuration.
 	grunt.initConfig({
@@ -66,8 +66,8 @@ module.exports = function(grunt) {
 		connect: {
 			server: {
 				options: {
-					base: '',
-					port: 9999
+					base: '.',
+					port: 8888
 				}
 			}
 		},
@@ -75,7 +75,7 @@ module.exports = function(grunt) {
 			all: {
 				options: {
 					urls: [
-						'http://127.0.0.1:9999/test/tests.html'
+						'http://127.0.0.1:8888/test/tests.html'
 					],
 					username: 'Toccajs',
 					key: '68b9e417-3aec-4f8e-9b02-b9417029eca8',
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
 		},
 		mocha: {
 			all: {
-				src: ['test/*.html'],
+				src: ['http://127.0.0.1:8888/test/tests.html'],
 				options: {
 					run: true,
 					reporter: 'Spec',
@@ -121,11 +121,11 @@ module.exports = function(grunt) {
 				src: ['*.js']
 			}
 		}
-	});
+	})
 	// test js files
-	grunt.registerTask('test', ['jshint', 'mocha']);
-	grunt.registerTask('sauce', ['connect', 'saucelabs-mocha']);
+	grunt.registerTask('test', ['jshint', 'mocha'])
+	grunt.registerTask('sauce', ['connect', 'saucelabs-mocha'])
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'mocha', 'uglify', 'chmod']);
+	grunt.registerTask('default', ['jshint', 'mocha', 'uglify', 'chmod'])
 
-};
+}

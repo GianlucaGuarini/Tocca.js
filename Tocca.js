@@ -1,6 +1,6 @@
 /**
  *
- * Version: 0.1.7
+ * Version: 0.2.0-beta
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
@@ -35,13 +35,20 @@
   if (typeof doc.createEvent !== 'function') return false // no tap events here
   // helpers
   var useJquery = typeof jQuery !== 'undefined',
-    // some helpers borrowed from https://github.com/WebReflection/ie-touch
-    msPointerEnabled = !!navigator.pointerEnabled || navigator.msPointerEnabled,
-    isTouch = (!!('ontouchstart' in win) && navigator.userAgent.indexOf('PhantomJS') < 0) || msPointerEnabled,
     msEventType = function(type) {
       var lo = type.toLowerCase(),
         ms = 'MS' + type
       return navigator.msPointerEnabled ? ms : lo
+    },
+    isTouch = function() {
+      return 'ontouchstart' in window ||
+        window.DocumentTouch && document instanceof DocumentTouch ||
+        !!navigator.pointerEnabled || navigator.msPointerEnabled
+    },
+    isValid = function(e) {
+      var _isTouch = isTouch(),
+        isMouse = /mouse/.test(e.type)
+      return !isMouse && _isTouch || isMouse && !_isTouch
     },
     touchevents = {
       touchstart: msEventType('PointerDown') + ' touchstart',
@@ -91,30 +98,33 @@
     },
 
     onTouchStart = function(e) {
+      if (!isValid(e)) return
       var pointer = getPointerEvent(e)
+
       // caching the current x
       cachedX = currX = pointer.pageX
       // caching the current y
       cachedY = currY = pointer.pageY
 
       longtapTimer = setTimeout(function() {
-          sendEvent(e.target,'longtap', e)
-          target= e.target
-      }, longtapThreshold);
-      
+        sendEvent(e.target, 'longtap', e)
+        target = e.target
+      }, longtapThreshold)
+
+      // we will use these variables on the touchend events
       timestamp = getTimestamp()
       tapNum++
-      // we will use these variables on the touchend events
+
     },
     onTouchEnd = function(e) {
-
+      if (!isValid(e)) return
       var eventsArr = [],
         now = getTimestamp(),
         deltaY = cachedY - currY,
         deltaX = cachedX - currX
 
       // clear the previous timer in case it was set
-      clearTimeout(tapTimer)
+      clearTimeout(dblTapTimer)
       clearTimeout(longtapTimer)
 
       if (deltaX <= -swipeThreshold)
@@ -147,22 +157,23 @@
           cachedY >= currY - tapPrecision &&
           cachedY <= currY + tapPrecision
         ) {
-          if((timestamp + tapThreshold) - now >= 0)
+          if (timestamp + tapThreshold - now >= 0)
           {
             // Here you get the Tap event
-            sendEvent(e.target, (tapNum === 2) && (target === e.target) ? 'dbltap' : 'tap', e)
+            sendEvent(e.target, tapNum === 2 && target === e.target ? 'dbltap' : 'tap', e)
             target= e.target
           }
         }
 
         // reset the tap counter
-        tapTimer = setTimeout(function() {
+        dblTapTimer = setTimeout(function() {
           tapNum = 0
         }, dbltapThreshold)
 
       }
     },
     onTouchMove = function(e) {
+      if (!isValid(e)) return
       var pointer = getPointerEvent(e)
       currX = pointer.pageX
       currY = pointer.pageY
@@ -172,9 +183,9 @@
     dbltapThreshold = win.DBL_TAP_THRESHOLD || 200, // delay needed to detect a double tap
     longtapThreshold = win.LONG_TAP_THRESHOLD || 1000, // delay needed to detect a long tap
     tapPrecision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
-    justTouchEvents = win.JUST_ON_TOUCH_DEVICES || isTouch,
+    justTouchEvents = win.JUST_ON_TOUCH_DEVICES,
     tapNum = 0,
-    currX, currY, cachedX, cachedY, tapTimer, timestamp, target, longtapTimer
+    currX, currY, cachedX, cachedY, timestamp, target, dblTapTimer, longtapTimer
 
   //setting the events listeners
   setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), onTouchStart)
