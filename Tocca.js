@@ -97,6 +97,11 @@
       // caching the current y
       cachedY = currY = pointer.pageY
 
+      longtapTimer = setTimeout(function() {
+          sendEvent(e.target,'longtap', e)
+          target= e.target
+      }, longtapThreshold);
+      
       timestamp = getTimestamp()
       tapNum++
       // we will use these variables on the touchend events
@@ -110,6 +115,7 @@
 
       // clear the previous timer in case it was set
       clearTimeout(tapTimer)
+      clearTimeout(longtapTimer)
 
       if (deltaX <= -swipeThreshold)
         eventsArr.push('swiperight')
@@ -147,11 +153,6 @@
             sendEvent(e.target, (tapNum === 2) && (target === e.target) ? 'dbltap' : 'tap', e)
             target= e.target
           }
-          else if((timestamp + longtapThreshold) - now <= 0){
-            // Here you get the Tap event
-            sendEvent(e.target,'longtap', e)
-            target= e.target
-          }
         }
 
         // reset the tap counter
@@ -173,7 +174,7 @@
     tapPrecision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
     justTouchEvents = win.JUST_ON_TOUCH_DEVICES || isTouch,
     tapNum = 0,
-    currX, currY, cachedX, cachedY, tapTimer, timestamp, target
+    currX, currY, cachedX, cachedY, tapTimer, timestamp, target, longtapTimer
 
   //setting the events listeners
   setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), onTouchStart)
