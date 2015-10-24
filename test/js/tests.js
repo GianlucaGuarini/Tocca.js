@@ -1,21 +1,15 @@
 function check(done, f) {
-  try {
-    f()
-    done()
-  } catch (e) {
-    done(e)
-  }
+  f()
+  done()
 }
 
 var testDiv = document.createElement('div'),
   isTouch = 'ontouchstart' in window ||
         window.DocumentTouch && document instanceof DocumentTouch ||
-        !!navigator.pointerEnabled || navigator.msPointerEnabled,
+        !!navigator.pointerEnabled,
   touchend = isTouch ? 'touchend' : 'mouseup',
   touchmove = isTouch ? 'touchmove' : 'mousemove',
   touchstart = isTouch ? 'touchstart' : 'mousedown'
-
-
 
 // append the test div into the body
 document.body.appendChild(testDiv)
