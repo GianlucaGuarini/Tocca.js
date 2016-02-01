@@ -1,6 +1,6 @@
 /**
  *
- * Version: 0.1.7
+ * Version: 0.2.0
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
@@ -35,13 +35,20 @@
   if (typeof doc.createEvent !== 'function') return false // no tap events here
   // helpers
   var useJquery = typeof jQuery !== 'undefined',
-    // some helpers borrowed from https://github.com/WebReflection/ie-touch
-    msPointerEnabled = !!navigator.pointerEnabled || navigator.msPointerEnabled,
-    isTouch = (!!('ontouchstart' in win) && navigator.userAgent.indexOf('PhantomJS') < 0) || msPointerEnabled,
     msEventType = function(type) {
       var lo = type.toLowerCase(),
         ms = 'MS' + type
       return navigator.msPointerEnabled ? ms : lo
+    },
+    debounce = function(fn, delay) {
+      var t
+      return function () {
+        var args = arguments
+        clearTimeout(t)
+        t = setTimeout(function() {
+          fn.apply(null, args)
+        }, delay)
+      }
     },
     touchevents = {
       touchstart: msEventType('PointerDown') + ' touchstart',
@@ -91,15 +98,24 @@
     },
 
     onTouchStart = function(e) {
+
       var pointer = getPointerEvent(e)
+
       // caching the current x
       cachedX = currX = pointer.pageX
       // caching the current y
       cachedY = currY = pointer.pageY
 
-      timestamp = getTimestamp()
-      tapNum++
+      longtapTimer = setTimeout(function() {
+        sendEvent(e.target, 'longtap', e)
+        target = e.target
+      }, longtapThreshold)
+
       // we will use these variables on the touchend events
+      timestamp = getTimestamp()
+
+      tapNum++
+
     },
     onTouchEnd = function(e) {
 
@@ -108,8 +124,10 @@
         deltaY = cachedY - currY,
         deltaX = cachedX - currX
 
-      // clear the previous timer in case it was set
-      clearTimeout(tapTimer)
+       // clear the previous timer if it was set
+      clearTimeout(dblTapTimer)
+      // kill the long tap timer
+      clearTimeout(longtapTimer)
 
       if (deltaX <= -swipeThreshold)
         eventsArr.push('swiperight')
@@ -133,6 +151,8 @@
             }
           })
         }
+        // reset the tap counter
+        tapNum = 0
       } else {
 
         if (
@@ -141,21 +161,16 @@
           cachedY >= currY - tapPrecision &&
           cachedY <= currY + tapPrecision
         ) {
-          if((timestamp + tapThreshold) - now >= 0)
+          if (timestamp + tapThreshold - now >= 0)
           {
             // Here you get the Tap event
-            sendEvent(e.target, (tapNum === 2) && (target === e.target) ? 'dbltap' : 'tap', e)
-            target= e.target
-          }
-          else if((timestamp + longtapThreshold) - now <= 0){
-            // Here you get the Tap event
-            sendEvent(e.target,'longtap', e)
+            sendEvent(e.target, tapNum >= 2 && target === e.target ? 'dbltap' : 'tap', e)
             target= e.target
           }
         }
 
         // reset the tap counter
-        tapTimer = setTimeout(function() {
+        dblTapTimer = setTimeout(function() {
           tapNum = 0
         }, dbltapThreshold)
 
@@ -171,12 +186,14 @@
     dbltapThreshold = win.DBL_TAP_THRESHOLD || 200, // delay needed to detect a double tap
     longtapThreshold = win.LONG_TAP_THRESHOLD || 1000, // delay needed to detect a long tap
     tapPrecision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
-    justTouchEvents = win.JUST_ON_TOUCH_DEVICES || isTouch,
+    justTouchEvents = win.JUST_ON_TOUCH_DEVICES,
     tapNum = 0,
-    currX, currY, cachedX, cachedY, tapTimer, timestamp, target
+    currX, currY, cachedX, cachedY, timestamp, target, dblTapTimer, longtapTimer
 
   //setting the events listeners
-  setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), onTouchStart)
-  setListener(doc, touchevents.touchend + (justTouchEvents ? '' : ' mouseup'), onTouchEnd)
-  setListener(doc, touchevents.touchmove + (justTouchEvents ? '' : ' mousemove'), onTouchMove)
-}(document, window))
+  // we need to debounce the callbacks because some devices multiple events are triggered at same time
+  setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), debounce(onTouchStart, 1))
+  setListener(doc, touchevents.touchend + (justTouchEvents ? '' : ' mouseup'), debounce(onTouchEnd, 1))
+  setListener(doc, touchevents.touchmove + (justTouchEvents ? '' : ' mousemove'), debounce(onTouchMove, 1))
+
+}(document, window));
