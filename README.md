@@ -152,6 +152,7 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ### 0.2.0
 -  added: `longtap` event and the `LONG_TAP_THRESHOLD` variable
+-  fixed: inconsistencies and issues across the hybrid devices
 
 ### 0.1.7
 -  added: `longtap` event and the `LONG_TAP_THRESHOLD` variable

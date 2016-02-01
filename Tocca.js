@@ -1,6 +1,6 @@
 /**
  *
- * Version: 0.2.0-beta.2
+ * Version: 0.2.0
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
