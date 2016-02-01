@@ -191,7 +191,7 @@
     currX, currY, cachedX, cachedY, timestamp, target, dblTapTimer, longtapTimer
 
   //setting the events listeners
-  // we need to debounce the callbacks because some devices multiple events are triggered at same time
+  // we need to debounce the callbacks because some devices will trigger the multiple events at same time
   setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), debounce(onTouchStart, 1))
   setListener(doc, touchevents.touchend + (justTouchEvents ? '' : ' mouseup'), debounce(onTouchEnd, 1))
   setListener(doc, touchevents.touchmove + (justTouchEvents ? '' : ' mousemove'), debounce(onTouchMove, 1))
