@@ -82,7 +82,7 @@ module.exports = function(grunt) {
 		},
 		mocha: {
 			all: {
-				src: ['http://127.0.0.1:8888/test/tests.html'],
+				src: ['test/tests.html'],
 				options: {
 					run: true,
 					reporter: 'Spec',
