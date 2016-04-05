@@ -1,6 +1,6 @@
 /**
  *
- * Version: 0.2.0
+ * Version: 1.0.0
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
@@ -29,7 +29,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  **/
-
 (function(doc, win) {
   'use strict'
   if (typeof doc.createEvent !== 'function') return false // no tap events here
@@ -40,16 +39,8 @@
         ms = 'MS' + type
       return navigator.msPointerEnabled ? ms : lo
     },
-    debounce = function(fn, delay) {
-      var t
-      return function () {
-        var args = arguments
-        clearTimeout(t)
-        t = setTimeout(function() {
-          fn.apply(null, args)
-        }, delay)
-      }
-    },
+    // was initially triggered a "touchstart" event?
+    wasTouch = false,
     touchevents = {
       touchstart: msEventType('PointerDown') + ' touchstart',
       touchend: msEventType('PointerUp') + ' touchend',
@@ -92,12 +83,44 @@
         elm.dispatchEvent(customEvent)
       }
 
-      // inline
-      if (elm['on' + eventName])
-        elm['on' + eventName](customEvent)
+      // detect all the inline events
+      // also on the parent nodes
+      while (elm) {
+        // inline
+        if (elm['on' + eventName])
+          elm['on' + eventName](customEvent)
+        elm = elm.parentNode
+      }
+
     },
 
     onTouchStart = function(e) {
+      /**
+       * Skip all the mouse events
+       * events order:
+       * Chrome:
+       *   touchstart
+       *   touchmove
+       *   touchend
+       *   mousedown
+       *   mousemove
+       *   mouseup <- this must come always after a "touchstart"
+       *
+       * Safari
+       *   touchstart
+       *   mousedown
+       *   touchmove
+       *   mousemove
+       *   touchend
+       *   mouseup <- this must come always after a "touchstart"
+       */
+
+      // it looks like it was a touch event!
+      if (e.type !== 'mousedown')
+        wasTouch = true
+
+      // skip this event we don't need to track it now
+      if (e.type === 'mousedown' && wasTouch) return
 
       var pointer = getPointerEvent(e)
 
@@ -118,6 +141,13 @@
 
     },
     onTouchEnd = function(e) {
+
+      // skip the mouse events if previously a touch event was dispatched
+      // and reset the touch flag
+      if (e.type === 'mouseup' && wasTouch) {
+        wasTouch = false
+        return
+      }
 
       var eventsArr = [],
         now = getTimestamp(),
@@ -177,6 +207,9 @@
       }
     },
     onTouchMove = function(e) {
+      // skip the mouse move events if the touch events were previously detected
+      if (e.type === 'mousemove' && wasTouch) return
+
       var pointer = getPointerEvent(e)
       currX = pointer.pageX
       currY = pointer.pageY
@@ -191,9 +224,9 @@
     currX, currY, cachedX, cachedY, timestamp, target, dblTapTimer, longtapTimer
 
   //setting the events listeners
-  // we need to debounce the callbacks because some devices will trigger the multiple events at same time
-  setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), debounce(onTouchStart, 1))
-  setListener(doc, touchevents.touchend + (justTouchEvents ? '' : ' mouseup'), debounce(onTouchEnd, 1))
-  setListener(doc, touchevents.touchmove + (justTouchEvents ? '' : ' mousemove'), debounce(onTouchMove, 1))
+  // we need to debounce the callbacks because some devices multiple events are triggered at same time
+  setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), onTouchStart)
+  setListener(doc, touchevents.touchend + (justTouchEvents ? '' : ' mouseup'), onTouchEnd)
+  setListener(doc, touchevents.touchmove + (justTouchEvents ? '' : ' mousemove'), onTouchMove)
 
 }(document, window));
