@@ -150,6 +150,14 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
+
+### 1.0.0
+Thanks to [@AndyOGo](https://github.com/AndyOGo) for his help on this release
+
+-  fixed: #34 #35
+-  fixed: more reliable and performant events on the hybrid devices
+-  fixed: multiple events dispatched on `tap`
+
 ### 0.2.0
 -  added: `longtap` event and the `LONG_TAP_THRESHOLD` variable
 -  fixed: inconsistencies and issues across the hybrid devices
