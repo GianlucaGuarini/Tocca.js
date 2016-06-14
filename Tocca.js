@@ -70,7 +70,7 @@
 
       // jquery
       if (useJquery) {
-        customEvent = $.Event(eventName, {originalEvent: originalEvent})
+        customEvent = jQuery.Event(eventName, {originalEvent: originalEvent})
         jQuery(elm).trigger(customEvent, data)
       }
 
