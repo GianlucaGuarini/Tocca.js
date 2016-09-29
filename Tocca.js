@@ -33,7 +33,7 @@
   'use strict'
   if (typeof doc.createEvent !== 'function') return false // no tap events here
   // helpers
-  var useJquery = typeof jQuery !== 'undefined',
+  var useJquery = (!win.IGNORE_JQUERY && typeof jQuery !== 'undefined'),
     msEventType = function(type) {
       var lo = type.toLowerCase(),
         ms = 'MS' + type

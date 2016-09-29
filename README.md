@@ -135,7 +135,8 @@ var SWIPE_THRESHOLD = 100, // default value
 	LONG_TAP_THRESHOLD = 1000, // range of time after which a longtap event could be detected
 	TAP_THRESHOLD = 150, // range of time in which a tap event could be detected
 	TAP_PRECISION = 60 / 2, // default value (touch events boundaries)
-	JUST_ON_TOUCH_DEVICES = false; // default value ( decide whether you want to use the Tocca.js events only on the touch devices )
+	JUST_ON_TOUCH_DEVICES = false, // default value ( decide whether you want to use the Tocca.js events only on the touch devices )
+	IGNORE_JQUERY = false; // default value ( will not use jQuery events, even if jQuery is detected )
 </script>
 <script src="path/to/Tocca.js"></script>
 ```
