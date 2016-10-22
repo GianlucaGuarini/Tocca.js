@@ -57,6 +57,7 @@ module.exports = function(grunt) {
 		connect: {
 			server: {
 				options: {
+					keepalive: true,
 					base: '.',
 					port: 8888
 				}
@@ -66,7 +67,7 @@ module.exports = function(grunt) {
 			all: {
 				options: {
 					urls: [
-						'//localhost:8888/test/'
+						'http://127.0.0.1:8888/test/index.html'
 					],
 					username: 'Toccajs',
 					key: '68b9e417-3aec-4f8e-9b02-b9417029eca8',
@@ -82,7 +83,7 @@ module.exports = function(grunt) {
 		},
 		mocha: {
 			all: {
-				src: ['//localhost:8888/test/'],
+				src: ['test/index.html'],
 				options: {
 					run: true,
 					reporter: 'Spec',
@@ -105,7 +106,7 @@ module.exports = function(grunt) {
 		}
 	})
 	// test js files
-	grunt.registerTask('test', ['jshint', 'connect', 'mocha'])
+	grunt.registerTask('test', ['jshint', 'mocha'])
 	grunt.registerTask('sauce', ['connect', 'saucelabs-mocha'])
 	// Default task.
 	grunt.registerTask('default', ['jshint', 'mocha', 'uglify'])
