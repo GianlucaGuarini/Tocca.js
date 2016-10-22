@@ -1,6 +1,6 @@
 /**
  *
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
@@ -33,11 +33,19 @@
   'use strict'
   if (typeof doc.createEvent !== 'function') return false // no tap events here
   // helpers
-  var useJquery = typeof jQuery !== 'undefined',
-    msEventType = function(type) {
+  var msEventType = function(type) {
       var lo = type.toLowerCase(),
         ms = 'MS' + type
       return navigator.msPointerEnabled ? ms : lo
+    },
+    defaults = {
+      useJquery: !win.IGNORE_JQUERY && typeof jQuery !== 'undefined',
+      swipeThreshold: win.SWIPE_THRESHOLD || 100,
+      tapThreshold: win.TAP_THRESHOLD || 150, // range of time where a tap event could be detected
+      dbltapThreshold: win.DBL_TAP_THRESHOLD || 200, // delay needed to detect a double tap
+      longtapThreshold: win.LONG_TAP_THRESHOLD || 1000, // delay needed to detect a long tap
+      tapPrecision: win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
+      justTouchEvents: win.JUST_ON_TOUCH_DEVICES
     },
     // was initially triggered a "touchstart" event?
     wasTouch = false,
@@ -69,8 +77,8 @@
       data.distance = data.distance
 
       // jquery
-      if (useJquery) {
-        customEvent = $.Event(eventName, {originalEvent: originalEvent})
+      if (defaults.useJquery) {
+        customEvent = jQuery.Event(eventName, {originalEvent: originalEvent})
         jQuery(elm).trigger(customEvent, data)
       }
 
@@ -132,7 +140,7 @@
       longtapTimer = setTimeout(function() {
         sendEvent(e.target, 'longtap', e)
         target = e.target
-      }, longtapThreshold)
+      }, defaults.longtapThreshold)
 
       // we will use these variables on the touchend events
       timestamp = getTimestamp()
@@ -159,16 +167,16 @@
       // kill the long tap timer
       clearTimeout(longtapTimer)
 
-      if (deltaX <= -swipeThreshold)
+      if (deltaX <= -defaults.swipeThreshold)
         eventsArr.push('swiperight')
 
-      if (deltaX >= swipeThreshold)
+      if (deltaX >= defaults.swipeThreshold)
         eventsArr.push('swipeleft')
 
-      if (deltaY <= -swipeThreshold)
+      if (deltaY <= -defaults.swipeThreshold)
         eventsArr.push('swipedown')
 
-      if (deltaY >= swipeThreshold)
+      if (deltaY >= defaults.swipeThreshold)
         eventsArr.push('swipeup')
 
       if (eventsArr.length) {
@@ -186,12 +194,12 @@
       } else {
 
         if (
-          cachedX >= currX - tapPrecision &&
-          cachedX <= currX + tapPrecision &&
-          cachedY >= currY - tapPrecision &&
-          cachedY <= currY + tapPrecision
+          cachedX >= currX - defaults.tapPrecision &&
+          cachedX <= currX + defaults.tapPrecision &&
+          cachedY >= currY - defaults.tapPrecision &&
+          cachedY <= currY + defaults.tapPrecision
         ) {
-          if (timestamp + tapThreshold - now >= 0)
+          if (timestamp + defaults.tapThreshold - now >= 0)
           {
             // Here you get the Tap event
             sendEvent(e.target, tapNum >= 2 && target === e.target ? 'dbltap' : 'tap', e)
@@ -202,7 +210,7 @@
         // reset the tap counter
         dblTapTimer = setTimeout(function() {
           tapNum = 0
-        }, dbltapThreshold)
+        }, defaults.dbltapThreshold)
 
       }
     },
@@ -214,19 +222,21 @@
       currX = pointer.pageX
       currY = pointer.pageY
     },
-    swipeThreshold = win.SWIPE_THRESHOLD || 100,
-    tapThreshold = win.TAP_THRESHOLD || 150, // range of time where a tap event could be detected
-    dbltapThreshold = win.DBL_TAP_THRESHOLD || 200, // delay needed to detect a double tap
-    longtapThreshold = win.LONG_TAP_THRESHOLD || 1000, // delay needed to detect a long tap
-    tapPrecision = win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
-    justTouchEvents = win.JUST_ON_TOUCH_DEVICES,
     tapNum = 0,
     currX, currY, cachedX, cachedY, timestamp, target, dblTapTimer, longtapTimer
 
   //setting the events listeners
   // we need to debounce the callbacks because some devices multiple events are triggered at same time
-  setListener(doc, touchevents.touchstart + (justTouchEvents ? '' : ' mousedown'), onTouchStart)
-  setListener(doc, touchevents.touchend + (justTouchEvents ? '' : ' mouseup'), onTouchEnd)
-  setListener(doc, touchevents.touchmove + (justTouchEvents ? '' : ' mousemove'), onTouchMove)
+  setListener(doc, touchevents.touchstart + (defaults.justTouchEvents ? '' : ' mousedown'), onTouchStart)
+  setListener(doc, touchevents.touchend + (defaults.justTouchEvents ? '' : ' mouseup'), onTouchEnd)
+  setListener(doc, touchevents.touchmove + (defaults.justTouchEvents ? '' : ' mousemove'), onTouchMove)
+
+  // Configure the tocca default options at any time
+  win.tocca = function(options) {
+    for (var opt in options) {
+      defaults[opt] = options[opt]
+    }
+    return defaults
+  }
 
 }(document, window));

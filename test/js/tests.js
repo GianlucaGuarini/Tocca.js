@@ -1,5 +1,5 @@
 /**
- * This file represents perfectly how you should not unit test!
+ * This file represents perfectly how you should not do a unit test!
  * I will clean this up once
  */
 
@@ -84,14 +84,6 @@ describe('Tocca.js nojQuery events', function() {
 
 
       testDiv.addEventListener('dbltap', onEventFired, false)
-      simulant.fire(testDiv, touchstart, {
-        clientX: 50,
-        clientY: 50
-      })
-      simulant.fire(testDiv, touchend, {
-        clientX: 50,
-        clientY: 50
-      })
 
       simulant.fire(testDiv, touchstart, {
         clientX: 50,
@@ -102,6 +94,16 @@ describe('Tocca.js nojQuery events', function() {
         clientY: 50
       })
 
+      setTimeout(function() {
+        simulant.fire(testDiv, touchstart, {
+          clientX: 50,
+          clientY: 50
+        })
+        simulant.fire(testDiv, touchend, {
+          clientX: 50,
+          clientY: 50
+        })
+      }, 20)
     })
   })
 
@@ -358,8 +360,8 @@ describe('Inline events', function() {
     })
 
     testDiv.ondbltap = onEventFired
-    setTimeout(function() {
 
+    setTimeout(function() {
       simulant.fire(testDiv, touchstart, {
         clientX: 50,
         clientY: 50
@@ -369,7 +371,7 @@ describe('Inline events', function() {
         clientX: 50,
         clientY: 50
       })
-    }, 1000)
+    }, 20)
 
 
   })
@@ -423,41 +425,6 @@ describe('Tocca.js validate events', function() {
    *
    */
   describe('tap event', function() {
-    it('The "tap" event must not be triggered if the pointer position is changed', function(done) {
-      var eventObject = false
-
-      function onEventFired(e) {
-        check(done, function() {
-          eventObject = e
-          expect(true).to.be.equal(false)
-        })
-
-      }
-
-      testDiv.addEventListener('tap', onEventFired, false)
-
-      simulant.fire(testDiv, touchstart, {
-        clientX: 99,
-        clientY: 99
-      })
-
-      simulant.fire(testDiv, touchmove, {
-        clientX: 28,
-        clientY: 28
-      })
-
-      setTimeout(function() {
-        simulant.fire(testDiv, touchend)
-      }, 10)
-
-
-      check(done, function() {
-        expect(eventObject).to.be.equal(false)
-        testDiv.removeEventListener('tap', onEventFired, false)
-      })
-
-
-    })
     it('The "tap" event must not be triggered because out of the time range defined', function(done) {
       var eventObject = false
 
@@ -545,48 +512,11 @@ describe('Tocca.js validate events', function() {
    *
    */
   describe('longtap event', function() {
-    it('The "longtap" event must not be triggered if the pointer position is changed', function(done) {
-      var eventObject = false
-
-      function onEventFired(e) {
-        check(done, function() {
-          eventObject = e
-          expect(true).to.be.equal(false)
-        })
-
-      }
-      testDiv.addEventListener('longtap', onEventFired, false)
-
-      simulant.fire(testDiv, touchstart, {
-        clientX: 99,
-        clientY: 99
-      })
-
-      setTimeout(function() {
-        simulant.fire(testDiv, touchmove, {
-          clientX: 28,
-          clientY: 28
-        })
-
-        simulant.fire(testDiv, touchend)
-      }, 1081)
-
-
-
-
-
-      check(done, function() {
-        expect(eventObject).to.be.equal(false)
-        testDiv.removeEventListener('longtap', onEventFired, false)
-      })
-
-
-    })
-
     it('The "longtap" event must not be triggered because out of the time range defined', function(done) {
       var eventObject=false
 
       function onEventFired(e) {
+        console.log(e)
         check(done, function() {
           eventObject=e
           expect(true).to.be.equal(false)
@@ -600,6 +530,7 @@ describe('Tocca.js validate events', function() {
         clientX: 50,
         clientY: 50
       })
+
       setTimeout(function() {
         simulant.fire(testDiv, touchend, {
           clientX: 50,
@@ -609,7 +540,7 @@ describe('Tocca.js validate events', function() {
           expect(eventObject).to.be.equal(false)
         })
         testDiv.removeEventListener('longtap', onEventFired, false)
-      }, 700)
+      }, window.tocca().longtapThreshold - 500)
 
     })
   })
@@ -698,77 +629,75 @@ describe('Tocca.js validate events', function() {
         })
       }, 500)
     })*/
-    it('The "swipeleft" event must not be triggered because the swipe movement is too short', function(done) {
-      var eventObject = false
+  it('The "swipeleft" event must not be triggered because the swipe movement is too short', function(done) {
+    var eventObject = false
 
-      function onEventFired(e) {
-        check(done, function() {
-          eventObject = e
-          expect(true).to.be.equal(false)
-        })
-      }
-      testDiv.addEventListener('swipeleft', onEventFired, false)
-      var initialX = 450,
-        pixelMoved = 70
-      simulant.fire(testDiv, touchstart, {
-        clientX: initialX,
-        clientY: 50
+    function onEventFired(e) {
+      check(done, function() {
+        eventObject = e
+        expect(true).to.be.equal(false)
       })
-      var i = pixelMoved
-      while (i--) {
-        simulant.fire(testDiv, touchmove, {
-          clientX: initialX--,
-          clientY: 50
-        })
-      }
-      simulant.fire(testDiv, touchend, {
-        clientX: initialX - pixelMoved,
-        clientY: 50
-      })
-      setTimeout(function() {
-        check(done, function() {
-          expect(eventObject).to.be.equal(false)
-
-          testDiv.removeEventListener('swipeleft', onEventFired, false)
-        })
-      }, 500)
+    }
+    testDiv.addEventListener('swipeleft', onEventFired, false)
+    var initialX = 450,
+      pixelMoved = 70
+    simulant.fire(testDiv, touchstart, {
+      clientX: initialX,
+      clientY: 50
     })
-
-    it('The "swiperight" event must not be triggered because the swipe movement is too short', function(done) {
-      var eventObject = false
-
-      function onEventFired(e) {
-        check(done, function() {
-          eventObject = e
-          expect(true).to.be.equal(false)
-        })
-      }
-      testDiv.addEventListener('swiperight', onEventFired, false)
-      var initialX = 450,
-        pixelMoved = 70
-      simulant.fire(testDiv, touchstart, {
-        clientX: initialX,
+    var i = pixelMoved
+    while (i--) {
+      simulant.fire(testDiv, touchmove, {
+        clientX: initialX--,
         clientY: 50
       })
-      var i = pixelMoved
-      while (i--) {
-        simulant.fire(testDiv, touchmove, {
-          clientX: initialX++,
-          clientY: 50
-        })
-      }
-      simulant.fire(testDiv, touchend, {
-        clientX: initialX + pixelMoved,
-        clientY: 50
-      })
-      setTimeout(function() {
-        check(done, function() {
-          expect(eventObject).to.be.equal(false)
-
-          testDiv.removeEventListener('swiperight', onEventFired, false)
-        })
-      }, 500)
+    }
+    simulant.fire(testDiv, touchend, {
+      clientX: initialX - pixelMoved,
+      clientY: 50
     })
+    setTimeout(function() {
+      check(done, function() {
+        expect(eventObject).to.be.equal(false)
+
+        testDiv.removeEventListener('swipeleft', onEventFired, false)
+      })
+    }, 500)
   })
 
+  it('The "swiperight" event must not be triggered because the swipe movement is too short', function(done) {
+    var eventObject = false
+
+    function onEventFired(e) {
+      check(done, function() {
+        eventObject = e
+        expect(true).to.be.equal(false)
+      })
+    }
+    testDiv.addEventListener('swiperight', onEventFired, false)
+    var initialX = 450,
+      pixelMoved = 70
+    simulant.fire(testDiv, touchstart, {
+      clientX: initialX,
+      clientY: 50
+    })
+    var i = pixelMoved
+    while (i--) {
+      simulant.fire(testDiv, touchmove, {
+        clientX: initialX++,
+        clientY: 50
+      })
+    }
+    simulant.fire(testDiv, touchend, {
+      clientX: initialX + pixelMoved,
+      clientY: 50
+    })
+    setTimeout(function() {
+      check(done, function() {
+        expect(eventObject).to.be.equal(false)
+
+        testDiv.removeEventListener('swiperight', onEventFired, false)
+      })
+    }, 500)
+  })
 })

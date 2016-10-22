@@ -135,9 +135,25 @@ var SWIPE_THRESHOLD = 100, // default value
 	LONG_TAP_THRESHOLD = 1000, // range of time after which a longtap event could be detected
 	TAP_THRESHOLD = 150, // range of time in which a tap event could be detected
 	TAP_PRECISION = 60 / 2, // default value (touch events boundaries)
-	JUST_ON_TOUCH_DEVICES = false; // default value ( decide whether you want to use the Tocca.js events only on the touch devices )
+	JUST_ON_TOUCH_DEVICES = false, // default value ( decide whether you want to use the Tocca.js events only on the touch devices )
+	IGNORE_JQUERY = false; // default value ( will not use jQuery events, even if jQuery is detected )
 </script>
 <script src="path/to/Tocca.js"></script>
+```
+
+In Tocca.js 1.1.0 you can also configure/get the internal options via function:
+```js
+window.tocca({
+	useJquery: your new option
+  swipeThreshold: your new option
+  tapThreshold: your new option
+  dbltapThreshold: your new option
+  longtapThreshold: your new option
+  tapPrecision: your new option
+  justTouchEvents: your new option
+})
+
+console.log(window.tocca()) // will always return the current internal options
 ```
 
 ## Browser Support
@@ -150,6 +166,14 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
+### 1.1.0
+
+-  added: the possibility to configure via function the internal tocca options
+-  added: the `IGNORE_JQUERY` option
+
+### 1.0.1
+
+-  fixed: https://github.com/GianlucaGuarini/Tocca.js/issues/37
 
 ### 1.0.0
 Thanks to [@AndyOGo](https://github.com/AndyOGo) for his help on this release
