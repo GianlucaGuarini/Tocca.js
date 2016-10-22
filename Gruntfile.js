@@ -66,7 +66,7 @@ module.exports = function(grunt) {
 			all: {
 				options: {
 					urls: [
-						'http://127.0.0.1:8888/test/tests.html'
+						'http://127.0.0.1:8888/test/index.html'
 					],
 					username: 'Toccajs',
 					key: '68b9e417-3aec-4f8e-9b02-b9417029eca8',
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
 		},
 		mocha: {
 			all: {
-				src: ['http://127.0.0.1:8888/test/tests.html'],
+				src: ['http://127.0.0.1:8888/test/index.html'],
 				options: {
 					run: true,
 					reporter: 'Spec',

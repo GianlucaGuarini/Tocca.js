@@ -698,77 +698,75 @@ describe('Tocca.js validate events', function() {
         })
       }, 500)
     })*/
-    it('The "swipeleft" event must not be triggered because the swipe movement is too short', function(done) {
-      var eventObject = false
+  it('The "swipeleft" event must not be triggered because the swipe movement is too short', function(done) {
+    var eventObject = false
 
-      function onEventFired(e) {
-        check(done, function() {
-          eventObject = e
-          expect(true).to.be.equal(false)
-        })
-      }
-      testDiv.addEventListener('swipeleft', onEventFired, false)
-      var initialX = 450,
-        pixelMoved = 70
-      simulant.fire(testDiv, touchstart, {
-        clientX: initialX,
-        clientY: 50
+    function onEventFired(e) {
+      check(done, function() {
+        eventObject = e
+        expect(true).to.be.equal(false)
       })
-      var i = pixelMoved
-      while (i--) {
-        simulant.fire(testDiv, touchmove, {
-          clientX: initialX--,
-          clientY: 50
-        })
-      }
-      simulant.fire(testDiv, touchend, {
-        clientX: initialX - pixelMoved,
-        clientY: 50
-      })
-      setTimeout(function() {
-        check(done, function() {
-          expect(eventObject).to.be.equal(false)
-
-          testDiv.removeEventListener('swipeleft', onEventFired, false)
-        })
-      }, 500)
+    }
+    testDiv.addEventListener('swipeleft', onEventFired, false)
+    var initialX = 450,
+      pixelMoved = 70
+    simulant.fire(testDiv, touchstart, {
+      clientX: initialX,
+      clientY: 50
     })
-
-    it('The "swiperight" event must not be triggered because the swipe movement is too short', function(done) {
-      var eventObject = false
-
-      function onEventFired(e) {
-        check(done, function() {
-          eventObject = e
-          expect(true).to.be.equal(false)
-        })
-      }
-      testDiv.addEventListener('swiperight', onEventFired, false)
-      var initialX = 450,
-        pixelMoved = 70
-      simulant.fire(testDiv, touchstart, {
-        clientX: initialX,
+    var i = pixelMoved
+    while (i--) {
+      simulant.fire(testDiv, touchmove, {
+        clientX: initialX--,
         clientY: 50
       })
-      var i = pixelMoved
-      while (i--) {
-        simulant.fire(testDiv, touchmove, {
-          clientX: initialX++,
-          clientY: 50
-        })
-      }
-      simulant.fire(testDiv, touchend, {
-        clientX: initialX + pixelMoved,
-        clientY: 50
-      })
-      setTimeout(function() {
-        check(done, function() {
-          expect(eventObject).to.be.equal(false)
-
-          testDiv.removeEventListener('swiperight', onEventFired, false)
-        })
-      }, 500)
+    }
+    simulant.fire(testDiv, touchend, {
+      clientX: initialX - pixelMoved,
+      clientY: 50
     })
+    setTimeout(function() {
+      check(done, function() {
+        expect(eventObject).to.be.equal(false)
+
+        testDiv.removeEventListener('swipeleft', onEventFired, false)
+      })
+    }, 500)
   })
 
+  it('The "swiperight" event must not be triggered because the swipe movement is too short', function(done) {
+    var eventObject = false
+
+    function onEventFired(e) {
+      check(done, function() {
+        eventObject = e
+        expect(true).to.be.equal(false)
+      })
+    }
+    testDiv.addEventListener('swiperight', onEventFired, false)
+    var initialX = 450,
+      pixelMoved = 70
+    simulant.fire(testDiv, touchstart, {
+      clientX: initialX,
+      clientY: 50
+    })
+    var i = pixelMoved
+    while (i--) {
+      simulant.fire(testDiv, touchmove, {
+        clientX: initialX++,
+        clientY: 50
+      })
+    }
+    simulant.fire(testDiv, touchend, {
+      clientX: initialX + pixelMoved,
+      clientY: 50
+    })
+    setTimeout(function() {
+      check(done, function() {
+        expect(eventObject).to.be.equal(false)
+
+        testDiv.removeEventListener('swiperight', onEventFired, false)
+      })
+    }, 500)
+  })
 })
