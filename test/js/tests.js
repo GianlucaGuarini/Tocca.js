@@ -1,5 +1,5 @@
 /**
- * This file represents perfectly how you should not unit test!
+ * This file represents perfectly how you should not do a unit test!
  * I will clean this up once
  */
 
@@ -423,41 +423,6 @@ describe('Tocca.js validate events', function() {
    *
    */
   describe('tap event', function() {
-    it('The "tap" event must not be triggered if the pointer position is changed', function(done) {
-      var eventObject = false
-
-      function onEventFired(e) {
-        check(done, function() {
-          eventObject = e
-          expect(true).to.be.equal(false)
-        })
-
-      }
-
-      testDiv.addEventListener('tap', onEventFired, false)
-
-      simulant.fire(testDiv, touchstart, {
-        clientX: 99,
-        clientY: 99
-      })
-
-      simulant.fire(testDiv, touchmove, {
-        clientX: 28,
-        clientY: 28
-      })
-
-      setTimeout(function() {
-        simulant.fire(testDiv, touchend)
-      }, 10)
-
-
-      check(done, function() {
-        expect(eventObject).to.be.equal(false)
-        testDiv.removeEventListener('tap', onEventFired, false)
-      })
-
-
-    })
     it('The "tap" event must not be triggered because out of the time range defined', function(done) {
       var eventObject = false
 
@@ -545,48 +510,11 @@ describe('Tocca.js validate events', function() {
    *
    */
   describe('longtap event', function() {
-    it('The "longtap" event must not be triggered if the pointer position is changed', function(done) {
-      var eventObject = false
-
-      function onEventFired(e) {
-        check(done, function() {
-          eventObject = e
-          expect(true).to.be.equal(false)
-        })
-
-      }
-      testDiv.addEventListener('longtap', onEventFired, false)
-
-      simulant.fire(testDiv, touchstart, {
-        clientX: 99,
-        clientY: 99
-      })
-
-      setTimeout(function() {
-        simulant.fire(testDiv, touchmove, {
-          clientX: 28,
-          clientY: 28
-        })
-
-        simulant.fire(testDiv, touchend)
-      }, 1081)
-
-
-
-
-
-      check(done, function() {
-        expect(eventObject).to.be.equal(false)
-        testDiv.removeEventListener('longtap', onEventFired, false)
-      })
-
-
-    })
-
     it('The "longtap" event must not be triggered because out of the time range defined', function(done) {
       var eventObject=false
 
       function onEventFired(e) {
+        console.log(e)
         check(done, function() {
           eventObject=e
           expect(true).to.be.equal(false)
@@ -600,6 +528,7 @@ describe('Tocca.js validate events', function() {
         clientX: 50,
         clientY: 50
       })
+
       setTimeout(function() {
         simulant.fire(testDiv, touchend, {
           clientX: 50,
@@ -609,7 +538,7 @@ describe('Tocca.js validate events', function() {
           expect(eventObject).to.be.equal(false)
         })
         testDiv.removeEventListener('longtap', onEventFired, false)
-      }, 700)
+      }, window.tocca().longtapThreshold - 500)
 
     })
   })

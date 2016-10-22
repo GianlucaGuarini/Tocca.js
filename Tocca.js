@@ -34,13 +34,13 @@
   'use strict'
   if (typeof doc.createEvent !== 'function') return false // no tap events here
   // helpers
-  var useJquery = (!win.IGNORE_JQUERY && typeof jQuery !== 'undefined'),
-    msEventType = function(type) {
+  var msEventType = function(type) {
       var lo = type.toLowerCase(),
         ms = 'MS' + type
       return navigator.msPointerEnabled ? ms : lo
     },
     defaults = {
+      useJquery: !win.IGNORE_JQUERY && typeof jQuery !== 'undefined',
       swipeThreshold: win.SWIPE_THRESHOLD || 100,
       tapThreshold: win.TAP_THRESHOLD || 150, // range of time where a tap event could be detected
       dbltapThreshold: win.DBL_TAP_THRESHOLD || 200, // delay needed to detect a double tap
@@ -78,7 +78,7 @@
       data.distance = data.distance
 
       // jquery
-      if (useJquery) {
+      if (defaults.useJquery) {
         customEvent = jQuery.Event(eventName, {originalEvent: originalEvent})
         jQuery(elm).trigger(customEvent, data)
       }
@@ -237,6 +237,7 @@
     for (var opt in options) {
       defaults[opt] = options[opt]
     }
+    return defaults
   }
 
 }(document, window));

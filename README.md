@@ -141,6 +141,21 @@ var SWIPE_THRESHOLD = 100, // default value
 <script src="path/to/Tocca.js"></script>
 ```
 
+In Tocca.js 1.1.0 you can also configure/get the internal options via function:
+```js
+window.tocca({
+	useJquery: your new option
+  swipeThreshold: your new option
+  tapThreshold: your new option
+  dbltapThreshold: your new option
+  longtapThreshold: your new option
+  tapPrecision: your new option
+  justTouchEvents: your new option
+})
+
+console.log(window.tocca()) // will always return the current internal options
+```
+
 ## Browser Support
 
 Actually the script has been tested on all the modern browsers but it need a better testing phase over several platforms: Chrome 29+ Firefox 23+ Opera 12+ Safari 5+
@@ -150,6 +165,11 @@ It works on mobile/tablet browsers and on desktop browsers as well.
 On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
+
+### 1.1.0
+
+-  added: the possibility to configure via function the internal tocca options
+-  added: the `IGNORE_JQUERY` option
 
 ### 1.0.1
 
