@@ -14,3 +14,5 @@ after_success:
 
 notifications:
     email: false
+
+sudo: false
