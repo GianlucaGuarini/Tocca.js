@@ -360,8 +360,8 @@ describe('Inline events', function() {
     })
 
     testDiv.ondbltap = onEventFired
-    setTimeout(function() {
 
+    setTimeout(function() {
       simulant.fire(testDiv, touchstart, {
         clientX: 50,
         clientY: 50
@@ -371,7 +371,7 @@ describe('Inline events', function() {
         clientX: 50,
         clientY: 50
       })
-    }, 1000)
+    }, 20)
 
 
   })
