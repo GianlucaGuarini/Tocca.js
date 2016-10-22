@@ -84,14 +84,6 @@ describe('Tocca.js nojQuery events', function() {
 
 
       testDiv.addEventListener('dbltap', onEventFired, false)
-      simulant.fire(testDiv, touchstart, {
-        clientX: 50,
-        clientY: 50
-      })
-      simulant.fire(testDiv, touchend, {
-        clientX: 50,
-        clientY: 50
-      })
 
       simulant.fire(testDiv, touchstart, {
         clientX: 50,
@@ -102,6 +94,16 @@ describe('Tocca.js nojQuery events', function() {
         clientY: 50
       })
 
+      setTimeout(function() {
+        simulant.fire(testDiv, touchstart, {
+          clientX: 50,
+          clientY: 50
+        })
+        simulant.fire(testDiv, touchend, {
+          clientX: 50,
+          clientY: 50
+        })
+      }, 20)
     })
   })
 
