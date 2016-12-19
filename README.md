@@ -14,7 +14,10 @@ Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'lo
 
 <a href="http://gianlucaguarini.github.io/Tocca.js/demo-fun.html" target="_blank">Demo</a>
 
+### Donations
+
 If this project helped getting your job done consider making a donation for all the time I spend to bring it to you
+
 [![Donate][donate-image]][paypal-link]
 
 ## Installation
@@ -167,6 +170,11 @@ It works on mobile/tablet browsers and on desktop browsers as well.
 On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
+
+### 2.0.0
+
+-  fixed: https://github.com/GianlucaGuarini/Tocca.js/issues/44
+-  added: support for the [new `pointerevents`](https://developers.google.com/web/updates/2016/10/pointer-events)
 
 ### 1.1.0
 
