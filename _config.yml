@@ -1,0 +1,8 @@
+title: Tocca.js
+description: Super lightweight script (1kb) to detect via Javascript events like 'tap' 'dbltap' 'swipeup' 'swipedown' 'swipeleft' 'swiperight' on any kind of device.
+google_analytics: UA-8059670-3
+show_downloads: true
+theme: jekyll-theme-tactile
+
+gems:
+  - jekyll-mentions
