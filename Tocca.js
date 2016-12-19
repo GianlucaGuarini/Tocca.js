@@ -1,6 +1,6 @@
 /**
  *
- * Version: 1.1.0
+ * Version: 2.0.0
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
@@ -33,10 +33,10 @@
   'use strict'
   if (typeof doc.createEvent !== 'function') return false // no tap events here
   // helpers
-  var msEventType = function(type) {
+  var pointerEventSupport = function(type) {
       var lo = type.toLowerCase(),
         ms = 'MS' + type
-      return navigator.msPointerEnabled ? ms : lo
+      return navigator.msPointerEnabled ? ms : window.PointerEvent ? lo : false
     },
     defaults = {
       useJquery: !win.IGNORE_JQUERY && typeof jQuery !== 'undefined',
@@ -50,9 +50,9 @@
     // was initially triggered a "touchstart" event?
     wasTouch = false,
     touchevents = {
-      touchstart: msEventType('PointerDown') + ' touchstart',
-      touchend: msEventType('PointerUp') + ' touchend',
-      touchmove: msEventType('PointerMove') + ' touchmove'
+      touchstart: pointerEventSupport('PointerDown') || 'touchstart',
+      touchend: pointerEventSupport('PointerUp') || 'touchend',
+      touchmove: pointerEventSupport('PointerMove') || 'touchmove'
     },
     setListener = function(elm, events, callback) {
       var eventsArray = events.split(' '),
