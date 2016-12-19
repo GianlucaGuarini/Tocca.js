@@ -1,7 +1,6 @@
 Tocca.js
 ========
 
-
 [![Build Status][travis-image]][travis-url]
 
 [![NPM version][npm-version-image]][npm-url]
@@ -14,6 +13,9 @@ Tocca.js
 Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'longtap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
 
 <a href="http://gianlucaguarini.github.io/Tocca.js/demo-fun.html" target="_blank">Demo</a>
+
+If this project helped getting your job done consider making a donation for all the time I spend to bring it to you
+[![Donate][donate-image]][paypal-link]
 
 ## Installation
 
@@ -242,6 +244,9 @@ Thanks to [@AndyOGo](https://github.com/AndyOGo) for his help on this release
 [npm-url]: https://npmjs.org/package/tocca
 [npm-version-image]: http://img.shields.io/npm/v/tocca.svg?style=flat-square
 [npm-downloads-image]: http://img.shields.io/npm/dm/tocca.svg?style=flat-square
+
+[paypal-link]:https://www.paypal.me/GianlucaGuarini
+[donate-image]:https://img.shields.io/badge/donate-%E2%9D%A4-brightgreen.svg?style=flat-square
 
 [travis-url]:https://travis-ci.org/GianlucaGuarini/Tocca.js
 [travis-image]: https://img.shields.io/travis/GianlucaGuarini/Tocca.js.svg?style=flat-square
