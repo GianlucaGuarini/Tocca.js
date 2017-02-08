@@ -29,7 +29,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  **/
-
+/* global jQuery */
 (function(doc, win) {
   'use strict'
   if (typeof doc.createEvent !== 'function') return false // no tap events here
@@ -54,6 +54,9 @@
       touchstart: pointerEventSupport('PointerDown') || 'touchstart',
       touchend: pointerEventSupport('PointerUp') || 'touchend',
       touchmove: pointerEventSupport('PointerMove') || 'touchmove'
+    },
+    isTheSameFingerId = function(e) {
+      return !e.pointerId || typeof pointerId === 'undefined' || e.pointerId === pointerId
     },
     setListener = function(elm, events, callback) {
       var eventsArray = events.split(' '),
@@ -124,6 +127,10 @@
        *   mouseup <- this must come always after a "touchstart"
        */
 
+      if (!isTheSameFingerId(e)) return
+
+      pointerId = e.pointerId
+
       // it looks like it was a touch event!
       if (e.type !== 'mousedown')
         wasTouch = true
@@ -150,6 +157,10 @@
 
     },
     onTouchEnd = function(e) {
+
+      if (!isTheSameFingerId(e)) return
+
+      pointerId = undefined
 
       // skip the mouse events if previously a touch event was dispatched
       // and reset the touch flag
@@ -216,6 +227,7 @@
       }
     },
     onTouchMove = function(e) {
+      if (!isTheSameFingerId(e)) return
       // skip the mouse move events if the touch events were previously detected
       if (e.type === 'mousemove' && wasTouch) return
 
@@ -224,7 +236,7 @@
       currY = pointer.pageY
     },
     tapNum = 0,
-    currX, currY, cachedX, cachedY, timestamp, target, dblTapTimer, longtapTimer
+    pointerId, currX, currY, cachedX, cachedY, timestamp, target, dblTapTimer, longtapTimer
 
   //setting the events listeners
   // we need to debounce the callbacks because some devices multiple events are triggered at same time
