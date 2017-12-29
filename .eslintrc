@@ -1,0 +1,7 @@
+extends: "@gianlucaguarini/eslint-config"
+
+rules:
+  guard-for-in: 0
+
+env:
+  mocha: true

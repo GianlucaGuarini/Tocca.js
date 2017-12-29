@@ -31,7 +31,6 @@
  **/
 /* global jQuery */
 (function(doc, win) {
-  'use strict'
   if (typeof doc.createEvent !== 'function') return false // no tap events here
   // helpers
   var pointerEventSupport = function(type) {
@@ -91,6 +90,7 @@
         for (var key in data) {
           customEvent[key] = data[key]
         }
+
         customEvent.initEvent(eventName, true, true)
         elm.dispatchEvent(customEvent)
       }
@@ -174,7 +174,7 @@
         deltaY = cachedY - currY,
         deltaX = cachedX - currX
 
-       // clear the previous timer if it was set
+      // clear the previous timer if it was set
       clearTimeout(dblTapTimer)
       // kill the long tap timer
       clearTimeout(longtapTimer)
@@ -249,7 +249,7 @@
     for (var opt in options) {
       defaults[opt] = options[opt]
     }
+
     return defaults
   }
-
-}(document, window));
+})(document, window)
