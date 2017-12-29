@@ -9,7 +9,7 @@
   "scripts": {
     "prepublish": "npm test && npm build",
     "test": "eslint Tocca.js && karma start test/karma.conf.js",
-    "build": "uglifyjs Tocca.js > Tocca.min.js"
+    "build": "uglifyjs Tocca.js --compress > Tocca.min.js"
   },
   "repository": {
     "type": "git",
