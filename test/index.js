@@ -1,3 +1,6 @@
+/* globals simulant chai DocumentTouch */
+var expect = chai.expect
+
 /**
  * This file represents perfectly how you should not do a unit test!
  * I will clean this up once
@@ -20,26 +23,20 @@ var testDiv = document.createElement('div'),
 document.body.appendChild(testDiv)
 
 describe('Tocca.js nojQuery events', function() {
-
-
   /**
-   *
-   *
    * Test the simple tap event
-   *
-   *
    */
   describe('tap event', function() {
     it('The "tap" event gets fired correctly', function(done) {
       function onEventFired(e) {
         check(done, function() {
-          expect(e).to.be.an('object')
+          expect(e).to.be.ok
           expect(e).to.contain.keys(['x', 'y', 'originalEvent'])
           expect(e.x).to.be.an('number')
           expect(e.x).to.be.equal(99)
           expect(e.y).to.be.an('number')
           expect(e.y).to.be.equal(99)
-          expect(e.originalEvent).to.be.an('object')
+          expect(e.originalEvent).to.be.ok
           expect(e.originalEvent).to.not.be.equal(undefined)
           expect(e.distance).to.be.equal(undefined)
         })
@@ -59,23 +56,19 @@ describe('Tocca.js nojQuery events', function() {
     })
   })
   /**
-   *
-   *
    * Test the double tap event
-   *
-   *
    */
   describe('dbltap event', function() {
     it('The "dbltap" event gets fired correctly', function(done) {
       function onEventFired(e) {
         check(done, function() {
-          expect(e).to.be.an('object')
+          expect(e).to.be.ok
           expect(e).to.contain.keys(['x', 'y', 'originalEvent'])
           expect(e.x).to.be.an('number')
           expect(e.x).to.be.equal(50)
           expect(e.y).to.be.an('number')
           expect(e.y).to.be.equal(50)
-          expect(e.originalEvent).to.be.an('object')
+          expect(e.originalEvent).to.be.ok
           expect(e.originalEvent).to.not.be.equal(undefined)
           expect(e.distance).to.be.equal(undefined)
         })
@@ -108,23 +101,19 @@ describe('Tocca.js nojQuery events', function() {
   })
 
   /**
-   *
-   *
    * Test the long tap event
-   *
-   *
    */
   describe('longtap event', function() {
     it('The "longtap" event gets fired correctly', function(done) {
       function onEventFired(e) {
         check(done, function() {
-          expect(e).to.be.an('object')
+          expect(e).to.be.ok
           expect(e).to.contain.keys(['x', 'y', 'originalEvent'])
           expect(e.x).to.be.an('number')
           expect(e.x).to.be.equal(50)
           expect(e.y).to.be.an('number')
           expect(e.y).to.be.equal(50)
-          expect(e.originalEvent).to.be.an('object')
+          expect(e.originalEvent).to.be.ok
           expect(e.originalEvent).to.not.be.equal(undefined)
           expect(e.distance).to.be.equal(undefined)
         })
@@ -149,23 +138,19 @@ describe('Tocca.js nojQuery events', function() {
   })
 
   /**
-   *
-   *
    * Test all the swipe events
-   *
-   *
    */
   describe('swipe events', function() {
     it('The "swipeup" event gets fired correctly', function(done) {
       function onEventFired(e) {
         check(done, function() {
-          expect(e).to.be.an('object')
+          expect(e).to.be.ok
           expect(e).to.contain.keys(['x', 'y', 'originalEvent', 'distance'])
           expect(e.x).to.be.an('number')
           expect(e.x).to.be.equal(40)
           expect(e.y).to.be.an('number')
           expect(e.y).to.be.equal(50)
-          expect(e.originalEvent).to.be.an('object')
+          expect(e.originalEvent).to.be.ok
           expect(e.originalEvent).to.not.be.equal(undefined)
           expect(e.distance.y).to.be.equal(400)
           expect(e.distance.x).to.be.equal(10)
@@ -195,13 +180,13 @@ describe('Tocca.js nojQuery events', function() {
     it('The "swipedown" event gets fired correctly', function(done) {
       function onEventFired(e) {
         check(done, function() {
-          expect(e).to.be.an('object')
+          expect(e).to.be.ok
           expect(e).to.contain.keys(['x', 'y', 'originalEvent', 'distance'])
           expect(e.x).to.be.an('number')
           expect(e.x).to.be.equal(70)
           expect(e.y).to.be.an('number')
           expect(e.y).to.be.equal(850)
-          expect(e.originalEvent).to.be.an('object')
+          expect(e.originalEvent).to.be.ok
           expect(e.originalEvent).to.not.be.equal(undefined)
           expect(e.distance.y).to.be.equal(400)
           expect(e.distance.x).to.be.equal(20)
@@ -231,13 +216,13 @@ describe('Tocca.js nojQuery events', function() {
     it('The "swipeleft" event gets fired correctly', function(done) {
       function onEventFired(e) {
         check(done, function() {
-          expect(e).to.be.an('object')
+          expect(e).to.be.ok
           expect(e).to.contain.keys(['x', 'y', 'originalEvent', 'distance'])
           expect(e.x).to.be.an('number')
           expect(e.x).to.be.equal(50)
           expect(e.y).to.be.an('number')
           expect(e.y).to.be.equal(40)
-          expect(e.originalEvent).to.be.an('object')
+          expect(e.originalEvent).to.be.ok
           expect(e.originalEvent).to.not.be.equal(undefined)
           expect(e.distance.y).to.be.equal(10)
           expect(e.distance.x).to.be.equal(400)
@@ -267,13 +252,13 @@ describe('Tocca.js nojQuery events', function() {
     it('The "swiperight" event gets fired correctly', function(done) {
       function onEventFired(e) {
         check(done, function() {
-          expect(e).to.be.an('object')
+          expect(e).to.be.ok
           expect(e).to.contain.keys(['x', 'y', 'originalEvent', 'distance'])
           expect(e.x).to.be.an('number')
           expect(e.x).to.be.equal(850)
           expect(e.y).to.be.an('number')
           expect(e.y).to.be.equal(10)
-          expect(e.originalEvent).to.be.an('object')
+          expect(e.originalEvent).to.be.ok
           expect(e.originalEvent).to.not.be.equal(undefined)
           expect(e.distance.y).to.be.equal(40)
           expect(e.distance.x).to.be.equal(400)
@@ -309,13 +294,13 @@ describe('Inline events', function() {
   it('The "tap" event gets fired correctly', function(done) {
     function onEventFired(e) {
       check(done, function() {
-        expect(e).to.be.an('object')
+        expect(e).to.be.ok
         expect(e).to.contain.keys(['x', 'y', 'originalEvent'])
         expect(e.x).to.be.an('number')
         expect(e.x).to.be.equal(99)
         expect(e.y).to.be.an('number')
         expect(e.y).to.be.equal(99)
-        expect(e.originalEvent).to.be.an('object')
+        expect(e.originalEvent).to.be.ok
         expect(e.originalEvent).to.not.be.equal(undefined)
         expect(e.distance).to.be.equal(undefined)
       })
@@ -337,13 +322,13 @@ describe('Inline events', function() {
   it('The "dbltap" event gets fired correctly', function(done) {
     function onEventFired(e) {
       check(done, function() {
-        expect(e).to.be.an('object')
+        expect(e).to.be.ok
         expect(e).to.contain.keys(['x', 'y', 'originalEvent'])
         expect(e.x).to.be.an('number')
         expect(e.x).to.be.equal(50)
         expect(e.y).to.be.an('number')
         expect(e.y).to.be.equal(50)
-        expect(e.originalEvent).to.be.an('object')
+        expect(e.originalEvent).to.be.ok
         expect(e.originalEvent).to.not.be.equal(undefined)
         expect(e.distance).to.be.equal(undefined)
       })
@@ -379,13 +364,13 @@ describe('Inline events', function() {
   it('The "longtap" event gets fired correctly', function(done) {
     function onEventFired(e) {
       check(done, function() {
-        expect(e).to.be.an('object')
+        expect(e).to.be.ok
         expect(e).to.contain.keys(['x', 'y', 'originalEvent'])
         expect(e.x).to.be.an('number')
         expect(e.x).to.be.equal(50)
         expect(e.y).to.be.an('number')
         expect(e.y).to.be.equal(50)
-        expect(e.originalEvent).to.be.an('object')
+        expect(e.originalEvent).to.be.ok
         expect(e.originalEvent).to.not.be.equal(undefined)
         expect(e.distance).to.be.equal(undefined)
       })
@@ -418,11 +403,7 @@ describe('Inline events', function() {
 describe('Tocca.js validate events', function() {
 
   /**
-   *
-   *
    * Test the tap event
-   *
-   *
    */
   describe('tap event', function() {
     it('The "tap" event must not be triggered because out of the time range defined', function(done) {
@@ -455,11 +436,7 @@ describe('Tocca.js validate events', function() {
     })
   })
   /**
-   *
-   *
    * Test the dbltap event
-   *
-   *
    */
   describe('dbltap event', function() {
     it('The "dbltap" event must not be triggered because out of the time range defined', function(done) {
@@ -505,18 +482,13 @@ describe('Tocca.js validate events', function() {
 
   })
   /**
-   *
-   *
    * Test the longtap event
-   *
-   *
    */
   describe('longtap event', function() {
     it('The "longtap" event must not be triggered because out of the time range defined', function(done) {
       var eventObject=false
 
       function onEventFired(e) {
-        console.log(e)
         check(done, function() {
           eventObject=e
           expect(true).to.be.equal(false)
@@ -545,11 +517,7 @@ describe('Tocca.js validate events', function() {
     })
   })
   /**
-   *
-   *
    * Test the swipe event
-   *
-   *
    */
 
   // TODO: fixme!
@@ -677,6 +645,7 @@ describe('Tocca.js validate events', function() {
     testDiv.addEventListener('swiperight', onEventFired, false)
     var initialX = 450,
       pixelMoved = 70
+
     simulant.fire(testDiv, touchstart, {
       clientX: initialX,
       clientY: 50

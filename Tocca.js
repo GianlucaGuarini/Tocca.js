@@ -31,13 +31,15 @@
  **/
 /* global jQuery */
 (function(doc, win) {
-  'use strict'
   if (typeof doc.createEvent !== 'function') return false // no tap events here
   // helpers
-  var pointerEventSupport = function(type) {
+  var pointerEvent = function(type) {
       var lo = type.toLowerCase(),
         ms = 'MS' + type
       return navigator.msPointerEnabled ? ms : window.PointerEvent ? lo : false
+    },
+    touchEvent = function(name) {
+      return 'on' + name in window ? name : false
     },
     defaults = {
       useJquery: !win.IGNORE_JQUERY && typeof jQuery !== 'undefined',
@@ -51,9 +53,12 @@
     // was initially triggered a "touchstart" event?
     wasTouch = false,
     touchevents = {
-      touchstart: pointerEventSupport('PointerDown') || 'touchstart',
-      touchend: pointerEventSupport('PointerUp') || 'touchend',
-      touchmove: pointerEventSupport('PointerMove') || 'touchmove'
+      touchstart: touchEvent('touchstart') || pointerEvent('PointerDown'),
+      touchend: touchEvent('touchend') || pointerEvent('PointerUp'),
+      touchmove: touchEvent('touchmove') || pointerEvent('PointerMove')
+    },
+    isTheSameFingerId = function(e) {
+      return !e.pointerId || typeof pointerId === 'undefined' || e.pointerId === pointerId
     },
     isTheSameFingerId = function(e) {
       return !e.pointerId || typeof pointerId === 'undefined' || e.pointerId === pointerId
@@ -91,6 +96,7 @@
         for (var key in data) {
           customEvent[key] = data[key]
         }
+
         customEvent.initEvent(eventName, true, true)
         elm.dispatchEvent(customEvent)
       }
@@ -174,7 +180,7 @@
         deltaY = cachedY - currY,
         deltaX = cachedX - currX
 
-       // clear the previous timer if it was set
+      // clear the previous timer if it was set
       clearTimeout(dblTapTimer)
       // kill the long tap timer
       clearTimeout(longtapTimer)
@@ -249,7 +255,7 @@
     for (var opt in options) {
       defaults[opt] = options[opt]
     }
+
     return defaults
   }
-
-}(document, window));
+})(document, window)

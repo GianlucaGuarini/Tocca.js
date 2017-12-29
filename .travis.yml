@@ -1,16 +1,20 @@
 language: node_js
+
 node_js:
-   - "6"
+  - 8
+
+dist: trusty
+
+addons:
+  chrome: stable
+
+cache:
+  directories:
+    - node_modules
 
 branches:
   only:
     - master
-
-before_script:
-    - npm install grunt-cli -g
-
-after_success:
-    - grunt sauce
 
 notifications:
     email: false

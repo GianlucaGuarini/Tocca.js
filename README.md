@@ -8,7 +8,7 @@ Tocca.js
 
 [![MIT License][license-image]][license-url]
 
-[![Sauce Test Status][saucelabs-image]][saucelabs-url]
+[![CDNJS](https://img.shields.io/cdnjs/v/Tocca.js.svg)](https://cdnjs.com/libraries/Tocca.js)
 
 Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'longtap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
 
@@ -262,9 +262,6 @@ Thanks to [@AndyOGo](https://github.com/AndyOGo) for his help on this release
 
 [travis-url]:https://travis-ci.org/GianlucaGuarini/Tocca.js
 [travis-image]: https://img.shields.io/travis/GianlucaGuarini/Tocca.js.svg?style=flat-square
-
-[saucelabs-image]:https://saucelabs.com/browser-matrix/Toccajs.svg
-[saucelabs-url]:https://saucelabs.com/u/Toccajs
 
 [license-url]: LICENSE
 [license-image]: http://img.shields.io/badge/license-MIT-000000.svg?style=flat-square
