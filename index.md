@@ -8,7 +8,7 @@ Tocca.js
 
 [![MIT License][license-image]][license-url]
 
-[![Sauce Test Status][saucelabs-image]][saucelabs-url]
+[![CDNJS](https://img.shields.io/cdnjs/v/Tocca.js.svg)](https://cdnjs.com/libraries/Tocca.js)
 
 Super lightweight script ( ~1kB ) to detect via Javascript events like 'tap' 'longtap' 'dbltap' 'swipeup'  'swipedown'  'swipeleft'  'swiperight' on any kind of device.
 
@@ -81,34 +81,34 @@ Anytime you will use a Tocca.js event the callback function will receive a speci
  - <code>y</code> { Int }: latest y position of pointer at the end of the event
  - <code>originalEvent</code> { Object }: the original javascript native event that has been triggered
  - <code>distance</code>: this property is available only for the swipe events
- 	- <code>x</code> { Int }: the x absolute difference between the beginning and the end of the swipe gesture
- 	- <code>y</code> { Int }: the y absolute difference between the beginning and the end of the swipe gesture
+  - <code>x</code> { Int }: the x absolute difference between the beginning and the end of the swipe gesture
+  - <code>y</code> { Int }: the y absolute difference between the beginning and the end of the swipe gesture
 
 Examples:
 
 ``` javascript
 elm.addEventListener('dbltap',function (e){
-	console.log(e.x);
-	console.log(e.y);
+  console.log(e.x);
+  console.log(e.y);
 });
 elm.addEventListener('swipeup',function (e){
-	console.log(e.x);
-	console.log(e.y);
-	console.log(e.distance.x);
-	console.log(e.distance.y);
+  console.log(e.x);
+  console.log(e.y);
+  console.log(e.distance.x);
+  console.log(e.distance.y);
 });
 
 // with jQuery
 
 $(elm).on('dbltap',function (e,data){
-	console.log(data.x);
-	console.log(data.y);
+  console.log(data.x);
+  console.log(data.y);
 });
 $(elm).on('swipeup',function (e,data){
-	console.log(data.x);
-	console.log(data.y);
-	console.log(data.distance.x);
-	console.log(data.distance.y);
+  console.log(data.x);
+  console.log(data.y);
+  console.log(data.distance.x);
+  console.log(data.distance.y);
 });
 ```
 
@@ -136,12 +136,12 @@ Whenever you want to configure the plugin events settings you can do that simply
 ``` html
 <script>
 var SWIPE_THRESHOLD = 100, // default value
-	DBL_TAP_THRESHOLD = 200, // range of time in which a dbltap event could be detected,
-	LONG_TAP_THRESHOLD = 1000, // range of time after which a longtap event could be detected
-	TAP_THRESHOLD = 150, // range of time in which a tap event could be detected
-	TAP_PRECISION = 60 / 2, // default value (touch events boundaries)
-	JUST_ON_TOUCH_DEVICES = false, // default value ( decide whether you want to use the Tocca.js events only on the touch devices )
-	IGNORE_JQUERY = false; // default value ( will not use jQuery events, even if jQuery is detected )
+  DBL_TAP_THRESHOLD = 200, // range of time in which a dbltap event could be detected,
+  LONG_TAP_THRESHOLD = 1000, // range of time after which a longtap event could be detected
+  TAP_THRESHOLD = 150, // range of time in which a tap event could be detected
+  TAP_PRECISION = 60 / 2, // default value (touch events boundaries)
+  JUST_ON_TOUCH_DEVICES = false, // default value ( decide whether you want to use the Tocca.js events only on the touch devices )
+  IGNORE_JQUERY = false; // default value ( will not use jQuery events, even if jQuery is detected )
 </script>
 <script src="path/to/Tocca.js"></script>
 ```
@@ -149,7 +149,7 @@ var SWIPE_THRESHOLD = 100, // default value
 In Tocca.js 1.1.0 you can also configure/get the internal options via function:
 ```js
 window.tocca({
-	useJquery: your new option
+  useJquery: your new option
   swipeThreshold: your new option
   tapThreshold: your new option
   dbltapThreshold: your new option
@@ -171,8 +171,11 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
--  fixed: https://github.com/GianlucaGuarini/Tocca.js/issues/51 https://github.com/GianlucaGuarini/Tocca.js/issues/54
+### 2.0.3
+
+-  fixed: [#51](https://github.com/GianlucaGuarini/Tocca.js/issues/51) [#54](https://github.com/GianlucaGuarini/Tocca.js/issues/54)
 -  fixed: the PointeUp event is not always dispatched on Chrome and Android devices, prioritize always the `touch*` over `pointer*` events
+
 
 ### 2.0.1
 
@@ -265,9 +268,6 @@ Thanks to [@AndyOGo](https://github.com/AndyOGo) for his help on this release
 
 [travis-url]:https://travis-ci.org/GianlucaGuarini/Tocca.js
 [travis-image]: https://img.shields.io/travis/GianlucaGuarini/Tocca.js.svg?style=flat-square
-
-[saucelabs-image]:https://saucelabs.com/browser-matrix/Toccajs.svg
-[saucelabs-url]:https://saucelabs.com/u/Toccajs
 
 [license-url]: LICENSE
 [license-image]: http://img.shields.io/badge/license-MIT-000000.svg?style=flat-square
