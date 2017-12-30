@@ -174,7 +174,7 @@ On the old browsers all the Tocca.js events cannot be triggered.
 ### 2.0.3
 
 -  fixed: [#51](https://github.com/GianlucaGuarini/Tocca.js/issues/51) [#54](https://github.com/GianlucaGuarini/Tocca.js/issues/54)
--  fixed: the PointeUp event is not always dispatched on Chrome and Android devices, prioritize always the `touch*` over `pointer*` events
+-  fixed: the PointerUp event is not always dispatched on Chrome and Android devices, prioritize always the `touch*` over `pointer*` events
 
 
 ### 2.0.1
