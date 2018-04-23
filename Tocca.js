@@ -64,37 +64,38 @@
     // do we have touch enabled (be careful of windows desktop clients)
     isTouch = function () {
       return (
-          !!(typeof window !== 'undefined' &&
-          ('ontouchstart' in window ||
-          (window.DocumentTouch &&
-          typeof document !== 'undefined' &&
-          document instanceof window.DocumentTouch))) || !!(typeof navigator !== 'undefined' &&
-          (navigator.maxTouchPoints || navigator.msMaxTouchPoints))
-      );
+        !!(typeof window !== 'undefined' &&
+        ('ontouchstart' in window ||
+        window.DocumentTouch &&
+        typeof document !== 'undefined' &&
+        document instanceof window.DocumentTouch)) || !!(typeof navigator !== 'undefined' &&
+        (navigator.maxTouchPoints || navigator.msMaxTouchPoints))
+      )
     },
 
     // Test via a getter in the options object to see if the passive property is accessed
     canListenPassive = function () {
-      var supportsPassive = false;
+      var supportsPassive = false
       try {
         var opts = Object.defineProperty({}, 'passive', {
           get: function () {
-            supportsPassive = true;
+            supportsPassive = true
           }
-        });
-        window.addEventListener("testPassive", null, opts);
-        window.removeEventListener("testPassive", null, opts);
+        })
+        window.addEventListener('testPassive', null, opts)
+        window.removeEventListener('testPassive', null, opts)
       } catch (e) {
+        // error case
       }
 
-      return supportsPassive;
+      return supportsPassive
     },
     setListener = function(elm, events, callback) {
       var eventsArray = events.split(' '),
         i = eventsArray.length
 
       while (i--) {
-        elm.addEventListener(eventsArray[i], callback, isTouch && canListenPassive ? {passive:true} : false)
+        elm.addEventListener(eventsArray[i], callback, isTouch && canListenPassive ? {passive: true} : false)
       }
     },
     getPointerEvent = function(event) {
