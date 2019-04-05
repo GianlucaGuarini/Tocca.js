@@ -71,6 +71,9 @@
     getPointerEvent = function(event) {
       return event.targetTouches ? event.targetTouches[0] : event
     },
+    isMultipleTouches = function(event) {
+      return event.targetTouches && event.targetTouches.length > 1
+    },
     getTimestamp = function () {
       return new Date().getTime()
     },
@@ -130,7 +133,7 @@
        *   mouseup <- this must come always after a "touchstart"
        */
 
-      if (!isTheSameFingerId(e)) return
+      if (!isTheSameFingerId(e) || isMultipleTouches(e)) return
 
       pointerId = e.pointerId
 
@@ -160,8 +163,7 @@
 
     },
     onTouchEnd = function(e) {
-
-      if (!isTheSameFingerId(e)) return
+      if (!isTheSameFingerId(e) || isMultipleTouches(e)) return
 
       pointerId = undefined
 
