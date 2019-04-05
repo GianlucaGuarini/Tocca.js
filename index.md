@@ -171,6 +171,10 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
+### 2.0.4
+
+-  fixed: [#62](https://github.com/GianlucaGuarini/Tocca.js/issues/62)
+
 ### 2.0.3
 
 -  fixed: [#51](https://github.com/GianlucaGuarini/Tocca.js/issues/51) [#54](https://github.com/GianlucaGuarini/Tocca.js/issues/54)

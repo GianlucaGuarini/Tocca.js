@@ -1,6 +1,6 @@
 /**
  *
- * Version: 2.0.1
+ * Version: 2.0.4
  * Author: Gianluca Guarini
  * Contact: gianluca.guarini@gmail.com
  * Website: http://www.gianlucaguarini.com/
@@ -60,9 +60,6 @@
     isTheSameFingerId = function(e) {
       return !e.pointerId || typeof pointerId === 'undefined' || e.pointerId === pointerId
     },
-    isTheSameFingerId = function(e) {
-      return !e.pointerId || typeof pointerId === 'undefined' || e.pointerId === pointerId
-    },
     setListener = function(elm, events, callback) {
       var eventsArray = events.split(' '),
         i = eventsArray.length
@@ -73,6 +70,9 @@
     },
     getPointerEvent = function(event) {
       return event.targetTouches ? event.targetTouches[0] : event
+    },
+    isMultipleTouches = function(event) {
+      return event.targetTouches && event.targetTouches.length > 1
     },
     getTimestamp = function () {
       return new Date().getTime()
@@ -133,7 +133,7 @@
        *   mouseup <- this must come always after a "touchstart"
        */
 
-      if (!isTheSameFingerId(e)) return
+      if (!isTheSameFingerId(e) || isMultipleTouches(e)) return
 
       pointerId = e.pointerId
 
@@ -163,8 +163,7 @@
 
     },
     onTouchEnd = function(e) {
-
-      if (!isTheSameFingerId(e)) return
+      if (!isTheSameFingerId(e) || isMultipleTouches(e)) return
 
       pointerId = undefined
 
