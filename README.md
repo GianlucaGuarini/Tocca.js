@@ -171,6 +171,10 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
+### 2.0.6
+
+-  update: improve multiple touches events detection
+
 ### 2.0.5
 
 -  fixed: [#65](https://github.com/GianlucaGuarini/Tocca.js/issues/65)
