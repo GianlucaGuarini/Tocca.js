@@ -72,13 +72,13 @@
       case event.target.touches:
         return event.target.touches[0]
       case event.targetTouches:
-        return event.target.targetTouches[0]
+        return event.targetTouches[0]
       default:
         return event
       }
     },
     isMultipleTouches = function(event) {
-      return event.targetTouches && event.targetTouches.length > 1
+      return (event.targetTouches || event.target.touches || []).length > 1
     },
     getTimestamp = function() {
       return new Date().getTime()
