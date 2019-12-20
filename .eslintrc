@@ -2,6 +2,12 @@ extends: "@gianlucaguarini/eslint-config"
 
 rules:
   guard-for-in: 0
+  no-var: 0
+  fp/no-let: 0
+  prefer-const: 0
+  fp/no-loops: 0
+  fp/no-mutating-methods: 0
+  prefer-template: 0
 
 env:
   mocha: true
