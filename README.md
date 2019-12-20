@@ -62,7 +62,7 @@ $(elm).on('swipeup',function(e,data){});
 $(elm).on('swipedown',function(e,data){});
 ```
 
-Tocca.js supports also the inline events!
+Tocca.js supports also the inline events if you are using Riot.js!
 ``` html
 <div ontap="function(e){})"></div>
 <div ondbltap="function(e){})"></div>
