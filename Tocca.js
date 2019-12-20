@@ -68,12 +68,19 @@
       }
     },
     getPointerEvent = function(event) {
-      return event.targetTouches ? event.targetTouches[0] : event
+      switch (true) {
+      case event.target.touches:
+        return event.target.touches[0]
+      case event.targetTouches:
+        return event.target.targetTouches[0]
+      default:
+        return event
+      }
     },
     isMultipleTouches = function(event) {
       return event.targetTouches && event.targetTouches.length > 1
     },
-    getTimestamp = function () {
+    getTimestamp = function() {
       return new Date().getTime()
     },
     sendEvent = function(elm, eventName, originalEvent, data) {
@@ -82,7 +89,6 @@
       data = data || {}
       data.x = currX
       data.y = currY
-      data.distance = data.distance
 
       // jquery
       if (defaults.useJquery) {
