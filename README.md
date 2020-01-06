@@ -171,6 +171,10 @@ On the old browsers all the Tocca.js events cannot be triggered.
 
 ## Changelog
 
+### 2.0.9
+
+-  fixed: removed `const` variables
+
 ### 2.0.8
 
 -  fixed: [70](https://github.com/GianlucaGuarini/Tocca.js/issues/70)
