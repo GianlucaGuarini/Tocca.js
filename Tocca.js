@@ -68,7 +68,7 @@
       }
     },
     getPointerEvent = function(event) {
-      const hasTargetTouches = Boolean(event.targetTouches && event.targetTouches.length)
+      var hasTargetTouches = Boolean(event.targetTouches && event.targetTouches.length)
       switch (true) {
       case Boolean(event.target.touches):
         return event.target.touches[0]
