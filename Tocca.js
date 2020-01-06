@@ -68,11 +68,14 @@
       }
     },
     getPointerEvent = function(event) {
+      var hasTargetTouches = Boolean(event.targetTouches && event.targetTouches.length)
       switch (true) {
-      case event.target.touches:
+      case Boolean(event.target.touches):
         return event.target.touches[0]
-      case event.targetTouches:
+      case hasTargetTouches && typeof event.targetTouches[0].pageX !== 'undefined':
         return event.targetTouches[0]
+      case hasTargetTouches && Boolean(event.targetTouches[0].touches):
+        return event.targetTouches[0].touches[0]
       default:
         return event
       }
