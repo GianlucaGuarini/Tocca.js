@@ -47,7 +47,8 @@
       dbltapThreshold: win.DBL_TAP_THRESHOLD || 200, // delay needed to detect a double tap
       longtapThreshold: win.LONG_TAP_THRESHOLD || 1000, // delay needed to detect a long tap
       tapPrecision: win.TAP_PRECISION / 2 || 60 / 2, // touch events boundaries ( 60px by default )
-      justTouchEvents: win.JUST_ON_TOUCH_DEVICES
+      justTouchEvents: win.JUST_ON_TOUCH_DEVICES,
+      namespace: win.NAMESPACE || '',
     },
     // was initially triggered a "touchstart" event?
     wasTouch = false,
@@ -92,6 +93,8 @@
       data = data || {}
       data.x = currX
       data.y = currY
+      data.endingElement = document.elementFromPoint(currX, currY)
+      data.startingElement = data.distance? document.elementFromPoint(currX - data.distance.x, currY - data.distance.y) : null
 
       // jquery
       if (defaults.useJquery) {
@@ -193,16 +196,16 @@
       clearTimeout(longtapTimer)
 
       if (deltaX <= -defaults.swipeThreshold)
-        eventsArr.push('swiperight')
+        eventsArr.push(defaults.namespace+'swiperight')
 
       if (deltaX >= defaults.swipeThreshold)
-        eventsArr.push('swipeleft')
+        eventsArr.push(defaults.namespace+'swipeleft')
 
       if (deltaY <= -defaults.swipeThreshold)
-        eventsArr.push('swipedown')
+        eventsArr.push(defaults.namespace+'swipedown')
 
       if (deltaY >= defaults.swipeThreshold)
-        eventsArr.push('swipeup')
+        eventsArr.push(defaults.namespace+'swipeup')
 
       if (eventsArr.length) {
         for (var i = 0; i < eventsArr.length; i++) {
@@ -227,7 +230,7 @@
           if (timestamp + defaults.tapThreshold - now >= 0)
           {
             // Here you get the Tap event
-            sendEvent(e.target, tapNum >= 2 && target === e.target ? 'dbltap' : 'tap', e)
+            sendEvent(e.target, tapNum >= 2 && target === e.target ? defaults.namespace+'dbltap' : defaults.namespace+'tap', e)
             target= e.target
           }
         }
