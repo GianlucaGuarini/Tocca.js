@@ -1,7 +1,7 @@
 {
-  "name": "tocca2",
-  "version": "0.0.1",
-  "description": "Take 2 of the Super lightweight script to detect via Javascript events like 'tap' 'dbltap' 'swipeup' 'swipedown' 'swipeleft' 'swiperight' on any kind of device.",
+  "name": "tocca",
+  "version": "2.1.0",
+  "description": "The Super lightweight (1kb) script to detect via Javascript events like 'tap' 'dbltap' 'swipeup' 'swipedown' 'swipeleft' 'swiperight' on any kind of device.",
   "main": "dist/main.js",
   "directories": {
     "test": "test"
