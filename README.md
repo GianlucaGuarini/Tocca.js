@@ -81,8 +81,9 @@ Anytime you will use a Tocca.js event the callback function will receive a speci
  - <code>y</code> { Int }: latest y position of pointer at the end of the event
  - <code>originalEvent</code> { Object }: the original javascript native event that has been triggered
  - <code>distance</code>: this property is available only for the swipe events
-  - <code>x</code> { Int }: the x absolute difference between the beginning and the end of the swipe gesture
-  - <code>y</code> { Int }: the y absolute difference between the beginning and the end of the swipe gesture
+  - <code>distance.x</code> { Int }: the x absolute difference between the beginning and the end of the swipe gesture
+  - <code>distance.y</code> { Int }: the y absolute difference between the beginning and the end of the swipe gesture
+ - <code>endingElement</code>{HTMLElement}: the last element the touch sensor picked up on as determined by the touch coordinates 
 
 Examples:
 
@@ -141,7 +142,8 @@ var SWIPE_THRESHOLD = 100, // default value
   TAP_THRESHOLD = 150, // range of time in which a tap event could be detected
   TAP_PRECISION = 60 / 2, // default value (touch events boundaries)
   JUST_ON_TOUCH_DEVICES = false, // default value ( decide whether you want to use the Tocca.js events only on the touch devices )
-  IGNORE_JQUERY = false; // default value ( will not use jQuery events, even if jQuery is detected )
+  IGNORE_JQUERY = false, // default value ( will not use jQuery events, even if jQuery is detected )
+  NAMESPACE = '';  // prepend a namespace to the events to avoid conflict with future native implementations
 </script>
 <script src="path/to/Tocca.js"></script>
 ```
